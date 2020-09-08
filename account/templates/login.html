@@ -1,0 +1,18 @@
+{% load static %}
+{% load widget_tweaks %}
+<html>
+<head>
+    <title>{{ title }}</title>
+</head>
+<body>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.username|attr:"placeholder:Ingrese nombre de usuario"|attr:"autofocus:on"|attr:"autocomplete:off"}}
+        {{ form.password|attr:"placeholder:Ingrese contraseña" }}
+        <input type="submit" value="Iniciar Sesión">
+    </form>
+        {% if form.errors %}
+            <p>¡Al menos uno de los datos ingresados es erroneo, por favor, prueba de nuevo.</p>
+        {% endif %}
+</body>
+</html>
