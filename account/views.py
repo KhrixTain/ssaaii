@@ -13,7 +13,7 @@ class MyLoginView(LoginView):
     }
 
 class MyHomePage(TemplateView):
-    template_name = 'homepage.html'
+    template_name = 'firtstview.html'
 
 
 
