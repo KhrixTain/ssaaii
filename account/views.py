@@ -1,6 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import FormView, TemplateView
@@ -14,6 +12,3 @@ class MyLoginView(LoginView):
 
 class MyHomePage(TemplateView):
     template_name = 'homepage.html'
-
-
-
