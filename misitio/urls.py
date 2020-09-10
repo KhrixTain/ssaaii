@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 """misitio URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,7 +14,6 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
->>>>>>> 35085625a5117446d383cdfe2867ad84cd5fb6ea
 from django.contrib import admin
 from django.urls import path, include
 
@@ -23,8 +21,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls')),
-<<<<<<< HEAD
 ]
-=======
-]
->>>>>>> 35085625a5117446d383cdfe2867ad84cd5fb6ea
+
