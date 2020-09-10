@@ -4,6 +4,7 @@ from django.db import models
 
 from django.contrib.auth.models import User
 import  datetime
+
 class Tipo_cuenta(models.Model):
    tipo = models.CharField(max_length=80, verbose_name='Tipo', unique=True)
 
@@ -20,10 +21,10 @@ class Cuentas(models.Model):
 
 
    nombre_cuentae = models.CharField(max_length=80, verbose_name='Nombre de Cuenta', unique=True)
-   recibe_saldo = models.BooleanFielad(deafult=True)
+   recibe_saldo = models.BooleanField(default=True)
    saldo_actual = models.FloatField()
-   tipo_cuenta = models.ForeingKey(Tipo_cuenta, on_dele=models.CASCADE)
-   cuenta_padre = models.ForeingKey(Cuentas, On_delete=models.CASCADE)
+   tipo_cuenta = models.ForeignKey(Tipo_cuenta, on_delete=models.CASCADE)
+   cuenta_padre = models.ForeignKey('self', on_delete=models.CASCADE)
 
 
    def __str__(self):
@@ -41,9 +42,9 @@ class Cuentas(models.Model):
 class Asientos(models.Model):
 
 
-   fecha = models.DateField(default=datetime.naw, verbose_name= 'Fecha_del_asiento')
+   fecha = models.DateField(default=datetime, verbose_name='Fecha_del_asiento')
    desctripcion = models.TextField(verbose_name='Descripcion')
-   usuario = models.ForeingKey(User, On_delete=models.CASACADE)
+   usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
    def __str__(self):
@@ -58,26 +59,26 @@ class Asientos(models.Model):
 
 class Cuenta_asientos(models.Model):
 
-       DEBE = ‘DB’
-       HABER =‘HB’
-       choices = [
-           (DEBE,’Debe’),
-           (HABER,’Haber’),
-       ]
-       tipo = models.CharField(max_length=2, choices=choices, default=DEBE)
-       id_cuenta = models.ForeingKey(Cuentas, On_delete=models.CASACADE)
-       id_asiento = models.ForeingKey(Asientos, On_delete=models.CASACADE)
-       monto = models.FloatField()
+    DEBE = 'DB'
+    HABER ='HB'
+    choices = [
+        (DEBE,'Debe'),
+        (HABER,'Haber'),
+    ]
+    tipo = models.CharField(max_length=2, choices=choices, default=DEBE)
+    id_cuenta = models.ForeignKey(Cuentas, on_delete=models.CASCADE)
+    id_asiento = models.ForeignKey(Asientos, on_delete=models.CASCADE)
+    monto = models.FloatField()
 
-       saldo_parcial = models.FloatField()
+    saldo_parcial = models.FloatField()
 
-       def __str__(self):
-           return 'Nombre: {}'.format(self.nombre_cuenta)
+    def __str__(self):
+        return 'Nombre: {}'.format(self.nombre_cuenta)
 
-       class Meta:
-           verbose_name = 'asiento'
-           verbose_name_plural = 'asientos'
-           ordering = ['id']
+    class Meta:
+        verbose_name = 'asiento'
+        verbose_name_plural = 'asientos'
+        ordering = ['id']
 
 '''
 Docuemntacion que explica  lo del tipo
