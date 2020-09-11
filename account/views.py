@@ -21,8 +21,5 @@ class MyLoginView(LoginView):
             return redirect(setting.LOGIN_REDIRECT_URL)
         return super().dispatch(request,args,kwargs)
 
-class MyHomePage(TemplateView):
-    template_name = 'homepage.html'
-
 
 

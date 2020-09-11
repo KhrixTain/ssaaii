@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #Aplicación de cuentas (inicio y salida de sesión)
     'account',
+    #Aplicación de homepage (interfaz principal de usuarios)
+    'homepage',
     'widget_tweaks',
 ]
 
@@ -128,4 +130,4 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-LOGIN_REDIRECT_URL = "/accounts/"
+LOGIN_REDIRECT_URL = "/homepage/"
