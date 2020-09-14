@@ -5,3 +5,8 @@ class MyHomePage(TemplateView):
     extra_context = {
         'title': "Página Principal",
     }
+class LibroDiarioView(TemplateView):
+    template_name = 'libro_diario_view.html'
+    extra_context = {
+        'title': "Libro Diario",
+    }
