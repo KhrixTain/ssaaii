@@ -17,19 +17,18 @@ class Tipo_cuenta(models.Model):
 
 class Cuentas(models.Model):
 
+    nro_cuenta = models.IntegerField(verbose_name='Número de Cuenta',unique=True)
+    nombre_cuenta = models.CharField(max_length=80, verbose_name='Nombre de Cuenta', unique=True)
+    recibe_saldo = models.BooleanField(default=True)
+    tipo_cuenta = models.ForeignKey(Tipo_cuenta, on_delete=models.PROTECT)
+    cuenta_padre = models.ForeignKey('self', on_delete=models.PROTECT, blank=True, null=True)
+    saldo_actual = models.FloatField(null=True, blank=True)
 
-   nombre_cuenta = models.CharField(max_length=80, verbose_name='Nombre de Cuenta', unique=True)
-   recibe_saldo = models.BooleanField(default=True)
-   saldo_actual = models.FloatField(null=True, blank=True)
-   tipo_cuenta = models.ForeignKey(Tipo_cuenta, on_delete=models.PROTECT)
-   cuenta_padre = models.ForeignKey('self', on_delete=models.PROTECT, blank=True, null=True)
+    def __str__(self):
+        return self.nombre_cuenta
 
 
-   def __str__(self):
-       return self.nombre_cuenta
-
-
-   class Meta:
+    class Meta:
        verbose_name = 'Cuenta'
        verbose_name_plural = 'Cuentas'
        ordering = ['id']
