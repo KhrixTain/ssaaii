@@ -1,277 +1,380 @@
-<!DOCTYPE html>
+{%load static%}
 
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>{{title}}</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/static/plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="/static/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="/static/plugins/jqvmap/jqvmap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="/static/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="/static/plugins/daterangepicker/daterangepicker.css">
-  <!-- summernote -->
-  <link rel="stylesheet" href="/static/plugins/summernote/summernote-bs4.css">
-  <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{title}}</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/static/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="/static/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="/static/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="/static/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/static/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="/static/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="/static/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="/static/plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
 
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Dashboard</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard v1</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>Libro Mayor</h3>
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>Libro Mayor</h3>
 
-                <p>Ver libro mayor</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <div class="small-box-footer"> </br></div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>Cargar Usuario</h3>
-
-                <p>Cargar nuevos usuarios</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <div class="small-box-footer"> </br></div>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>Cargar Cuenta</h3>
-
-                <p>Cargar nuevas cuentas</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <div class="small-box-footer"> </br></div>
-
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>Cerrar Sesión</h3>
-
-                <p>Cerrar sesión de usuario</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <div class="small-box-footer"> </br></div>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
-        <!-- /.row -->
-        <!-- Main row -->
-          <section class="col-lg-12 connectedSortable">
-
-            <!-- TO DO List -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="ion ion-clipboard mr-1"></i>
-                  To Do List
-                </h3>
-
-                <div class="card-tools">
-                  <ul class="pagination pagination-sm">
-                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-                  </ul>
+                            <p>Ver libro mayor</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <div class="small-box-footer"> </br></div>
+                    </div>
                 </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <ul class="todo-list" data-widget="todo-list">
-                  <li>
-                    <!-- drag handle -->
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <!-- checkbox -->
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                      <label for="todoCheck1"></label>
-                    </div>
-                    <!-- todo text -->
-                    <span class="text">Design a nice theme</span>
-                    <!-- Emphasis label -->
-                    <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
-                    <!-- General tools such as edit or delete-->
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
-                      <label for="todoCheck2"></label>
-                    </div>
-                    <span class="text">Make the theme responsive</span>
-                    <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo4" id="todoCheck4">
-                      <label for="todoCheck4"></label>
-                    </div>
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo5" id="todoCheck5">
-                      <label for="todoCheck5"></label>
-                    </div>
-                    <span class="text">Check your messages and notifications</span>
-                    <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo6" id="todoCheck6">
-                      <label for="todoCheck6"></label>
-                    </div>
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <button type="button" class="btn btn-info float-right"><i class="fas fa-plus"></i> Add item</button>
-              </div>
-            </div>
-            <!-- /.card -->
-          </section>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>Cargar Usuario</h3>
 
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
+                            <p>Cargar nuevos usuarios</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <div class="small-box-footer"> </br></div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>Cargar Cuenta</h3>
+
+                            <p>Cargar nuevas cuentas</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <div class="small-box-footer"> </br></div>
+
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>Cerrar Sesión</h3>
+
+                            <p>Cerrar sesión de usuario</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <div class="small-box-footer"> </br></div>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+            <!-- /.row -->
+            <!-- Main row -->
+            <section class="col-lg-12 connectedSortable">
+
+                <!-- TO DO List -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="ion ion-clipboard mr-1"></i>
+                            To Do List
+                        </h3>
+
+                        <div class="card-tools">
+                            <ul class="pagination pagination-sm">
+                                <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
+                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                <li class="page-item"><a href="#" class="page-link">3</a></li>
+                                <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <ul class="todo-list" data-widget="todo-list">
+                            <li>
+                                <!-- drag handle -->
+                                <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                <!-- checkbox -->
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo1" id="todoCheck1">
+                                    <label for="todoCheck1"></label>
+                                </div>
+                                <!-- todo text -->
+                                <span class="text">Design a nice theme</span>
+                                <!-- Emphasis label -->
+                                <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
+                                <!-- General tools such as edit or delete-->
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
+                                    <label for="todoCheck2"></label>
+                                </div>
+                                <span class="text">Make the theme responsive</span>
+                                <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo3" id="todoCheck3">
+                                    <label for="todoCheck3"></label>
+                                </div>
+                                <span class="text">Let theme shine like a star</span>
+                                <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo4" id="todoCheck4">
+                                    <label for="todoCheck4"></label>
+                                </div>
+                                <span class="text">Let theme shine like a star</span>
+                                <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo5" id="todoCheck5">
+                                    <label for="todoCheck5"></label>
+                                </div>
+                                <span class="text">Check your messages and notifications</span>
+                                <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                            <li>
+                    <span class="handle">
+                      <i class="fas fa-ellipsis-v"></i>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
+                                <div class="icheck-primary d-inline ml-2">
+                                    <input type="checkbox" value="" name="todo6" id="todoCheck6">
+                                    <label for="todoCheck6"></label>
+                                </div>
+                                <span class="text">Let theme shine like a star</span>
+                                <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
+                                <div class="tools">
+                                    <i class="fas fa-edit"></i>
+                                    <i class="fas fa-trash-o"></i>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+
+                        <div class="content">
+                            <div class="container">
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                        data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus"></i>Cargar asiento
+                                </button>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Cargar nuevo asiento</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div>
+                                                        <tr>
+                                                            <th scope="col">
+                                                                <div class="form-group">
+                                                                    <label class="required" for="id_nombre_cuenta">Nombre
+                                                                        de Cuenta:</label>
+
+                                                                    <input type="text" name="nombre_cuenta"
+                                                                           class="form-control" maxlength="80"
+                                                                           required="" id="id_nombre_cuenta">
+                                                                </div>
+                                                            </th>
+                                                            <th scope="col">
+                                                                <div class="checkbox-row">
+
+                                                                    <input type="checkbox" name="recibe_saldo"
+                                                                           id="id_recibe_saldo" checked=""><label
+                                                                        class="vCheckboxLabel" for="id_recibe_saldo">
+                                                                    Recibe saldo</label>
+                                                                </div>
+                                                            </th>
+                                                            <th scope="col">
+                                                                <div class="form-group">
+                                                                    <div>
+                                                                        <label class="required" for="id_saldo_actual">Saldo
+                                                                            actual:</label>
+                                                                        <input type="number" class="form-control"
+                                                                               name="saldo-actual" step="positive"
+                                                                               id="id_saldo_actual">
+                                                                    </div>
+                                                                </div>
+                                                            </th>
+
+                                                        </tr>
+                                                    </div>
+                                                    <div class="form-row field-tipo_cuenta">
+                                                        <div>
+                                                            <label class="required" for="id_tipo_cuenta">Tipo
+                                                                cuenta:</label>
+
+                                                            <div class="related-widget-wrapper">
+                                                                <select class="form-control" name="tipo_cuenta"
+                                                                        required="" id="id_tipo_cuenta">
+                                                                    <option value="" selected="">---------</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row field-cuenta-padre">
+                                                        <div>
+                                                            <label class="required" for="id_cuenta_padre">Cuenta
+                                                                padre:</label>
+
+                                                            <div class="related-widget-wrapper">
+                                                                <select class="form-control" name="cuenta_padre"
+                                                                        required="" id="id_cuenta_padre">
+                                                                    <option value="" selected="">---------</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" id="btnGuardar" class="btn btn-primary">
+                                                        Guardar
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Guardar y agregar
+                                                        otro
+                                                    </button>
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Cerrar
+                                                    </button>
+                                            </form>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+        <!-- /.card -->
     </section>
-    <!-- /.content -->
-  <!-- /.content-wrapper -->
-  <footer class="main-footer">
+
+    <!-- /.row (main row) -->
+</div><!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+<!-- Button trigger modal -->
+
+
+<
+<!-- /.content-wrapper -->
+<footer class="main-footer">
     <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.0.5
+        <b>Version</b> 3.0.5
     </div>
-  </footer>
+</footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+</aside>
+<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -281,7 +384,7 @@
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
-  $.widget.bridge('uibutton', $.ui.button)
+    $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -309,5 +412,12 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script src="{% static 'lib/adminlte/plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'lib/adminlte/js/adminlte.min.js' %}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{% static 'lib/adminltejs/demo.js' %}"></script>
 </body>
 </html>
