@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 
 class MyHomePage(TemplateView):
-    template_name = 'homepage.html'
+    template_name = 'index.html'
     extra_context = {
         'title': "Página Principal",
     }
