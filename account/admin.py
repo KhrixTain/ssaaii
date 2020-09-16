@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from homepage.models import *
 from .models import *
 
 admin.site.register(Cuentas)
