@@ -1,11 +1,12 @@
 from django.views.generic import TemplateView
 from django import template
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group, User
 
 register = template.Library()
 
 class MyHomePage(TemplateView):
     template_name = 'index.html'
+
     extra_context = {
         'title': "Página Principal",
     }
