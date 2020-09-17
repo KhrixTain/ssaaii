@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from homepage.models import *
 
-class Cuenta_AsientosForm(ModelForm):
+class CuentaForm(ModelForm):
     class Meta:
-        model = Tipo_cuenta
+        model = Cuentas
         fields= '__all__'

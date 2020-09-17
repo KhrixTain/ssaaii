@@ -128,7 +128,6 @@
 
         <div class="content">
             <div class="container">
-                <form method="post">
                 <button type="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus"></i>Cargar asiento
                 </button>
@@ -144,18 +143,20 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            <form method="post">
+                                {%csrf_token%}
                             <div class="modal-body">
-                                <form>
+                                <!-- <form action="index.html" method="post"> --->
                                     <div>
                                         <tr>
                                             <th scope="col">
                                                 <div class="form-group">
                                                     <label class="required" for="id_nombre_cuenta">Nombre
                                                         de Cuenta:</label>
-
-                                                    <input type="text" name="nombre_cuenta"
+                                                        {{form.nombre_cuenta}}
+                                                   <!-- <input type="text" name="nombre_cuenta"
                                                            class="form-control" maxlength="80"
-                                                           required="" id="id_nombre_cuenta">
+                                                           required="" id="id_nombre_cuenta">-->
                                                 </div>
                                             </th>
                                             <th scope="col">
@@ -189,7 +190,9 @@
                                             <div class="related-widget-wrapper">
                                                 <select class="form-control" name="tipo_cuenta"
                                                         required="" id="id_tipo_cuenta">
-                                                    <option value="" selected="">---------</option>
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -202,7 +205,9 @@
                                             <div class="related-widget-wrapper">
                                                 <select class="form-control" name="cuenta_padre"
                                                         required="" id="id_cuenta_padre">
-                                                    <option value="" selected="">---------</option>
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -216,16 +221,35 @@
                                     <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Cerrar
                                     </button>
-                                </form>
+
 
                             </div>
+                                </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     </div>
 
 </div>
+
 {% endblock %}
+
+<script type="application/javascript">
+   $('form').on('submit', function(e) {
+       e.preventDefault();
+       var parameters = $(this).serializeArray()
+       console.log(parameters);
+       /*$.ajax({
+            url: '{% url "homepage: MyHomepage"%}',
+            type: 'POST',
+            data: {},
+            dataType: 'Json'}).done(function (data){
+
+        })
+
+        })
+         */
+   })
+</script>
