@@ -15,6 +15,18 @@ class MyHomePage(ListView):
         'title': "Página Principal",
     }
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        grupos = list()
+        if (self.request.user.groups.filter(name='Contador').exists()):
+            grupos.append("Contador")
+        if (self.request.user.groups.filter(name='Gestor').exists()):
+            grupos.append("Gestor")
+        if (self.request.user.groups.filter(name='Empleado').exists()):
+            grupos.append("Empleado")
+        context['grupos'] = grupos
+        return context
+
 class LibroDiarioView(TemplateView):
     template_name = 'libro_diario_view.html'
     extra_context = {
