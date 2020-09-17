@@ -5,6 +5,7 @@
     <div class="card-header">
         <h3 class="card-title">
             <i class="fas fa-book"></i>
+            {{ tittle }}
             Libro Diario
         </h3>
     </div>
@@ -22,6 +23,13 @@
             </tr>
             </thead>
             <tbody>
+            <!--SEGUIR DESDE ACÁ-->
+            {% for a in Asientos %}
+            <tr>
+
+                {{a.fecha}}
+            </tr>
+            {% endfor %}
             <!--
             Iteraciones
             donmde C seria la clase a la que debería hacer referencia

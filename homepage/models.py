@@ -40,7 +40,7 @@ class Asientos(models.Model):
 
 
    fecha = models.DateTimeField(default=now, editable=False, verbose_name='Fecha_del_asiento')
-   desctripcion = models.TextField(verbose_name='Descripcion', editable=False)
+   desctripcion = models.TextField(verbose_name='Descripcion', editable=True)
    usuario = models.ForeignKey(User, on_delete=models.PROTECT)
 
 
@@ -65,12 +65,12 @@ class Cuenta_asientos(models.Model):
     tipo = models.CharField(max_length=1, choices=choices, default=DEBE)
     id_cuenta = models.ForeignKey(Cuentas, on_delete=models.PROTECT)
     id_asiento = models.ForeignKey(Asientos, on_delete=models.PROTECT)
-    monto = models.FloatField()
+    monto = models.FloatField(null=True, blank=True)
 
-    saldo_parcial = models.FloatField()
+    saldo_parcial = models.FloatField(null=True, blank=True)
 
     def __str__(self):
-        return self.monto
+        return self.tipo
 
     class Meta:
         verbose_name = 'cuenta_asiento'

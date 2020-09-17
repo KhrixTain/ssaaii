@@ -16,6 +16,9 @@ class MyHomePage(ListView):
     context_object_name = 'cuenta_asientos'
     extra_context = {
         'title': "Página Principal",
+        'Cuentas':Cuentas.objects.all(),
+        'Cuenta_Asientos':Cuenta_asientos.objects.all(),
+        'Asientos':Asientos.objects.all()
     }
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
