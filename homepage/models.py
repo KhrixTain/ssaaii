@@ -73,8 +73,8 @@ class Cuenta_asientos(models.Model):
         return self.monto
 
     class Meta:
-        verbose_name = 'asiento'
-        verbose_name_plural = 'asientos'
+        verbose_name = 'cuenta_asiento'
+        verbose_name_plural = 'cuentas_asientos'
         ordering = ['id']
 
 '''

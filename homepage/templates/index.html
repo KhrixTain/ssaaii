@@ -1,255 +1,205 @@
 {% extends "base.html" %}
 {% block listado %}
-<div class="card">
+{% block content %}
+<div class="card card-default">
     <div class="card-header">
         <h3 class="card-title">
-            <i class="ion ion-clipboard mr-1"></i>
-            To Do List
+            <i class="fas fa-book"></i>
+            Libro Diario
         </h3>
-
-        <div class="card-tools">
-            <ul class="pagination pagination-sm">
-                <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
-                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-            </ul>
-        </div>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-        <ul class="todo-list" data-widget="todo-list">
-            <li>
-                <!-- drag handle -->
-                <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                <!-- checkbox -->
-                <div class="icheck-primary d-inline ml-2">
-                    <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                    <label for="todoCheck1"></label>
-                </div>
-                <!-- todo text -->
-                <span class="text">Design a nice theme</span>
-                <!-- Emphasis label -->
-                <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
-                <!-- General tools such as edit or delete-->
-                <div class="tools">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                <div class="icheck-primary d-inline ml-2">
-                    <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
-                    <label for="todoCheck2"></label>
-                </div>
-                <span class="text">Make the theme responsive</span>
-                <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
-                <div class="tools">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                <div class="icheck-primary d-inline ml-2">
-                    <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                    <label for="todoCheck3"></label>
-                </div>
-                <span class="text">Let theme shine like a star</span>
-                <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
-                <div class="tools">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                <div class="icheck-primary d-inline ml-2">
-                    <input type="checkbox" value="" name="todo4" id="todoCheck4">
-                    <label for="todoCheck4"></label>
-                </div>
-                <span class="text">Let theme shine like a star</span>
-                <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
-                <div class="tools">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                <div class="icheck-primary d-inline ml-2">
-                    <input type="checkbox" value="" name="todo5" id="todoCheck5">
-                    <label for="todoCheck5"></label>
-                </div>
-                <span class="text">Check your messages and notifications</span>
-                <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
-                <div class="tools">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash-o"></i>
-                </div>
-            </li>
-            <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                <div class="icheck-primary d-inline ml-2">
-                    <input type="checkbox" value="" name="todo6" id="todoCheck6">
-                    <label for="todoCheck6"></label>
-                </div>
-                <span class="text">Let theme shine like a star</span>
-                <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
-                <div class="tools">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash-o"></i>
-                </div>
-            </li>
-        </ul>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Fecha</th>
+                <th scoe="col">Nº de Cuenta</th>
+                <th scope="col">Cuenta</th>
+                <th scope="col">Operación</th>
+                <th scope="col">Debe</th>
+                <th scope="col">Haber</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--
+            Iteraciones
+            donmde C seria la clase a la que debería hacer referencia
+            MAS O MENOS ESTO DEBERIA TENER ESTA ESTRUCTURA
+            UNA VEZ QUE DEFINAMOS DE DONDE VA A TRARER LOS DATOS
+            -->
+            <!--
+                    {% for c in cuenta_asientos %}
+                           <tr>
+                               <td>{{c.fecha}}</td>
+                               <td>{{c.cuenta}}</td>
+                               <td>{{c.detalle}}</td>
+                               <td>{{c.debe}}</td>
+                               <td>{{c.haber}}</td>
+                   </tr>
+           {% endfor %}
+            -->
+
+
+            <!--
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            <td>@mdo</td>
+                        </tr>
+            -->
+            </tbody>
+
+        </table>
+
     </div>
     <!-- /.card-body -->
-    <div class="card-footer clearfix">
+</div>
+{% endblock %}
 
-        <div class="content">
-            <div class="container">
-                <button type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus"></i>Cargar asiento
-                </button>
+<!-- /.card-body -->
+<div class="card-footer clearfix">
 
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Cargar nuevo asiento</h5>
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <form method="post">
-                                {%csrf_token%}
+    <div class="content">
+        <div class="container">
+            <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus"></i>Cargar asiento
+            </button>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Cargar nuevo asiento</h5>
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post">
+                            {%csrf_token%}
                             <div class="modal-body">
                                 <!-- <form action="index.html" method="post"> --->
+                                <div>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="form-group">
+                                                <label class="required" for="id_nombre_cuenta">Nombre
+                                                    de Cuenta:</label>
+                                                {{form.nombre_cuenta}}
+                                                <!-- <input type="text" name="nombre_cuenta"
+                                                        class="form-control" maxlength="80"
+                                                        required="" id="id_nombre_cuenta">-->
+                                            </div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="checkbox-row">
+
+                                                <input type="checkbox" name="recibe_saldo"
+                                                       id="id_recibe_saldo" checked=""><label
+                                                    class="vCheckboxLabel" for="id_recibe_saldo">
+                                                Recibe saldo</label>
+                                            </div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="form-group">
+                                                <div>
+                                                    <label class="required" for="id_saldo_actual">Saldo
+                                                        actual:</label>
+                                                    <input type="number" class="form-control"
+                                                           name="saldo-actual" step="positive"
+                                                           id="id_saldo_actual">
+                                                </div>
+                                            </div>
+                                        </th>
+
+                                    </tr>
+                                </div>
+                                <div class="form-row field-tipo_cuenta">
                                     <div>
-                                        <tr>
-                                            <th scope="col">
-                                                <div class="form-group">
-                                                    <label class="required" for="id_nombre_cuenta">Nombre
-                                                        de Cuenta:</label>
-                                                        {{form.nombre_cuenta}}
-                                                   <!-- <input type="text" name="nombre_cuenta"
-                                                           class="form-control" maxlength="80"
-                                                           required="" id="id_nombre_cuenta">-->
-                                                </div>
-                                            </th>
-                                            <th scope="col">
-                                                <div class="checkbox-row">
+                                        <label class="required" for="id_tipo_cuenta">Tipo
+                                            cuenta:</label>
 
-                                                    <input type="checkbox" name="recibe_saldo"
-                                                           id="id_recibe_saldo" checked=""><label
-                                                        class="vCheckboxLabel" for="id_recibe_saldo">
-                                                    Recibe saldo</label>
-                                                </div>
-                                            </th>
-                                            <th scope="col">
-                                                <div class="form-group">
-                                                    <div>
-                                                        <label class="required" for="id_saldo_actual">Saldo
-                                                            actual:</label>
-                                                        <input type="number" class="form-control"
-                                                               name="saldo-actual" step="positive"
-                                                               id="id_saldo_actual">
-                                                    </div>
-                                                </div>
-                                            </th>
+                                        <div class="related-widget-wrapper">
+                                            <select class="form-control" name="tipo_cuenta"
+                                                    required="" id="id_tipo_cuenta">
+                                                <option>option 1</option>
+                                                <option>option 2</option>
 
-                                        </tr>
-                                    </div>
-                                    <div class="form-row field-tipo_cuenta">
-                                        <div>
-                                            <label class="required" for="id_tipo_cuenta">Tipo
-                                                cuenta:</label>
-
-                                            <div class="related-widget-wrapper">
-                                                <select class="form-control" name="tipo_cuenta"
-                                                        required="" id="id_tipo_cuenta">
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
-
-                                                </select>
-                                            </div>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="form-row field-cuenta-padre">
-                                        <div>
-                                            <label class="required" for="id_cuenta_padre">Cuenta
-                                                padre:</label>
+                                </div>
+                                <div class="form-row field-cuenta-padre">
+                                    <div>
+                                        <label class="required" for="id_cuenta_padre">Cuenta
+                                            padre:</label>
 
-                                            <div class="related-widget-wrapper">
-                                                <select class="form-control" name="cuenta_padre"
-                                                        required="" id="id_cuenta_padre">
-                                                    <option>option 1</option>
-                                                    <option>option 2</option>
+                                        <div class="related-widget-wrapper">
+                                            <select class="form-control" name="cuenta_padre"
+                                                    required="" id="id_cuenta_padre">
+                                                <option>option 1</option>
+                                                <option>option 2</option>
 
-                                                </select>
-                                            </div>
+                                            </select>
                                         </div>
                                     </div>
-                                    <button type="submit" id="btnGuardar" class="btn btn-primary">
-                                        Guardar
-                                    </button>
-                                    <button type="submit" class="btn btn-primary">Guardar y agregar
-                                        otro
-                                    </button>
-                                    <button type="button" class="btn btn-secondary"
-                                            data-dismiss="modal">Cerrar
-                                    </button>
+                                </div>
+                                <button type="submit" id="btnGuardar" class="btn btn-primary">
+                                    Guardar
+                                </button>
+                                <button type="submit" class="btn btn-primary">Guardar y agregar
+                                    otro
+                                </button>
+                                <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Cerrar
+                                </button>
 
 
                             </div>
-                                </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 
 {% endblock %}
 
 <script type="application/javascript">
-   $('form').on('submit', function(e) {
-       e.preventDefault();
-       var parameters = $(this).serializeArray()
-       console.log(parameters);
-       /*$.ajax({
-            url: '{% url "homepage: MyHomepage"%}',
-            type: 'POST',
-            data: {},
-            dataType: 'Json'}).done(function (data){
+    $('form').on('submit', function (e) {
+        e.preventDefault();
+        var parameters = $(this).serializeArray()
+        console.log(parameters);
+        /*$.ajax({
+             url: '{% url "homepage: MyHomepage"%}',
+             type: 'POST',
+             data: {},
+             dataType: 'Json'}).done(function (data){
 
-        })
+         })
 
-        })
-         */
-   })
+         })
+          */
+    })
 </script>
