@@ -15,63 +15,48 @@
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Fecha</th>
-                <th scoe="col">Nº de Asiento</th>
-                <th scope="col">Cuenta</th>
                 <th scope="col">Operación</th>
+                <th scope="col">Nº de Asiento</th>
+                <th scope="col">Cuenta</th>
                 <th scope="col">Debe</th>
                 <th scope="col">Haber</th>
             </tr>
             </thead>
             <tbody>
             <!--SEGUIR DESDE ACÁ-->
-            {% for a in Asientos %}
+            {% for c in object_list %}
             <tr>
+                <td>
+                    {{c.id_asiento.fecha}}
+                </td>
+                <td>
+                    {% if c.tipo == 'H'%}
 
-                {{a.fecha}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{c.id_asiento.desctripcion}}
+                    {% else %}
+
+                    {{c.id_asiento.desctripcion}}
+
+                    {% endif %}
+                </td>
+                <td>
+                    {{c.id_asiento.id}}
+                </td>
+                <td>
+                    {{c.id_cuenta.nombre_cuenta}}
+                </td>
+                {% if c.tipo == 'D'%}
+                <td>
+                    {{c.monto}}
+                </td>
+                <td></td>
+                {% else %}
+                <td></td>
+                <td>{{c.monto}}</td>
+                {% endif %}
             </tr>
             {% endfor %}
-            <!--
-            Iteraciones
-            donmde C seria la clase a la que debería hacer referencia
-            MAS O MENOS ESTO DEBERIA TENER ESTA ESTRUCTURA
-            UNA VEZ QUE DEFINAMOS DE DONDE VA A TRARER LOS DATOS
-            -->
-            <!--
-                    {% for c in cuenta_asientos %}
-                           <tr>
-                               <td>{{c.fecha}}</td>
-                               <td>{{c.cuenta}}</td>
-                               <td>{{c.detalle}}</td>
-                               <td>{{c.debe}}</td>
-                               <td>{{c.haber}}</td>
-                   </tr>
-           {% endfor %}
-            -->
 
-
-            <!--
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            <td>@mdo</td>
-                        </tr>
-            -->
             </tbody>
 
         </table>
@@ -86,18 +71,18 @@
 
     <div class="content">
         <div class="container">
-            <button type="button" class="btn btn-primary" data-toggle="modal"
-                    data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus"></i>Cargar asiento
+            <button class="btn btn-primary" data-target="#exampleModal" data-toggle="modal"
+                    data-whatever="@mdo" type="button"><i class="fas fa-plus"></i>Cargar asiento
             </button>
 
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal"
+                 role="dialog" tabindex="-1">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Cargar nuevo asiento</h5>
-                            <button type="button" class="close" data-dismiss="modal"
-                                    aria-label="Close">
+                            <button aria-label="Close" class="close" data-dismiss="modal"
+                                    type="button">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
@@ -120,8 +105,8 @@
                                         <th scope="col">
                                             <div class="checkbox-row">
 
-                                                <input type="checkbox" name="recibe_saldo"
-                                                       id="id_recibe_saldo" checked=""><label
+                                                <input checked="" id="id_recibe_saldo"
+                                                       name="recibe_saldo" type="checkbox"><label
                                                     class="vCheckboxLabel" for="id_recibe_saldo">
                                                 Recibe saldo</label>
                                             </div>
@@ -131,9 +116,9 @@
                                                 <div>
                                                     <label class="required" for="id_saldo_actual">Saldo
                                                         actual:</label>
-                                                    <input type="number" class="form-control"
+                                                    <input class="form-control" id="id_saldo_actual"
                                                            name="saldo-actual" step="positive"
-                                                           id="id_saldo_actual">
+                                                           type="number">
                                                 </div>
                                             </div>
                                         </th>
@@ -146,8 +131,8 @@
                                             cuenta:</label>
 
                                         <div class="related-widget-wrapper">
-                                            <select class="form-control" name="tipo_cuenta"
-                                                    required="" id="id_tipo_cuenta">
+                                            <select class="form-control" id="id_tipo_cuenta"
+                                                    name="tipo_cuenta" required="">
                                                 <option>option 1</option>
                                                 <option>option 2</option>
 
@@ -161,8 +146,8 @@
                                             padre:</label>
 
                                         <div class="related-widget-wrapper">
-                                            <select class="form-control" name="cuenta_padre"
-                                                    required="" id="id_cuenta_padre">
+                                            <select class="form-control" id="id_cuenta_padre"
+                                                    name="cuenta_padre" required="">
                                                 <option>option 1</option>
                                                 <option>option 2</option>
 
@@ -170,14 +155,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" id="btnGuardar" class="btn btn-primary">
+                                <button class="btn btn-primary" id="btnGuardar" type="submit">
                                     Guardar
                                 </button>
-                                <button type="submit" class="btn btn-primary">Guardar y agregar
+                                <button class="btn btn-primary" type="submit">Guardar y agregar
                                     otro
                                 </button>
-                                <button type="button" class="btn btn-secondary"
-                                        data-dismiss="modal">Cerrar
+                                <button class="btn btn-secondary" data-dismiss="modal"
+                                        type="button">Cerrar
                                 </button>
 
 

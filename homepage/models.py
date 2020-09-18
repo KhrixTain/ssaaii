@@ -39,7 +39,7 @@ class Cuentas(models.Model):
 class Asientos(models.Model):
 
 
-   fecha = models.DateTimeField(default=now, editable=False, verbose_name='Fecha_del_asiento')
+   fecha = models.DateTimeField(default=now, editable=True, verbose_name='Fecha_del_asiento')
    desctripcion = models.TextField(verbose_name='Descripcion', editable=True)
    usuario = models.ForeignKey(User, on_delete=models.PROTECT)
 

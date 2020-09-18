@@ -13,6 +13,7 @@ register = template.Library()
 class MyHomePage(ListView):
     template_name = 'index.html'
     model = Cuenta_asientos
+
     context_object_name = 'cuenta_asientos'
     extra_context = {
         'title': "Página Principal",
