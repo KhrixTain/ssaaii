@@ -56,7 +56,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" onclick="redirect('https://www.google.com')">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -72,7 +72,7 @@
                 </div>
                 <!-- ./col -->
                 {% if 'Contador' in grupos or 'Gestor' in grupos %}
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" onclick="redirect('https://www.google.com')">
                     <!-- small box -->
                     <div class="small-box bg-success">
                         <div class="inner">
@@ -83,14 +83,14 @@
                         <div class="icon">
                             <i class="ion ion-cash"></i>
                         </div>
-                        <div class="small-box-footer"> </br></div>
+                        <div class="small-box-footer    "> </br></div>
 
                     </div>
                 </div>
                 {% endif %}
                 <!-- ./col -->
                 {% if 'Gestor' in grupos %}
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" onclick="redirect('https://www.google.com')">
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
@@ -107,7 +107,7 @@
                 <!-- ./col -->
                 {% endif %}
 
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" onclick="redirect('https://www.google.com')">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
@@ -122,6 +122,12 @@
                     </div>
                 </div>
                 <!-- ./col -->
+                <!-- Script para redireccionar los botones creados con divs-->
+                <script type="text/javascript">
+                    function redirect(url) {
+                        window.location.href=url;
+                    }
+                </script>
             </div>
             <!-- /.row -->
             <!-- Main row -->
