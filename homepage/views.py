@@ -1,20 +1,22 @@
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.list import ListView
 from django.http import JsonResponse
-
-from django.views.generic import TemplateView
+from homepage.forms import *
+from django.views.generic import TemplateView, CreateView
 from django import template
 from homepage.models import *
 from django.contrib.auth.models import Group, User
 
 register = template.Library()
 
-class MyHomePage(ListView):
+class MyHomePage(CreateView):
     template_name = 'index.html'
     model = Cuenta_asientos
-
+    form_class=CuentaForm
     context_object_name = 'cuenta_asientos'
+    success_url = reverse_lazy('homepage:index')
     extra_context = {
         'title': "Página Principal",
         'Cuentas':Cuentas.objects.all(),
@@ -28,7 +30,15 @@ class MyHomePage(ListView):
     def post(self,request,*args,**kwargs):
         data={}
         try:
-            data=Cuentas.objects.get(uk=request.POST['nro_cuenta']).toJSON()
+            action = request.POST['action']
+            if action == 'add':
+                form = self.get_form()
+                if form.is_valid():
+                    form.save()
+                else:
+                    data=form.errors
+            else:
+                data['error']= 'No ha ingresado ningun campo'
         except Exception as e:
             data['error']=str(e)
         return JsonResponse(data)
@@ -43,7 +53,11 @@ class MyHomePage(ListView):
         if (self.request.user.groups.filter(name='Empleado').exists()):
             grupos.append("Empleado")
         context['grupos'] = grupos
-        return context
+        """Estas dos lineas de abajo son para que la vista createview muestre los datos tipo object del listado"""
+        kwargs['object_list'] = Cuenta_asientos.objects.all()
+        context['action'] = 'add'
+        return super(MyHomePage, self).get_context_data(**kwargs)
+        #return context
 
 class LibroDiarioView(TemplateView):
     templatate_name = 'libro_diario_view.html'

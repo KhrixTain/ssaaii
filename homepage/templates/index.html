@@ -86,20 +86,21 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form method="post">
+                        <form method="post" action=".">
                             {%csrf_token%}
                             <div class="modal-body">
-                                <!-- <form action="index.html" method="post"> --->
+                                {{form}}
+                                <!-- <form action="index.html" method="post">
                                 <div>
                                     <tr>
                                         <th scope="col">
                                             <div class="form-group">
-                                                <label class="required" for="id_nombre_cuenta">Nombre
+                                                <label class="required" >Nombre
                                                     de Cuenta:</label>
                                                 {{form.nombre_cuenta}}
                                                 <!-- <input type="text" name="nombre_cuenta"
                                                         class="form-control" maxlength="80"
-                                                        required="" id="id_nombre_cuenta">-->
+                                                        required="" id="id_nombre_cuenta">
                                             </div>
                                         </th>
                                         <th scope="col">
@@ -154,7 +155,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --->
                                 <button class="btn btn-primary" id="btnGuardar" type="submit">
                                     Guardar
                                 </button>
@@ -183,16 +184,17 @@
     $('form').on('submit', function (e) {
         e.preventDefault();
         var parameters = $(this).serializeArray()
-        console.log(parameters);
-        /*$.ajax({
+        $.ajax({
              url: '{% url "homepage: MyHomepage"%}',
              type: 'POST',
              data: {},
              dataType: 'Json'}).done(function (data){
+         }).done(function (data){
+             alert('guardado');
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            alert('x');
+        })
 
          })
 
-         })
-          */
-    })
 </script>
