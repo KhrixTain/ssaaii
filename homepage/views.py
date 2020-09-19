@@ -54,10 +54,11 @@ class MyHomePage(CreateView):
             grupos.append("Empleado")
         context['grupos'] = grupos
         """Estas dos lineas de abajo son para que la vista createview muestre los datos tipo object del listado"""
-        kwargs['object_list'] = Cuenta_asientos.objects.all()
+        #kwargs['object_list'] = Cuenta_asientos.objects.all()
+        context['object_list'] = Cuenta_asientos.objects.all()
         context['action'] = 'add'
-        return super(MyHomePage, self).get_context_data(**kwargs)
-        #return context
+        #return super(MyHomePage, self).get_context_data(**kwargs)
+        return context
 
 class LibroDiarioView(TemplateView):
     templatate_name = 'libro_diario_view.html'
