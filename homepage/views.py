@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.list import ListView
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from homepage.forms import *
 from django.views.generic import TemplateView, CreateView
 from django import template
@@ -14,9 +14,9 @@ register = template.Library()
 class MyHomePage(CreateView):
     template_name = 'index.html'
     model = Cuenta_asientos
-    form_class=CuentaForm
-    context_object_name = 'cuenta_asientos'
-    success_url = reverse_lazy('homepage:index')
+    form_class=Cuenta_asientosForm
+    context_object_name = 'Cuenta_asientos'
+    success_url = reverse_lazy('homepage:index.html')
     extra_context = {
         'title': "Página Principal",
         'Cuentas':Cuentas.objects.all(),
@@ -28,19 +28,21 @@ class MyHomePage(CreateView):
         return super().dispatch(request,*args,**kwargs)
 
     def post(self,request,*args,**kwargs):
-        data={}
+        data = {}
         try:
             action = request.POST['action']
-            if action == 'add':
+            if action == 'index':
                 form = self.get_form()
                 if form.is_valid():
                     form.save()
                 else:
-                    data=form.errors
+                   data=form.errors
             else:
                 data['error']= 'No ha ingresado ningun campo'
         except Exception as e:
             data['error']=str(e)
+        print(request.POST)
+        print(JsonResponse(data))
         return JsonResponse(data)
 
     def get_context_data(self, **kwargs):
@@ -56,7 +58,7 @@ class MyHomePage(CreateView):
         """Estas dos lineas de abajo son para que la vista createview muestre los datos tipo object del listado"""
         #kwargs['object_list'] = Cuenta_asientos.objects.all()
         context['object_list'] = Cuenta_asientos.objects.all()
-        context['action'] = 'add'
+        context['action'] = 'index'
         #return super(MyHomePage, self).get_context_data(**kwargs)
         return context
 

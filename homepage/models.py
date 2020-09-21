@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.forms import model_to_dict
 from django.utils.timezone import now
 
 
@@ -72,10 +73,15 @@ class Cuenta_asientos(models.Model):
     def __str__(self):
         return self.tipo
 
+    def toJson(self):
+        item=model_to_dict(self)
+        return item
+
     class Meta:
         verbose_name = 'cuenta_asiento'
         verbose_name_plural = 'cuentas_asientos'
         ordering = ['id']
+
 
 '''
 Docuemntacion que explica  lo del tipo

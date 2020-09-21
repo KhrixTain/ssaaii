@@ -22,3 +22,9 @@ class CuentaForm(ModelForm):
         except Exception as e:
             data['error']=str(e)
         return data """
+
+class Cuenta_asientosForm(ModelForm):
+
+    class Meta:
+        model = Cuenta_asientos
+        fields='__all__'

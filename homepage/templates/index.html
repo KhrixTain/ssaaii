@@ -148,6 +148,7 @@
                         </div>
                         <form method="post" action=".">
                             {%csrf_token%}
+                            <input type="hidden" name="action" value="{{ action }}">
                             <div class="modal-body">
                                 {{form}}
                                 <!-- <form action="index.html" method="post">
@@ -242,18 +243,19 @@
 <script type="application/javascript">
     $('form').on('submit', function (e) {
         e.preventDefault();
-        var parameters = $(this).serializeArray()
+        var parameters = $(this).serializeArray();
+        console.log(parameters);
+        /*alert('x');
         $.ajax({
-            url: '{% url "homepage: MyHomepage"%}',
+            url: '{% url "homepage: index.html"%}',
             type: 'POST',
-            data: {},
+            data: parameters,
             dataType: 'Json'
-        }).done(function (data) {
         }).done(function (data) {
             alert('guardado');
         }).fail(function (jqXHR, textStatus, errorThrown) {
             alert('x');
-        })
+        }).always(function(data){})*/
 
     })
 
