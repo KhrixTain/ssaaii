@@ -148,9 +148,13 @@
                         </div>
                         <form method="post" action=".">
                             {%csrf_token%}
-                            <input type="hidden" name="action" value="{{ action }}">
                             <div class="modal-body">
-                                {{form}}
+                                {% for field in form.visible_fields%}
+                                    <div class="form-group">
+                                        <label>{{field.label}}</label>
+                                            {{field}}
+                                    </div>
+                                {%endfor%}
                                 <!-- <form action="index.html" method="post">
                                 <div>
                                     <tr>
@@ -219,9 +223,6 @@
                                 </div> --->
                                 <button class="btn btn-primary" id="btnGuardar" type="submit">
                                     Guardar
-                                </button>
-                                <button class="btn btn-primary" type="submit">Guardar y agregar
-                                    otro
                                 </button>
                                 <button class="btn btn-secondary" data-dismiss="modal"
                                         type="button">Cerrar

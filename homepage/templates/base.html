@@ -233,13 +233,18 @@
         }).fail(function (jqXHR, textStatus, errorThrown) {
         }).always(function (data) {
         })
+
+        ///OCULTAR MODAL LUEGO DE GUARDAR
         $('#modalCuenta').modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
+
         ///$('#data').DataTable().ajax.reload();
 
-
-
+        ///VACÍA MODAL
+        $('#modalCuenta').on('hidden.bs.modal', function () {
+                $(this).find('form').trigger('reset');
+        })
     })
     $(document).ready(function () {
         $('#data').DataTable();
