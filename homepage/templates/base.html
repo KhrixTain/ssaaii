@@ -141,7 +141,7 @@
                 <script type="text/javascript">
                     function redirect(url) {
                         if (url=="logout"){
-                            window.location.href = "{% url 'accounts:logout' %}"
+                            window.location.href = "{% url 'user:logout' %}"
                         }else {
                             window.location.href = url;
                         }

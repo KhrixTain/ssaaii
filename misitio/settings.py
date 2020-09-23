@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from django.conf.global_settings import LOGOUT_REDIRECT_URL
+from django.conf.global_settings import LOGOUT_REDIRECT_URL, LOGIN_URL
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Aplicación de cuentas (inicio y salida de sesión)
-    'account',
+    'user',
     #Aplicación de homepage (interfaz principal de usuarios)
     'homepage',
     'widget_tweaks',
@@ -141,6 +141,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
-
+LOGIN_URL = "/user/login"
 LOGIN_REDIRECT_URL = "/homepage/"
-LOGOUT_REDIRECT_URL = "/accounts/login"
+LOGOUT_REDIRECT_URL = "/user/login"
