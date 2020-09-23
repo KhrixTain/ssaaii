@@ -122,7 +122,7 @@
                 <!-- ./col -->
                 {% endif %}
 
-                <div class="col-lg-3 col-6" onclick="redirect('https://www.google.com')">
+                <div class="col-lg-3 col-6" onclick="redirect( 'logout' )">
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
@@ -140,7 +140,11 @@
                 <!-- Script para redireccionar los botones creados con divs-->
                 <script type="text/javascript">
                     function redirect(url) {
-                        window.location.href = url;
+                        if (url=="logout"){
+                            window.location.href = "{% url 'accounts:logout' %}"
+                        }else {
+                            window.location.href = url;
+                        }
                     }
                 </script>
             </div>
