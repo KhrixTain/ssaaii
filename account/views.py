@@ -1,11 +1,9 @@
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
-
 from misitio import settings as setting
 
 # Create your views here.
-from django.views.generic import TemplateView
-
+from django.views.generic import RedirectView
 
 class MyLoginView(LoginView):
     template_name = 'login.html'
