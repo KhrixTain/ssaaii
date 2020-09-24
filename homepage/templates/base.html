@@ -87,9 +87,11 @@
                 </div>
                 <!-- ./col -->
                 {% if 'Contador' in grupos or 'Gestor' in grupos %}
-                <div class="col-lg-3 col-6" onclick="redirect('https://www.google.com')">
+                <div class="col-lg-3 col-6" onclick="getElementById('modalCuenta')" data-target="#modalCuenta" data-toggle="modal">
                     <!-- small box -->
+
                     <div class="small-box bg-success">
+
                         <div class="inner">
                             <h3>Cargar Cuenta</h3>
 
@@ -99,7 +101,9 @@
                             <i class="ion ion-cash"></i>
                         </div>
                         <div class="small-box-footer    "> </br></div>
+                                <!--{%block modalCuenta%}
 
+                                {%endblock%} -->
                     </div>
                 </div>
                 {% endif %}
@@ -110,7 +114,6 @@
                     <div class="small-box bg-warning">
                         <div class="inner">
                             <h3>Cargar Usuario</h3>
-
                             <p>Cargar nuevos usuarios</p>
                         </div>
                         <div class="icon">
@@ -239,19 +242,20 @@
         })
 
         ///OCULTAR MODAL LUEGO DE GUARDAR
-        $('#modalCuenta').modal('hide');
+        $('#modalAsiento').modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
 
         ///$('#data').DataTable().ajax.reload();
 
         ///VACÍA MODAL
-        $('#modalCuenta').on('hidden.bs.modal', function () {
+        $('#modalAsiento').on('hidden.bs.modal', function () {
                 $(this).find('form').trigger('reset');
         })
     })
     $(document).ready(function () {
-        $('#data').DataTable();
+        $('#data').DataTable()
+
     });
 
 </script>

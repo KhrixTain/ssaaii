@@ -131,16 +131,16 @@
 
     <div class="content">
         <div class="container">
-            <button class="btn btn-primary" data-target="#modalCuenta" data-toggle="modal"
+            <button class="btn btn-primary" data-target="#modalAsiento" data-toggle="modal"
                     data-whatever="@mdo" type="button"><i class="fas fa-plus"></i>Cargar asiento
             </button>
 
-            <div aria-hidden="true" aria-labelledby="modalCuentaLabel" class="modal fade" id="modalCuenta"
+            <div aria-hidden="true" aria-labelledby="modalAsientoLabel" class="modal fade" id="modalAsiento"
                  role="dialog" tabindex="-1">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modalCuentaLabel">Cargar nuevo asiento</h5>
+                            <h5 class="modal-title" id="modalAsientoLabel">Cargar nuevo asiento</h5>
                             <button aria-label="Close" class="close" data-dismiss="modal"
                                     type="button">
                                 <span aria-hidden="true">&times;</span>
@@ -148,6 +148,8 @@
                         </div>
                         <form method="post" action=".">
                             {%csrf_token%}
+                            <input type="hidden" name="action" value="{{ action }}">
+
                             <div class="modal-body">
                                 {% for field in form.visible_fields%}
                                     <div class="form-group">
@@ -155,72 +157,6 @@
                                             {{field}}
                                     </div>
                                 {%endfor%}
-                                <!-- <form action="index.html" method="post">
-                                <div>
-                                    <tr>
-                                        <th scope="col">
-                                            <div class="form-group">
-                                                <label class="required" >Nombre
-                                                    de Cuenta:</label>
-                                                {{form.nombre_cuenta}}
-                                                <input type="text" name="nombre_cuenta"
-                                                        class="form-control" maxlength="80"
-                                                        required="" id="id_nombre_cuenta">
-                                            </div>
-                                        </th>
-                                        <th scope="col">
-                                            <div class="checkbox-row">
-
-                                                <input checked="" id="id_recibe_saldo"
-                                                       name="recibe_saldo" type="checkbox"><label
-                                                    class="vCheckboxLabel" for="id_recibe_saldo">
-                                                Recibe saldo</label>
-                                            </div>
-                                        </th>
-                                        <th scope="col">
-                                            <div class="form-group">
-                                                <div>
-                                                    <label class="required" for="id_saldo_actual">Saldo
-                                                        actual:</label>
-                                                    <input class="form-control" id="id_saldo_actual"
-                                                           name="saldo-actual" step="positive"
-                                                           type="number">
-                                                </div>
-                                            </div>
-                                        </th>
-
-                                    </tr>
-                                </div>
-                                <div class="form-row field-tipo_cuenta">
-                                    <div>
-                                        <label class="required" for="id_tipo_cuenta">Tipo
-                                            cuenta:</label>
-
-                                        <div class="related-widget-wrapper">
-                                            <select class="form-control" id="id_tipo_cuenta"
-                                                    name="tipo_cuenta" required="">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-row field-cuenta-padre">
-                                    <div>
-                                        <label class="required" for="id_cuenta_padre">Cuenta
-                                            padre:</label>
-
-                                        <div class="related-widget-wrapper">
-                                            <select class="form-control" id="id_cuenta_padre"
-                                                    name="cuenta_padre" required="">
-                                                <option>option 1</option>
-                                                <option>option 2</option>
-
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div> --->
                                 <button class="btn btn-primary" id="btnGuardar" type="submit">
                                     Guardar
                                 </button>
@@ -239,3 +175,46 @@
 </div>
 
 {% endblock %}
+
+<!--{%block modalCuenta%}
+<div class="content">
+        <div class="container">
+            <div aria-hidden="true" aria-labelledby="modalCuentaLabel" class="modal fade" id="modalCuenta"
+                 role="dialog" tabindex="-1">
+
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalAsientoLabel">Cargar nuevo asiento</h5>
+                            <button aria-label="Close" class="close" data-dismiss="modal"
+                                    type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action=".">
+                            {%csrf_token%}
+                            <input type="hidden" name="action" value="{{ action }}">
+
+                            <div class="modal-body">
+                                {% for field in form.visible_fields%}
+                                    <div class="form-group">
+                                        <label>{{field.label}}</label>
+                                            {{field}}
+                                    </div>
+                                {%endfor%}
+                                <button class="btn btn-primary" id="btnGuardar" type="submit">
+                                    Guardar
+                                </button>
+                                <button class="btn btn-secondary" data-dismiss="modal"
+                                        type="button">Cerrar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%} -->
