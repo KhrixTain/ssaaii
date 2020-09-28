@@ -151,19 +151,65 @@
                             <input type="hidden" name="action" value="{{ action }}">
 
                             <div class="modal-body">
-                                {% for field in form.visible_fields%}
-                                    <div class="form-group">
-                                        <label>{{field.label}}</label>
-                                            {{field}}
-                                    </div>
-                                {%endfor%}
-                                <button class="btn btn-primary" id="btnGuardar" type="submit">
-                                    Guardar
-                                </button>
-                                <button class="btn btn-secondary" data-dismiss="modal"
-                                        type="button">Cerrar
-                                </button>
-                            </div>
+                                <div class="form-group">
+                                    <label>{{form.tipo.label}}</label>
+                                        {{form.tipo}}
+
+                                    <label>{{form.id_cuenta.label}}</label>
+                                        {{form.id_cuenta}}
+
+                                    <label>{{form.id_asiento.label}}</label>
+                                        {{form.id_asiento}}
+
+                                    <label>{{form.monto.label}}</label>
+                                        {{form.monto}}
+
+                                    <label>{{form.saldo_parcial.label}}</label>
+                                        {{form.saldo_parcial}}
+
+
+                                <div class="input-group-addon">
+                                    <a href="javascript:void(0)" class="btn btn-success addMore"><span
+                                            class="glyphicon glyphicon glyphicon-plus"
+                                            aria-hidden="true"></span> Add</a>
+                                </div>
+
+
+
+                            <!-- copy of input fields group
+                            <div class="form-group fieldGroupCopy" style="display: none;">
+                                <label>{{form.tipo.label}}</label>
+                                {{form.tipo}}
+
+                                <label>{{form.id_cuenta.label}}</label>
+                                {{form.id_cuenta}}
+
+                                <label>{{form.id_asiento.label}}</label>
+                                {{form.id_asiento}}
+                                <label>{{form.monto.label}}</label>
+                                {{form.monto}}
+
+                                <label>{{form.saldo_parcial.label}}</label>
+                                {{form.saldo_parcial}}
+                                <div>
+                                <a href="javascript:void(0)" class="btn btn-danger remove"><span
+                                    class="glyphicon glyphicon glyphicon-remove"
+                                    aria-hidden="true"></span> Remove</a>
+                                </div>
+                        </div>
+                            <!--{% for field in form.visible_fields%}
+                                <div class="form-group">
+                                    <label>{{field.label}}</label>
+                                        {{field}}
+                                </div>
+                            {%endfor%}-->
+                            <button class="btn btn-primary" id="btnGuardar" type="submit">
+                                Guardar
+                            </button>
+                            <button class="btn btn-secondary" data-dismiss="modal"
+                                    type="button">Cerrar
+                            </button>
+                                </div></div>
                         </form>
                     </div>
                 </div>
@@ -175,6 +221,7 @@
 </div>
 
 {% endblock %}
+
 
 <!--{%block modalCuenta%}
 <div class="content">

@@ -40,6 +40,7 @@
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
 
+
 </head>
 {% endblock %}
 {% block body %}
@@ -257,6 +258,26 @@
         $('#data').DataTable()
 
     });
+/*
+   $(document).ready(function(){
+    //group add limit
+    var maxGroup = 10;
+
+    //add more fields group
+    $(".addMore").click(function(){
+        if($('body').find('.fieldGroup').length < maxGroup){
+            var fieldHTML = '<div class="form-group fieldGroup">'+$(".fieldGroupCopy").html()+'</div>';
+            $('body').find('.fieldGroup:last').after(fieldHTML);
+        }else{
+            alert('Maximum '+maxGroup+' groups are allowed.');
+        }
+    });
+
+    //remove fields group
+    $("body").on("click",".remove",function(){
+        $(this).parents(".fieldGroup").remove();
+    });
+});*/
 
 </script>
 <script type="application/javascript">
