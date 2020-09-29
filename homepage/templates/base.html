@@ -232,6 +232,7 @@
     $('form').on('submit', function (e) {
         e.preventDefault();
         var parameters = $(this).serializeArray();
+        console.log(parameters);
         $.ajax({
             url: '{% url "homepage" %}',
             type: 'POST',
@@ -277,7 +278,8 @@
     $("body").on("click",".remove",function(){
         $(this).parents(".fieldGroup").remove();
     });
-});*/
+});
+*/
 
 </script>
 <script type="application/javascript">

@@ -28,7 +28,8 @@ class MyHomePage(CreateView):
         return super().dispatch(request,args,*kwargs)
 
     def post(self,request,args,*kwargs):
-        data = {}
+        data1 = []
+        data = {'data':data1}
         try:
             action = request.POST['action']
             if action == 'index.html':
@@ -41,6 +42,7 @@ class MyHomePage(CreateView):
                 data['error']= 'No ha ingresado ningun campo'
         except Exception as e:
             data['error']=str(e)
+        print(JsonResponse(data))
         return JsonResponse(data)
 
     def get_context_data(self, **kwargs):

@@ -150,66 +150,70 @@
                             {%csrf_token%}
                             <input type="hidden" name="action" value="{{ action }}">
 
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>{{form.tipo.label}}</label>
+                            <div class="modal-body modalCuenta1">
+
+                                <!---
+                                <div class="form-group fieldGroup">
+                                    <label id="tipo">{{form.tipo.label}}</label>
                                         {{form.tipo}}
 
-                                    <label>{{form.id_cuenta.label}}</label>
+                                    <label id="id_cuenta">{{form.id_cuenta.label}}</label>
                                         {{form.id_cuenta}}
 
-                                    <label>{{form.id_asiento.label}}</label>
+                                    <label id="id_asiento">{{form.id_asiento.label}}</label>
                                         {{form.id_asiento}}
 
-                                    <label>{{form.monto.label}}</label>
+                                    <label id="monto">{{form.monto.label}}</label>
                                         {{form.monto}}
 
-                                    <label>{{form.saldo_parcial.label}}</label>
+                                    <label id="saldo_pacial">{{form.saldo_parcial.label}}</label>
                                         {{form.saldo_parcial}}
 
 
                                 <div class="input-group-addon">
-                                    <a href="javascript:void(0)" class="btn btn-success addMore"><span
+                                    <button type="button" href="javascript:void(0)" class="btn btn-success addMore"><span
                                             class="glyphicon glyphicon glyphicon-plus"
-                                            aria-hidden="true"></span> Add</a>
+                                            aria-hidden="true"></span> Add</button>
                                 </div>
+
 
 
 
                             <!-- copy of input fields group
                             <div class="form-group fieldGroupCopy" style="display: none;">
-                                <label>{{form.tipo.label}}</label>
+                                <label id="tipoDupli">{{form.tipo.label}}</label>
                                 {{form.tipo}}
 
-                                <label>{{form.id_cuenta.label}}</label>
+                                <label id="id_cuentaDupli" >{{form.id_cuenta.label}}</label>
                                 {{form.id_cuenta}}
 
-                                <label>{{form.id_asiento.label}}</label>
+                                <label id="id_asientoDupli">{{form.id_asiento.label}}</label>
                                 {{form.id_asiento}}
-                                <label>{{form.monto.label}}</label>
+                                <label id="montoDupli">{{form.monto.label}}</label>
                                 {{form.monto}}
 
-                                <label>{{form.saldo_parcial.label}}</label>
+                                <label id="saldo_parcialDupli">{{form.saldo_parcial.label}}</label>
                                 {{form.saldo_parcial}}
                                 <div>
-                                <a href="javascript:void(0)" class="btn btn-danger remove"><span
+                                <button href="javascript:void(0)" class="btn btn-danger remove"type="button"><span
                                     class="glyphicon glyphicon glyphicon-remove"
-                                    aria-hidden="true"></span> Remove</a>
-                                </div>
-                        </div>
-                            <!--{% for field in form.visible_fields%}
+                                    aria-hidden="true"></span> Remove</button>
+
+                            </div>
+                        </div>-->
+                            {% for field in form.visible_fields%}
                                 <div class="form-group">
                                     <label>{{field.label}}</label>
                                         {{field}}
                                 </div>
-                            {%endfor%}-->
+                            {%endfor%}
                             <button class="btn btn-primary" id="btnGuardar" type="submit">
                                 Guardar
                             </button>
-                            <button class="btn btn-secondary" data-dismiss="modal"
+                            <button class="btn btn-secondary"  data-dismiss="modal"
                                     type="button">Cerrar
                             </button>
-                                </div></div>
+                                </div>
                         </form>
                     </div>
                 </div>
