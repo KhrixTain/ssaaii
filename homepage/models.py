@@ -24,6 +24,7 @@ class Cuentas(models.Model):
     tipo_cuenta = models.ForeignKey(Tipo_cuenta, on_delete=models.PROTECT)
     cuenta_padre = models.ForeignKey('self', on_delete=models.PROTECT, blank=True, null=True)
     saldo_actual = models.FloatField(null=True, blank=True)
+    disponible = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nombre_cuenta
