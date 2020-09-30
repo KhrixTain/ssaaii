@@ -33,13 +33,14 @@
         <link rel="stylesheet" TYPE="text/css" href="{%static 'jquery.dataTables.css' %}">
 
     <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'buttons.dataTables.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'buttons.bootstrap4.css' %}"/>
     <link rel="stylesheet"
           href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
     <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
     <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
-
 
 </head>
 {% endblock %}
@@ -224,15 +225,24 @@
 <script src="{% static 'lib/adminlte/js/adminlte.min.js' %}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{% static 'lib/AdminLTE-3.0.5/dist/js/demo.js' %}"></script>
+<script src="https://cdn.rawgit.com/ashl1/datatables-rowsgroup/fbd569b8768155c7a9a62568e66a64115887d7d0/dataTables.rowsGroup.js"></script>
+
+
 <!--el nombre "data" es el de la tabla que se encuentra en index.html el ID-->
 <script type="text/javascript" src="{% static 'jquery.dataTables.js'%}"></script>
+<script type="text/javascript" src="{% static 'dataTables.rowsGroup.js'%}"></script>
+<script type="text/javascript" src="{% static 'pdfmake.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'buttons.flash.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'dataTables.buttons.min.js'%}"></script>
+<script type="text/javascript" src="{% static 'vfs_fonts.js'%}"></script>
+<script type="text/javascript" src="{% static 'buttons.bootstrap4.js'%}"></script>
+<script type="text/javascript" src="{% static 'buttons.html5.js'%}"></script>
 
 {% block javascript %}
 <script type="application/javascript" >
     $('form').on('submit', function (e) {
         e.preventDefault();
-        var parameters = $(this).serializeArray();
-        console.log(parameters);
+        var parameters = $(this).serialize();
         $.ajax({
             url: '{% url "homepage" %}',
             type: 'POST',
@@ -242,7 +252,6 @@
         }).fail(function (jqXHR, textStatus, errorThrown) {
         }).always(function (data) {
         })
-
         ///OCULTAR MODAL LUEGO DE GUARDAR
         $('#modalAsiento').modal('hide');
         $('body').removeClass('modal-open');
@@ -254,32 +263,24 @@
         $('#modalAsiento').on('hidden.bs.modal', function () {
                 $(this).find('form').trigger('reset');
         })
+        window.location.reload(true);
+
     })
     $(document).ready(function () {
-        $('#data').DataTable()
+        var table = $('#data').DataTable({
+            'rowsGroup': [0,1,2],
+            dom: 'Blfrtip',
+            buttons: [
+                'pdf',
+            ],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 
-    });
-/*
-   $(document).ready(function(){
-    //group add limit
-    var maxGroup = 10;
+            select: true,
+})
+         table.buttons().container().appendTo('#datatable_wrapper .col-md-6:eq(0)');
 
-    //add more fields group
-    $(".addMore").click(function(){
-        if($('body').find('.fieldGroup').length < maxGroup){
-            var fieldHTML = '<div class="form-group fieldGroup">'+$(".fieldGroupCopy").html()+'</div>';
-            $('body').find('.fieldGroup:last').after(fieldHTML);
-        }else{
-            alert('Maximum '+maxGroup+' groups are allowed.');
-        }
-    });
-
-    //remove fields group
-    $("body").on("click",".remove",function(){
-        $(this).parents(".fieldGroup").remove();
-    });
 });
-*/
+
 
 </script>
 <script type="application/javascript">

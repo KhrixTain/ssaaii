@@ -25,6 +25,18 @@ class CuentaForm(ModelForm):
             data['error']=str(e)
         return data """
 
+class AsientoForm(ModelForm):
+
+    """def __init__(self,*args,**kwargs):
+        super().__init__(self,*args,**kwargs)
+        self.fields['__all__'].widget.attrs[ 'autofocus']=True"""
+    class Meta:
+        model = Asientos
+        fields= '__all__'
+        widgets = {
+
+        }
+
 class Cuenta_asientosForm(ModelForm):
 
     class Meta:

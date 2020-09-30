@@ -14,7 +14,7 @@ register = template.Library()
 class MyHomePage(CreateView):
     template_name = 'index.html'
     model = Cuenta_asientos
-    form_class=Cuenta_asientosForm
+    form_class = Cuenta_asientosForm
     context_object_name = 'Cuenta_asientos'
     success_url = reverse_lazy('homepage:index.html')
     extra_context = {
@@ -28,8 +28,7 @@ class MyHomePage(CreateView):
         return super().dispatch(request,args,*kwargs)
 
     def post(self,request,args,*kwargs):
-        data1 = []
-        data = {'data':data1}
+        data = {}
         try:
             action = request.POST['action']
             if action == 'index.html':
@@ -42,7 +41,6 @@ class MyHomePage(CreateView):
                 data['error']= 'No ha ingresado ningun campo'
         except Exception as e:
             data['error']=str(e)
-        print(JsonResponse(data))
         return JsonResponse(data)
 
     def get_context_data(self, **kwargs):
