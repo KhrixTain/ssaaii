@@ -51,16 +51,15 @@
     <!-- Content Wrapper. Contains page content -->
 
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <div class="content-header" >
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark"> Bienvenid@, {{ user.username|title }}</h1>
+                    <h1 class="m-0 text-dark" style="font-family: Verdana;"> Bienvenid@, {{ user.username|title }}</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v1</li>
+                        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -69,10 +68,10 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content" style="background-color: #eaeaea">
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
-            <div class="row">
+            <div class="row" style="padding-top: 10px;">
                 <div class="col-lg-3 col-6" onclick="redirect('https://www.google.com')">
                     <!-- small box -->
                     <div class="small-box bg-info">
@@ -269,7 +268,7 @@
     $(document).ready(function () {
         var table = $('#data').DataTable({
             'rowsGroup': [0,1,2],
-            dom: 'Blfrtip',
+            dom: 'lBfrtip',
             buttons: [
                 'pdf',
             ],
@@ -277,7 +276,7 @@
 
             select: true,
 })
-         table.buttons().container().appendTo('#datatable_wrapper .col-md-6:eq(0)');
+         table.buttons().container().appendTo('.col-sm-4');
 
 });
 
