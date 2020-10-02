@@ -76,8 +76,8 @@
             <thead>
             <tr>
                 <th scope="col">Fecha</th>
-                <th scope="col">Operación</th>
                 <th scope="col">Nº de Asiento</th>
+                <th scope="col">Operación</th>
                 <th scope="col">Cuenta</th>
                 <th scope="col">Debe</th>
                 <th scope="col">Haber</th>
@@ -95,6 +95,9 @@
                 </td>
                 <td>
                     {{c.id_asiento.desctripcion}}
+                    <button class="btn btn-primary" data-target="#modalAsiento" data-toggle="modal"
+                            data-whatever="@mdo" type="button"><i class="fas fa-plus"></i>Cargar asiento
+                    </button>
                 </td>
                 <td>
                     {% if c.tipo == 'H'%}
@@ -152,21 +155,21 @@
 
                             <div class="modal-body modalCuenta1">
 
-                            {% for field in form.visible_fields%}
+                                {% for field in form.visible_fields%}
                                 <div class="form-group">
                                     <label>{{field.label}}</label>
-                                        {{field}}
+                                    {{field}}
                                 </div>
-                            {%endfor%}
+                                {%endfor%}
 
-                            <button class="btn btn-primary" id="btnGuardar" type="submit">
-                                Guardar
-                            </button>
+                                <button class="btn btn-primary" id="btnGuardar" type="submit">
+                                    Guardar
+                                </button>
 
-                            <button class="btn btn-secondary"  data-dismiss="modal"
-                                    type="button">Cerrar
-                            </button>
-                                </div>
+                                <button class="btn btn-secondary" data-dismiss="modal"
+                                        type="button">Cerrar
+                                </button>
+                            </div>
                         </form>
                     </div>
                 </div>
