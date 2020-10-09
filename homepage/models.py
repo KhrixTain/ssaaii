@@ -3,7 +3,7 @@ from django.db import models
 from django.forms import model_to_dict
 from django.utils.timezone import now
 from django.core.exceptions import ValidationError
-from flask_security.utils import _
+#from flask_security.utils import _
 
 
 class Tipo_cuenta(models.Model):
@@ -82,6 +82,27 @@ class Cuenta_asientos(models.Model):
     def toJson(self):
         item = model_to_dict(self)
         return item
+
+class asientoBorrador(models.Model):
+    fecha = models.DateTimeField(editable=True, verbose_name='Fecha_del_asiento')
+    descripcion = models.CharField(default="SIN_NOMBRE", max_length=255, verbose_name='Descripcion', editable=True)
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
+
+    def __str__(self):
+        return self.descripcion
+
+class cuenta_asientoBorrador(models.Model):
+    DEBE = 'D'
+    HABER = 'H'
+    choices = [
+        (DEBE, 'Debe'),
+        (HABER, 'Haber'),
+    ]
+    tipo = models.CharField(max_length=1, choices=choices, default=DEBE)
+    cuenta = models.ForeignKey(Cuentas, on_delete=models.CASCADE)
+    asiento = models.ForeignKey(asientoBorrador, on_delete=models.CASCADE)
+    monto = models.FloatField()
+
 
     '''
     def clean_field(self):
