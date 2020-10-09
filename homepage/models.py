@@ -84,7 +84,7 @@ class Cuenta_asientos(models.Model):
         return item
 
 class asientoBorrador(models.Model):
-    fecha = models.DateTimeField(editable=True, verbose_name='Fecha_del_asiento')
+    fecha = models.DateTimeField(null=True, editable=True, verbose_name='Fecha_del_asiento')
     descripcion = models.CharField(default="SIN_NOMBRE", max_length=255, verbose_name='Descripcion', editable=True)
     usuario = models.OneToOneField(User, on_delete=models.CASCADE, null=False)
 

@@ -1,6 +1,7 @@
 from django.forms import *
 from homepage.models import *
 
+
 class CuentaForm(ModelForm):
 
     """def __init__(self,*args,**kwargs):
@@ -24,7 +25,39 @@ class CuentaForm(ModelForm):
         except Exception as e:
             data['error']=str(e)
         return data """
+class AsientoBorradorForm(ModelForm):
+    class Meta:
+        model = asientoBorrador
+        fields = '__all__'
 
+class CuentaAsientoBorradorForm(ModelForm):
+    class Meta:
+        model = cuenta_asientoBorrador
+        fields = [
+            'tipo',
+            'cuenta',
+            'monto',
+        ]
+        widgets = {
+            'tipo': Select(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),
+            'cuenta': Select(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+            'monto': NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Ingrese monto',
+                    'autocomplete': 'off',
+                    'min': '0'
+                }
+            )
+        }
 class AsientoForm(ModelForm):
 
     """def __init__(self,*args,**kwargs):

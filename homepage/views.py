@@ -15,18 +15,27 @@ register = template.Library()
 
 class MyHomePage(CreateView):
     template_name = 'index.html'
-    model = Cuenta_asientos
-    form_class = Cuenta_asientosForm
-    context_object_name = 'Cuenta_asientos'
+    model = cuenta_asientoBorrador
+    form_class = CuentaAsientoBorradorForm
+    context_object_name = 'cuenta_asiento_borrador'
     success_url = reverse_lazy('homepage:index.html')
+
     extra_context = {
         'title': "Página Principal",
         'Cuentas':Cuentas.objects.all(),
         'Cuenta_Asientos':Cuenta_asientos.objects.all(),
-        'Asientos':Asientos.objects.all()
+        'Asientos':Asientos.objects.all(),
+        'Cuenta_Asientos_Borrador': cuenta_asientoBorrador.objects.all()
     }
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
+        context = self.extra_context
+        if (asientoBorrador.objects.filter(usuario=self.request.user.id).exists()):
+            context['asientoBorrador'] = asientoBorrador.objects.get(usuario=self.request.user.id)
+        else:
+            a_b = asientoBorrador(usuario=User.objects.get(id=self.request.user.id))
+            a_b.save()
+            context['asientoBorrador'] = a_b
         return super().dispatch(request,args,*kwargs)
 
     def post(self,request,args,*kwargs):
