@@ -28,7 +28,8 @@
     <link rel="stylesheet" href="{% static 'lib/AdminLTE-3.0.5/plugins/summernote/summernote-bs4.css'%}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
     <!--DataTable-->
         <link rel="stylesheet" TYPE="text/css" href="{%static 'jquery.dataTables.css' %}">
 
@@ -37,10 +38,13 @@
     <link rel="stylesheet" href="{% static 'buttons.bootstrap4.css' %}"/>
     <link rel="stylesheet"
           href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css" integrity="sha256-SMGbWcp5wJOVXYlZJyAXqoVWaE/vgFA5xfrH3i/jVw0=" crossorigin="anonymous" />
+
     <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
     <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
 {% endblock %}
@@ -154,12 +158,59 @@
             </div>
             <!-- /.row -->
             <!-- Main row -->
+
+        <!--Entrada de datos --->
+        <section>
+<div class="formulario">
+                <form method="post" action=".">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="{{ action }}">
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Fecha</label>
+                            <input class="form-control" type="date" value="YYYY-MM-DD">
+                        </div>
+                        <div class="col">
+                            <label>Asiento</label>
+                            {{ form.id_asiento }}
+                        </div>
+                        <div class="col">
+                            <label>Cuenta</label>
+                            {{ form.id_cuenta }}
+                        </div>
+                        <div class="col">
+                            <label>Tipo</label>
+                            {{ form.tipo }}
+                        </div>
+                        <div class="col">
+                            <label>Monto</label>
+                            {{ form.monto }}
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" id="btnAgregar" type="button" style="float: right">
+                        Agregar
+                    </button>
+                    <button class="btn btn-primary" id="btnGuardar" type="submit" style="visibility: hidden">
+                        Guardar
+                    </button>
+
+                </form>
+            </div>
+        </section>
+            <button class="btn btn-primary" id="btnFinalizar" type="button">
+                Finalizar
+            </button>
+
+<!--Fin carga datos -->
+
             <section class="col-lg-12 connectedSortable">
                 {% block listado %}
 
                 {% endblock %}
                 <!-- /.card -->
             </section>
+
 
             <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
@@ -183,7 +234,7 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
+    <!-- jQuery -->
 <script src="{% static 'lib/AdminLTE-3.0.5/plugins/jquery/jquery.min.js' %}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{% static 'lib/AdminLTE-3.0.5/plugins/jquery-ui/jquery-ui.min.js' %}"></script>
@@ -236,12 +287,35 @@
 <script type="text/javascript" src="{% static 'vfs_fonts.js'%}"></script>
 <script type="text/javascript" src="{% static 'buttons.bootstrap4.js'%}"></script>
 <script type="text/javascript" src="{% static 'buttons.html5.js'%}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" integrity="sha256-5YmaxAwMjIpMrVlK84Y/+NjCpKnFYa8bWWBbUHSBGfU=" crossorigin="anonymous"></script>
+
 
 {% block javascript %}
 <script type="application/javascript" >
+ {#$(document).ready(function () {#}
+	{# $('#date').datetimepicker({#}
+ {#        defaultDate: new Date()#}
+ {#    });#}
+ {# });#}
+
     $('form').on('submit', function (e) {
         e.preventDefault();
-        var parameters = $(this).serialize();
+        var parameters = $(this).serializeArray();
+        /*lista.push(parameters);
+        var data = {};
+        $(parameters ).each(function(index, obj){
+            data[obj.name] = obj.value;
+            console.log(JSON.stringify(Object.values(obj)));
+
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const value = obj[key];
+                    if (value=="monto"){
+                        alert(Object.values(obj)[1]);}
+                }
+            }
+        });*/
         $.ajax({
             url: '{% url "homepage" %}',
             type: 'POST',
@@ -251,7 +325,7 @@
         }).fail(function (jqXHR, textStatus, errorThrown) {
         }).always(function (data) {
         })
-        ///OCULTAR MODAL LUEGO DE GUARDAR
+        /*//OCULTAR MODAL LUEGO DE GUARDAR
         $('#modalAsiento').modal('hide');
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
@@ -261,13 +335,48 @@
         ///VACÍA MODAL
         $('#modalAsiento').on('hidden.bs.modal', function () {
                 $(this).find('form').trigger('reset');
-        })
-        window.location.reload(true);
+        })*/
+
 
     })
+
+ $("#btnFinalizar").click(function() {
+     let lista = document.querySelectorAll('#btnGuardar');
+     var myArrayOfNodes = [].slice.call(lista);
+     var listaINvert=myArrayOfNodes;
+     /*listaINvert.forEach(element => {element.click();
+     });
+     ///var buttons=lista.reverse()*/
+     for (var i = 0;i<listaINvert.length;i++){
+        listaINvert[i].click();
+}
+
+      /* let reversed = "";
+  for (var i = str.length - 1; i >= 0; i--){
+    reversed += str[i];
+  }
+  return reversed;
+}*/
+     $('#btnGuardar').click();
+     window.location.reload(true);
+ });
+
+
+$(document).ready(function() {
+  $("#btnAgregar").click(function() {
+    var target = $(this).closest(".formulario");
+    target.clone(true, true).appendTo(target.parent());
+    // alternatively you can also use .insertAfter() to
+    // place the clone after the cloned element rather
+    // than at the end of all cloned elements
+    // https://api.jquery.com/insertAfter/
+    /* target.clone(true, true).insertAfter(target);*/
+});
+    });
+
     $(document).ready(function () {
         var table = $('#data').DataTable({
-            'rowsGroup': [0,1,2],
+            'rowsGroup': [0,1, 2],
             dom: 'lBfrtip',
             buttons: [
                 'pdf',
@@ -275,17 +384,15 @@
             "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 
             select: true,
-})
-         table.buttons().container().appendTo('.col-sm-4');
-
-});
-
-
+        })
+        table.buttons().container().appendTo('.col-sm-4');
+    });
 </script>
-<script type="application/javascript">
 
-</script>
 {% endblock %}
+
 {% endblock %}
+
+
 </body>
 </html>

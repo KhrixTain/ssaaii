@@ -3,6 +3,7 @@ from django.db import models
 from django.forms import model_to_dict
 from django.utils.timezone import now
 from django.core.exceptions import ValidationError
+from flask_security.utils import _
 
 
 class Tipo_cuenta(models.Model):
@@ -82,6 +83,7 @@ class Cuenta_asientos(models.Model):
         item = model_to_dict(self)
         return item
 
+    '''
     def clean_field(self):
 
         if self.monto < 0:
@@ -94,7 +96,7 @@ class Cuenta_asientos(models.Model):
         elif self.tipo == 'D' and self.id_cuenta.tipo_cuenta.tipo == 'Pasivo' and self.monto > self.id_cuenta.saldo_actual:
             raise ValidationError(_('El monto ingresado supera al saldo de la cuenta Pasivo'))
 
-        '''
+        ''''''
             Esperando respuesta del lean o del fer
             elif self.tipo == 'D' and self.id_cuenta.tipo_cuenta.tipo == 'Patrimonio' and self.monto > self.id_cuenta.saldo_actual:
             raise ValidationError(_('El monto ingresado supera al saldo de la cuenta Pasivo'))
@@ -102,7 +104,7 @@ class Cuenta_asientos(models.Model):
             raise ValidationError(_('El monto ingresado supera al saldo de la cuenta Pasivo'))
             NO SABEMO una wea
             
-            '''
+            ''''''
 
     def save(self, *args, **kwargs):
         if self.tipo == 'H' and self.id_cuenta.tipo_cuenta.tipo == 'Activo':
@@ -120,6 +122,7 @@ class Cuenta_asientos(models.Model):
         self.saldo_parcial=self.id_cuenta.saldo_actual
         super().save(*args, **kwargs)
 
+    '''
 
 
 
