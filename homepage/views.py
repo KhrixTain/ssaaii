@@ -51,11 +51,11 @@ class MyHomePage(CreateView):
         try:
             action = request.POST['action']
             if action == 'index.html':
-                form = self.get_form()
-                if form.is_valid():
-                    form.save()
+                c = CuentaForm(request.POST)
+                if c.is_valid():
+                    c.save()
                 else:
-                   data=form.errors
+                   data=c.errors
             else:
                 data['error']= 'No ha ingresado ningun campo'
         except Exception as e:
@@ -63,11 +63,11 @@ class MyHomePage(CreateView):
         try:
             action = request.POST['action']
             if action == 'index.html':
-                form = self.get_form()
-                if form.is_valid():
-                    form.save()
+                c_a = CuentaAsientoBorradorForm(request.POST)
+                if c_a.is_valid():
+                    c_a.save()
                 else:
-                   data=form.errors
+                   data=c_a.errors
             else:
                 data['error']= 'No ha ingresado ningun campo'
         except Exception as e:

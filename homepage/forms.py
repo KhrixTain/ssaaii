@@ -12,22 +12,6 @@ class CuentaForm(ModelForm):
         fields = '__all__'
 
         widgets = {
-            'nro_cuenta': NumberInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Ingrese el número de la cuenta',
-                    'autocomplete': 'off',
-                    'min': '0'
-                }
-            ),
-            'nombre_de_la_cuenta': TextInput(
-                attrs={
-                    'class': 'form-control',
-                    'placeholder': 'Ingrese el nombre de la cuenta'
-                }
-            )
-
-
 
         }
 
