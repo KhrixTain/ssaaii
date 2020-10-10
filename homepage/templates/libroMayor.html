@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{%load static%}
+{%block listado %}
+<section class="col-lg-12 connectedSortable">
+<div class="card-body table-responsive p-0" style="height: 575px;">
+        <table class="table table-head-fixed text-nowrap" id="libroData">
+            <thead>
+            <tr>
+                <th scope="col">{Nº de Asiento}</th>
+                <th scope="col">Operación</th>
+                <th scope="col">Cuenta</th>
+                <th scope="col">Debe</th>
+                <th scope="col">Haber</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in object_list %}
+            <tr>
+                <td>
+                    {{c.id_asiento.fecha}}
+                </td>
+
+                <td>
+                    {{c.id_asiento.id}}
+                </td>
+                <td>
+                    {{c.id_asiento.desctripcion}}
+                    <button class="btn btn-primary" data-target="#modalAsiento" data-toggle="modal"
+                            data-whatever="@mdo" type="button"><i class="fas fa-plus"></i>Cargar asiento
+                    </button>
+                </td>
+                <td>
+                    {% if c.tipo == 'H'%}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{c.id_cuenta.nombre_cuenta}}
+                    {% else %}
+
+                    {{c.id_cuenta.nombre_cuenta}}
+
+                    {% endif %}
+                </td>
+                {% if c.tipo == 'D'%}
+                <td>
+                    {{c.monto}}
+                </td>
+                <td></td>
+                {% else %}
+                <td></td>
+                <td>{{c.monto}}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+</section>
+{% endblock %}
+{%block javascript %}
+    <script type="application/javascript" >
+
+        $(document).ready(function () {
+        var table = $('#libroData').DataTable({
+            'rowsGroup': [0,1, 2],
+            dom: 'lBfrtip',
+            buttons: [
+                'pdf',
+            ],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+
+            select: true,
+        })
+        table.buttons().container().appendTo('.col-sm-4');
+    });
+        </script>
+{% endblock %}
