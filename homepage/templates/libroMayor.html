@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{%load static%}
+
+<div class="card-body table-responsive p-0" style="height: 575px;">
+        <table class="table table-head-fixed text-nowrap" id="data">
+            <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Nº de Asiento</th>
+                <th scope="col">Operación</th>
+                <th scope="col">Cuenta</th>
+                <th scope="col">Debe</th>
+                <th scope="col">Haber</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in object_list %}
+            <tr>
+                <td>
+                    {{c.id_asiento.fecha}}
+                </td>
+
+                <td>
+                    {{c.id_asiento.id}}
+                </td>
+                <td>
+                    {{c.id_asiento.desctripcion}}
+                    <button class="btn btn-primary" data-target="#modalAsiento" data-toggle="modal"
+                            data-whatever="@mdo" type="button"><i class="fas fa-plus"></i>Cargar asiento
+                    </button>
+                </td>
+                <td>
+                    {% if c.tipo == 'H'%}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{c.id_cuenta.nombre_cuenta}}
+                    {% else %}
+
+                    {{c.id_cuenta.nombre_cuenta}}
+
+                    {% endif %}
+                </td>
+                {% if c.tipo == 'D'%}
+                <td>
+                    {{c.monto}}
+                </td>
+                <td></td>
+                {% else %}
+                <td></td>
+                <td>{{c.monto}}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>

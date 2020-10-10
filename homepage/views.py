@@ -13,6 +13,12 @@ from django.contrib.auth.models import Group, User
 
 register = template.Library()
 
+class LibroMayor(TemplateView):
+    template_name = 'libroMayor.html'
+    extra_context = {
+            'title': "Libro Diario",
+        }
+
 class MyHomePage(CreateView):
     template_name = 'index.html'
     model = cuenta_asientoBorrador

@@ -1,6 +1,49 @@
 {% extends "base.html" %}
 {%load static%}
+{%block carga%}
+            <section>
+            <h1>{{ asientoBorrador.descripcion }}</h1>
+<div class="formulario">
 
+                <form class="miform" method="post" action=".">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="{{ action }}">
+                    <div class="form-row repeticion">
+                        <div class="col">
+                            <label>Fecha</label>
+                            <input class="form-control" type="date" value="YYYY-MM-DD">
+                        </div>
+                        <div class="col">
+                            <label>Cuenta</label>
+                            {{ form.cuenta }}
+                        </div>
+                        <div class="col">
+                            <label>Tipo</label>
+                            {{ form.tipo }}
+                        </div>
+                        <div class="col">
+                            <label>Monto</label>
+                            {{ form.monto }}
+                        </div>
+                    </div>
+
+
+                    <button class="btn btn-primary" id="btnGuardar" type="submit" style="visibility: hidden">
+                        Guardar
+                    </button>
+                    <button class="btn btn-primary" id="btnAgregar" type="button" style="float: right">
+                                        Agregar
+                    </button>
+                </form>
+
+            </div>
+
+        </section>
+
+            <button class="btn btn-primary" id="btnFinalizar" type="button">
+                Finalizar
+            </button>
+{% endblock %}
 {% block listado %}
 <div class="card card-default">
     <div class="card-header">
