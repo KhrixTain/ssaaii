@@ -207,9 +207,12 @@
                             <input type="hidden" name="action" value="{{ action }}">
 
                             <div class="modal-body modalCuenta1">
-
-
-                               {{ cuentaform }}
+                                {% for field in cuentaform %}
+                                <div class="form-group">
+                                    <label>{{field.label}}</label>
+                                    {{field}}
+                                </div>
+                                {%endfor%}
 
 
                                 <button class="btn btn-primary" id="btnGuardar" type="submit">
