@@ -191,7 +191,39 @@
     </div>
 </div>-->
 
+<div aria-hidden="true" aria-labelledby="modalCuentaLabel" class="modal fade" id="modalCuenta"
+                 role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCuentaLabel">Cargar nueva cuenta</h5>
+                            <button aria-label="Close" class="close" data-dismiss="modal"
+                                    type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action=".">
+                            {%csrf_token%}
+                            <input type="hidden" name="action" value="{{ action }}">
 
+                            <div class="modal-body modalCuenta1">
+
+
+                               {{ cuentaform }}
+
+
+                                <button class="btn btn-primary" id="btnGuardar" type="submit">
+                                    Guardar
+                                </button>
+
+                                <button class="btn btn-secondary" data-dismiss="modal"
+                                        type="button">Cerrar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
 {% endblock %}
 

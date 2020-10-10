@@ -25,7 +25,8 @@ class MyHomePage(CreateView):
         'Cuentas':Cuentas.objects.all(),
         'Cuenta_Asientos':Cuenta_asientos.objects.all(),
         'Asientos':Asientos.objects.all(),
-        'Cuenta_Asientos_Borrador': cuenta_asientoBorrador.objects.all()
+        'Cuenta_Asientos_Borrador': cuenta_asientoBorrador.objects.all(),
+        'cuentaform':CuentaForm()
     }
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
