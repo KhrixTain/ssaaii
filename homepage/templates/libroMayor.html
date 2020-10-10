@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {%load static%}
-
+{%block listado %}
+<section class="col-lg-12 connectedSortable">
 <div class="card-body table-responsive p-0" style="height: 575px;">
-        <table class="table table-head-fixed text-nowrap" id="data">
+        <table class="table table-head-fixed text-nowrap" id="libroData">
             <thead>
             <tr>
-                <th scope="col"></th>
-                <th scope="col">Nº de Asiento</th>
+                <th scope="col">{Nº de Asiento}</th>
                 <th scope="col">Operación</th>
                 <th scope="col">Cuenta</th>
                 <th scope="col">Debe</th>
@@ -55,3 +55,23 @@
         </table>
 
     </div>
+</section>
+{% endblock %}
+{%block javascript %}
+    <script type="application/javascript" >
+
+        $(document).ready(function () {
+        var table = $('#libroData').DataTable({
+            'rowsGroup': [0,1, 2],
+            dom: 'lBfrtip',
+            buttons: [
+                'pdf',
+            ],
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+
+            select: true,
+        })
+        table.buttons().container().appendTo('.col-sm-4');
+    });
+        </script>
+{% endblock %}

@@ -13,10 +13,11 @@ from django.contrib.auth.models import Group, User
 
 register = template.Library()
 
-class LibroMayor(TemplateView):
+class LibroMayor(ListView):
     template_name = 'libroMayor.html'
+    model = Cuenta_asientos
     extra_context = {
-            'title': "Libro Diario",
+            'title': "Libro Mayor",
         }
 
 class MyHomePage(CreateView):
