@@ -53,6 +53,18 @@ class MyHomePage(CreateView):
                 data['error']= 'No ha ingresado ningun campo'
         except Exception as e:
             data['error']=str(e)
+        try:
+            action = request.POST['action']
+            if action == 'index.html':
+                form = self.get_form()
+                if form.is_valid():
+                    form.save()
+                else:
+                   data=form.errors
+            else:
+                data['error']= 'No ha ingresado ningun campo'
+        except Exception as e:
+            data['error']=str(e)
         return JsonResponse(data)
 
     def get_context_data(self, **kwargs):

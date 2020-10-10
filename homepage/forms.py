@@ -9,10 +9,29 @@ class CuentaForm(ModelForm):
         self.fields['__all__'].widget.attrs[ 'autofocus']=True"""
     class Meta:
         model = Cuentas
-        fields= '__all__'
+        fields = '__all__'
+
         widgets = {
+            'nro_cuenta': NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Ingrese el número de la cuenta',
+                    'autocomplete': 'off',
+                    'min': '0'
+                }
+            ),
+            'nombre_de_la_cuenta': TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Ingrese el nombre de la cuenta'
+                }
+            )
+
+
 
         }
+
+
     """
     def save(self,commit=True):
         data= {}
