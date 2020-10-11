@@ -2,52 +2,51 @@
 {%load static%}
 {%block listado %}
 <section class="col-lg-12 connectedSortable">
-<div class="card-body table-responsive p-0" style="height: 575px;">
-        <table class="table table-head-fixed text-nowrap" id="libroData">
+<h2></h2>
+<div class="card card-default">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-book"></i>
+            Activos
+        </h3>
+    </div>
+    <div class="card-body table-responsive p-0 " style="height: 600px;">
+        <table class="table table-head-fixed text-nowrap hover cell-border " id="activoData">
             <thead>
             <tr>
-                <th scope="col">{Nº de Asiento}</th>
-                <th scope="col">Operación</th>
                 <th scope="col">Cuenta</th>
+                <th scope="col">Operacion</th>
                 <th scope="col">Debe</th>
                 <th scope="col">Haber</th>
+                <th scope="col">Saldo</th>
             </tr>
             </thead>
             <tbody>
+
             {% for c in object_list %}
-            <tr>
-                <td>
-                    {{c.id_asiento.fecha}}
-                </td>
+                {% if c.id_cuenta.tipo_cuenta.tipo == "Activo" %}
+                    <tr>
+                        <td>
+                            {{ c.id_cuenta.nombre_cuenta }}
+                        </td>
+                    <td>
+                            {{ c.id_asiento.desctripcion }}
+                        </td>
+                        {% if c.tipo == 'D' %}
+                        <td>
+                            {{ c.monto }}
+                        </td>
+                        <td></td>
+                        {% else %}
+                        <td></td>
+                        <td>{{ c.monto }}</td>
+                        {% endif %}
+                        <td>
+                            {{ c.saldo_parcial }}
+                        </td>
 
-                <td>
-                    {{c.id_asiento.id}}
-                </td>
-                <td>
-                    {{c.id_asiento.desctripcion}}
-                    <button class="btn btn-primary" data-target="#modalAsiento" data-toggle="modal"
-                            data-whatever="@mdo" type="button"><i class="fas fa-plus"></i>Cargar asiento
-                    </button>
-                </td>
-                <td>
-                    {% if c.tipo == 'H'%}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{c.id_cuenta.nombre_cuenta}}
-                    {% else %}
-
-                    {{c.id_cuenta.nombre_cuenta}}
-
-                    {% endif %}
-                </td>
-                {% if c.tipo == 'D'%}
-                <td>
-                    {{c.monto}}
-                </td>
-                <td></td>
-                {% else %}
-                <td></td>
-                <td>{{c.monto}}</td>
+                    </tr>
                 {% endif %}
-            </tr>
             {% endfor %}
 
             </tbody>
@@ -55,23 +54,116 @@
         </table>
 
     </div>
+</div>
+
 </section>
-{% endblock %}
+    <div class="card card-default">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-book"></i>
+            Pasivos
+        </h3>
+    </div>
+    <section class="col-lg-12 connectedSortable">
+
+    <div class="card-body table-responsive p-0" style="height: 600px;">
+        <table class="table table-head-fixed text-nowrap hover cell-border" id="pasivoData">
+            <thead>
+            <tr>
+                <th scope="col">Cuenta</th>
+                <th scope="col">Operacion</th>
+                <th scope="col">Debe</th>
+                <th scope="col">Haber</th>
+                <th scope="col">Saldo</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in object_list %}
+                {% if c.id_cuenta.tipo_cuenta.tipo == "Pasivo" %}
+                    <tr>
+                        <td>
+                            {{ c.id_cuenta.nombre_cuenta }}
+                        </td>
+                        <td>
+                            {{ c.id_asiento.desctripcion }}
+                        </td>
+                        {% if c.tipo == 'D' %}
+                        <td>
+                            {{ c.monto }}
+                        </td>
+                        <td></td>
+                        {% else %}
+                        <td></td>
+                        <td>{{ c.monto }}</td>
+                        {% endif %}
+                        <td>
+                            {{ c.saldo_parcial }}
+                        </td>
+
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+    </section>
+</section>
+
 {%block javascript %}
     <script type="application/javascript" >
 
-        $(document).ready(function () {
-        var table = $('#libroData').DataTable({
-            'rowsGroup': [0,1, 2],
-            dom: 'lBfrtip',
-            buttons: [
-                'pdf',
-            ],
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        $(document).ready(function() {
+    var groupColumn = 0;
+    var table = $('#activoData').DataTable({
+        "columnDefs": [
+            { "visible": false, "targets": groupColumn,},
+        ],
+        "order": [[ groupColumn, 'asc' ]],
+        "displayLength": 10,
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
 
-            select: true,
-        })
-        table.buttons().container().appendTo('.col-sm-4');
-    });
+            api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                    );
+
+                    last = group;
+                }
+            } );
+        }
+    } );});
+        $(document).ready(function() {
+    var groupColumn = 0;
+    var table = $('#pasivoData').DataTable({
+        "columnDefs": [
+            { "visible": false, "targets": groupColumn,},
+        ],
+        "order": [[ groupColumn, 'asc' ]],
+        "displayLength": 10,
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+
+            api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                if ( last !== group ) {
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+                    );
+
+                    last = group;
+                }
+            } );
+        }
+    } );});
+
         </script>
+{% endblock %}
 {% endblock %}

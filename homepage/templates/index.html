@@ -114,8 +114,8 @@
 
                     -->
 
-    <div class="card-body table-responsive p-0" style="height: 575px;">
-        <table class="table table-head-fixed text-nowrap" id="data">
+    <div class="card-body table-responsive p-0" style="height: 100%;">
+        <table class="table table-head-fixed text-nowrap row-border " id="data">
             <thead>
             <tr>
                 <th scope="col">Fecha</th>
@@ -138,9 +138,6 @@
                 </td>
                 <td>
                     {{c.id_asiento.desctripcion}}
-                    <button class="btn btn-primary" data-target="#modalAsiento" data-toggle="modal"
-                            data-whatever="@mdo" type="button"><i class="fas fa-plus"></i>Cargar asiento
-                    </button>
                 </td>
                 <td>
                     {% if c.tipo == 'H'%}

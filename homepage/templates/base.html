@@ -45,7 +45,11 @@
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
     <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <style type="text/css">
+        tr.group, tr.group:hover {
+    background-color: #e6f2ff !important;
+}
+    </style>
 </head>
 {% endblock %}
 {% block body %}
@@ -76,7 +80,7 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row" style="padding-top: 10px;">
-                <div class="col-lg-3 col-6" onclick="redirect('https://www.google.com')">
+                <div class="col-lg-3 col-6" onclick="redirect('libroMayor')">
                     <!-- small box -->
                     <div class="small-box bg-info">
                         <div class="inner">
@@ -352,19 +356,9 @@ $(document).ready(function() {
         table.buttons().container().appendTo('.col-sm-4');
     });
 
-    $(document).ready(function () {
-        var table = $('#libroData').DataTable({
-            'rowsGroup': [0,1, 2],
-            dom: 'lBfrtip',
-            buttons: [
-                'pdf',
-            ],
-            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 
-            select: true,
-        })
-        table.buttons().container().appendTo('.col-sm-4');
-    });
+
+
 
 </script>
 
