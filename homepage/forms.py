@@ -3,10 +3,10 @@ from homepage.models import *
 
 
 class CuentaForm(ModelForm):
-
     """def __init__(self,*args,**kwargs):
         super().__init__(self,*args,**kwargs)
         self.fields['__all__'].widget.attrs[ 'autofocus']=True"""
+
     class Meta:
         model = Cuentas
         fields = '__all__'
@@ -14,7 +14,6 @@ class CuentaForm(ModelForm):
         widgets = {
 
         }
-
 
     """
     def save(self,commit=True):
@@ -28,10 +27,13 @@ class CuentaForm(ModelForm):
         except Exception as e:
             data['error']=str(e)
         return data """
+
+
 class AsientoBorradorForm(ModelForm):
     class Meta:
         model = asientoBorrador
         fields = '__all__'
+
 
 class CuentaAsientoBorradorForm(ModelForm):
     class Meta:
@@ -61,23 +63,25 @@ class CuentaAsientoBorradorForm(ModelForm):
                 }
             )
         }
-class AsientoForm(ModelForm):
 
+
+class AsientoForm(ModelForm):
     """def __init__(self,*args,**kwargs):
         super().__init__(self,*args,**kwargs)
         self.fields['__all__'].widget.attrs[ 'autofocus']=True"""
+
     class Meta:
         model = Asientos
-        fields= '__all__'
+        fields = '__all__'
         widgets = {
 
         }
 
-class Cuenta_asientosForm(ModelForm):
 
+class Cuenta_asientosForm(ModelForm):
     class Meta:
         model = Cuenta_asientos
-        fields='__all__'
+        fields = '__all__'
         labels = {
             'id_cuenta': 'Cuenta',
             'id_asiento': 'Asiento'
@@ -89,8 +93,12 @@ class Cuenta_asientosForm(ModelForm):
                 }
             ),
             'id_cuenta': Select(
-                attrs= {
-                    'class' : 'form-control'
+
+                attrs={
+
+                    'class': 'form-control'
+
+
                 }
             ),
             'id_asiento': Select(
@@ -111,7 +119,7 @@ class Cuenta_asientosForm(ModelForm):
                     'class': 'form-control',
                     'placeholder': 'Ingrese saldo parcial',
                     'autocomplete': 'off'
-        }
+                }
             )
 
         }
