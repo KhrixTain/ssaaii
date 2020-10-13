@@ -74,7 +74,7 @@ class CuentaAsientoBorradorForm(ModelForm):
     def __init__(self):
         super(CuentaAsientoBorradorForm, self).__init__()
         self.fields['cuenta'].queryset = Cuentas.objects.filter(recibe_saldo=True, disponible=True)
-
+#comentario para pushear
     def clean(self):
         monto = self.cleaned_data.get('monto')
         cuenta = self.cleaned_data.get('cuenta')
