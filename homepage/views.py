@@ -23,7 +23,7 @@ class LibroMayor(ListView):
 class MyHomePage(CreateView):
     template_name = 'index.html'
     model = cuenta_asientoBorrador
-    form_class = CuentaAsientoBorradorForm
+    form_class = Cuenta_asientosForm
     context_object_name = 'cuenta_asiento_borrador'
     success_url = reverse_lazy('homepage:index.html')
 
@@ -33,7 +33,8 @@ class MyHomePage(CreateView):
         'Cuenta_Asientos':Cuenta_asientos.objects.all(),
         'Asientos':Asientos.objects.all(),
         'Cuenta_Asientos_Borrador': cuenta_asientoBorrador.objects.all(),
-        'cuentaform':CuentaForm()
+        'cuentaform':CuentaForm(),
+        'cuentaAsientoForm': CuentaAsientoBorradorForm(),
     }
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):

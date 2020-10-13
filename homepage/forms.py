@@ -9,12 +9,22 @@ class CuentaForm(ModelForm):
         self.fields['__all__'].widget.attrs[ 'autofocus']=True"""
     class Meta:
         model = Cuentas
-        fields = '__all__'
+        fields = [
+            'nro_cuenta',
+            'nombre_cuenta',
+            'recibe_saldo',
+            'tipo_cuenta',
+            'cuenta_padre',
+            'saldo_actual',
+            'disponible',
+        ]
 
         widgets = {
 
         }
-
+    def __init__(self):
+        super(CuentaForm, self).__init__()
+        self.fields['cuenta_padre'].queryset = Cuentas.objects.filter(disponible=True, recibe_saldo=False)
 
     """
     def save(self,commit=True):
@@ -61,6 +71,24 @@ class CuentaAsientoBorradorForm(ModelForm):
                 }
             )
         }
+    def __init__(self):
+        super(CuentaAsientoBorradorForm, self).__init__()
+        self.fields['cuenta'].queryset = Cuentas.objects.filter(recibe_saldo=True)
+
+    def clean(self):
+        monto = self.cleaned_data.get('monto')
+        cuenta = self.cleaned_data.get('cuenta')
+        tipo = self.cleaned_data.get('tipo')
+        if( tipo == 'D'):
+            if( cuenta.getTipoCuenta() == 'Pasivo' ):
+                if( cuenta.saldo < monto ):
+                    raise forms.ValidationError("El monto ingresado excede lo disponible en la cuenta especificada.")
+        else:
+            if( cuenta.getTipoCuenta() == 'Activo'):
+                if( cuenta.saldo < monto ):
+                    raise forms.ValidationError("El monto ingresado excede lo disponible en la cuenta especificada.")
+
+
 class AsientoForm(ModelForm):
 
     """def __init__(self,*args,**kwargs):
