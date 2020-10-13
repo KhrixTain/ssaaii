@@ -10,20 +10,16 @@
                     <input type="hidden" name="action" value="{{ action }}">
                     <div class="form-row repeticion">
                         <div class="col">
-                            <label>Fecha</label>
-                            <input class="form-control" type="date" value="YYYY-MM-DD">
-                        </div>
-                        <div class="col">
                             <label>Cuenta</label>
-                                 {{ form.cuenta }}
+                            {{ cuentaAsientoForm.cuenta }}
                         </div>
                         <div class="col">
                             <label>Tipo</label>
-                            {{ form.tipo }}
+                            {{ cuentaAsientoForm.tipo }}
                         </div>
                         <div class="col">
                             <label>Monto</label>
-                            {{ form.monto }}
+                            {{ cuentaAsientoForm.monto }}
                         </div>
                     </div>
 

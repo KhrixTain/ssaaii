@@ -11,7 +11,8 @@ class Tipo_cuenta(models.Model):
 
     def __str__(self):
         return self.tipo
-
+    def getNombreTipoCuenta(self):
+        return str(self.tipo)
     class Meta:
         verbose_name = 'Tipo_cuenta'
         verbose_name_plural = 'Tipo_cuentas'
@@ -27,6 +28,8 @@ class Cuentas(models.Model):
     saldo_actual = models.FloatField(null=True, blank=True)
     disponible = models.BooleanField(default=True)
 
+    def getTipoCuenta(self):
+        return self.tipo_cuenta.getNombreTipoCuenta()
     def __str__(self):
         return self.nombre_cuenta
 
@@ -101,7 +104,7 @@ class cuenta_asientoBorrador(models.Model):
     tipo = models.CharField(max_length=1, choices=choices, default=DEBE)
     cuenta = models.ForeignKey(Cuentas, on_delete=models.CASCADE)
     asiento = models.ForeignKey(asientoBorrador, on_delete=models.CASCADE)
-    monto = models.FloatField()
+    monto = models.FloatField(null=False)
 
 
     '''
