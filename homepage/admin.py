@@ -1,5 +1,6 @@
 from django.contrib import admin
 from homepage.models import *
+
+admin.site.register(asiento_borrador)
+admin.site.register(cuenta_asiento_borrador)
 # Register your models here.
-admin.site.register(asientoBorrador)
-admin.site.register(cuenta_asientoBorrador)
