@@ -22,9 +22,9 @@ class CuentaForm(ModelForm):
         widgets = {
 
         }
-    def __init__(self):
-        super(CuentaForm, self).__init__()
-        self.fields['cuenta_padre'].queryset = Cuentas.objects.filter(disponible=True, recibe_saldo=False)
+    # def __init__(self):
+    #     super(CuentaForm, self).__init__()
+    #     self.fields['cuenta_padre'].queryset = Cuentas.objects.filter(disponible=True, recibe_saldo=False)
 
     """
     def save(self,commit=True):
@@ -47,11 +47,17 @@ class CuentaAsientoBorradorForm(ModelForm):
     class Meta:
         model = cuenta_asientoBorrador
         fields = (
+            'asiento',
             'tipo',
             'cuenta',
             'monto',
         )
         widgets = {
+            'asiento': Select(
+                attrs={
+                    'class': 'form-control',
+                }
+            ),
             'tipo': Select(
                 attrs={
                     'class': 'form-control',
@@ -71,10 +77,10 @@ class CuentaAsientoBorradorForm(ModelForm):
                 }
             )
         }
-    def __init__(self):
-        super(CuentaAsientoBorradorForm, self).__init__()
-        self.fields['cuenta'].queryset = Cuentas.objects.filter(recibe_saldo=True, disponible=True)
-#comentario para pushear
+#     def __init__(self):
+#         super(CuentaAsientoBorradorForm, self).__init__()
+#         self.fields['cuenta'].queryset = Cuentas.objects.filter(recibe_saldo=True, disponible=True)
+# #comentario para pushear
     def clean(self):
         monto = self.cleaned_data.get('monto')
         cuenta = self.cleaned_data.get('cuenta')
