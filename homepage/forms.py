@@ -9,7 +9,7 @@ class CuentaForm(ModelForm):
         self.fields['__all__'].widget.attrs[ 'autofocus']=True"""
     class Meta:
         model = Cuentas
-        fields = [
+        fields = (
             'nro_cuenta',
             'nombre_cuenta',
             'recibe_saldo',
@@ -17,7 +17,7 @@ class CuentaForm(ModelForm):
             'cuenta_padre',
             'saldo_actual',
             'disponible',
-        ]
+        )
 
         widgets = {
 
@@ -46,11 +46,11 @@ class AsientoBorradorForm(ModelForm):
 class CuentaAsientoBorradorForm(ModelForm):
     class Meta:
         model = cuenta_asientoBorrador
-        fields = [
+        fields = (
             'tipo',
             'cuenta',
             'monto',
-        ]
+        )
         widgets = {
             'tipo': Select(
                 attrs={
