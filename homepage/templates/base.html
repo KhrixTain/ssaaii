@@ -312,34 +312,18 @@
  $("#btnFinalizar").click(function() {
      let lista = document.querySelectorAll('#btnGuardar');
      var myArrayOfNodes = [].slice.call(lista);
-     //var listaINvert=myArrayOfNodes;
-     /*listaINvert.forEach(element => {element.click();
-     });/*
-     ///var buttons=lista.reverse()*/
-     for (var i = 1;i<myArrayOfNodes.length;i++){
+     for (var i = 0;i<myArrayOfNodes.length;i++){
         myArrayOfNodes[i].click();
      }
-
-      /* let reversed = "";
-  for (var i = str.length - 1; i >= 0; i--){
-    reversed += str[i];
-  }
-  return reversed;
-}*/
-     $('#btnGuardar').click();
-     //window.location.reload(true);
+     window.location.reload(true);
  });
 
 
 $(document).ready(function() {
   $("#btnAgregar").click(function() {
     var target = $(this).closest(".formulario");
-    target.clone(true, true).insertAfter(target.parent());
-    // alternatively you can also use .insertAfter() to
-    // place the clone after the cloned element rather
-    // than at the end of all cloned elements
-    // https://api.jquery.com/insertAfter/
-    /* target.clone(true, true).insertAfter(target);*/
+    target.clone(true, true).appendTo(target.parent());
+
 });
     });
 
