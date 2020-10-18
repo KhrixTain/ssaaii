@@ -4,9 +4,10 @@ from homepage.models import *
 
 class CuentaForm(ModelForm):
 
-    """def __init__(self,*args,**kwargs):
-        super().__init__(self,*args,**kwargs)
-        self.fields['__all__'].widget.attrs[ 'autofocus']=True"""
+    def __init__(self,*args, **kwargs):
+        super(CuentaForm, self).__init__(*args,**kwargs)
+        #self.fields['__all__'].widget.attrs[ 'autofocus']=True <--- Mi no entender porque estaba esta línea
+        self.fields['cuenta_padre'].queryset = Cuentas.objects.filter(recibe_saldo=False, disponible=True)
     class Meta:
         model = Cuentas
         fields = (
@@ -77,23 +78,11 @@ class CuentaAsientoBorradorForm(ModelForm):
                 }
             )
         }
-#     def __init__(self):
-#         super(CuentaAsientoBorradorForm, self).__init__()
-#         self.fields['cuenta'].queryset = Cuentas.objects.filter(recibe_saldo=True, disponible=True)
-# #comentario para pushear
-    def clean(self):
-        monto = self.cleaned_data.get('monto')
-        cuenta = self.cleaned_data.get('cuenta')
-        tipo = self.cleaned_data.get('tipo')
-        if( tipo == 'D'):
-            if( cuenta.getTipoCuenta() == 'Pasivo' ):
-                if( cuenta.saldo < monto ):
-                    raise forms.ValidationError("El monto ingresado excede lo disponible en la cuenta especificada.")
-        else:
-            if( cuenta.getTipoCuenta() == 'Activo'):
-                if( cuenta.saldo < monto ):
-                    raise forms.ValidationError("El monto ingresado excede lo disponible en la cuenta especificada.")
+    def __init__(self,*args, **kwargs):
+        super(CuentaAsientoBorradorForm, self).__init__(*args, **kwargs)
+        self.fields['cuenta'].queryset = Cuentas.objects.filter(recibe_saldo=True, disponible=True)
 
+    #
 
 class AsientoForm(ModelForm):
 

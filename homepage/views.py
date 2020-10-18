@@ -25,7 +25,7 @@ class LibroMayor(ListView):
 class MyHomePage(CreateView):
     template_name = 'index.html'
     model = cuenta_asientoBorrador
-    form_class = Cuenta_asientosForm#.cuenta.queryset = Cuentas.objects.filter(recibe_saldo=True, disponible=True)
+    form_class = Cuenta_asientosForm
     context_object_name = 'cuenta_asiento_borrador'
     success_url = reverse_lazy('homepage:index.html')
 
