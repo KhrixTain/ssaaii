@@ -16,7 +16,6 @@ class CuentaForm(ModelForm):
             'recibe_saldo',
             'tipo_cuenta',
             'cuenta_padre',
-            'saldo_actual',
             'disponible',
         )
 
