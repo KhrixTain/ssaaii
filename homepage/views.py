@@ -17,10 +17,28 @@ register = template.Library()
 
 class LibroMayor(ListView):
     template_name = 'libroMayor.html'
-    model = Cuenta_asientos
+    model = cuenta_asientoBorrador
     extra_context = {
             'title': "Libro Mayor",
         }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        grupos = list()
+        if (self.request.user.groups.filter(name='Contador').exists()):
+            grupos.append("Contador")
+        if (self.request.user.groups.filter(name='Gestor').exists()):
+            grupos.append("Gestor")
+        if (self.request.user.groups.filter(name='Empleado').exists()):
+            grupos.append("Empleado")
+        context['grupos'] = grupos
+        """Estas dos lineas de abajo son para que la vista createview muestre los datos tipo object del listado"""
+        # kwargs['object_list'] = Cuenta_asientos.objects.all()
+        context['object_list'] = cuenta_asientoBorrador.objects.all()
+        context['list_url'] = reverse_lazy('homepage:index.html')
+        context['action'] = 'index.html'
+        # return super(MyHomePage, self).get_context_data(**kwargs)
+        return context
 
 class MyHomePage(CreateView):
     template_name = 'index.html'
@@ -89,7 +107,7 @@ class MyHomePage(CreateView):
         context['grupos'] = grupos
         """Estas dos lineas de abajo son para que la vista createview muestre los datos tipo object del listado"""
         #kwargs['object_list'] = Cuenta_asientos.objects.all()
-        context['object_list'] = Cuenta_asientos.objects.all()
+        context['object_list'] = cuenta_asientoBorrador.objects.all()
         context['list_url'] = reverse_lazy('homepage:index.html')
         context['action'] = 'index.html'
         #return super(MyHomePage, self).get_context_data(**kwargs)

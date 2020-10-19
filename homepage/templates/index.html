@@ -1,5 +1,25 @@
 {% extends "base.html" %}
 {%load static%}
+
+{%block libro %}
+
+<div class="col-lg-3 col-6" onclick="redirect('libroMayor')">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>Libro Mayor</h3>
+
+                            <p>Ver libro mayor</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-book-outline"></i>
+                        </div>
+                        <div class="small-box-footer"> </br></div>
+                    </div>
+                </div>
+
+{%endblock %}
+
 {%block carga%}
             <section>
             <h1>{{ asientoBorrador.descripcion }}</h1>
@@ -129,21 +149,22 @@
             {% for c in object_list %}
             <tr>
                 <td>
-                    {{c.id_asiento.fecha}}
+                    {{c.asiento.fecha}}
                 </td>
 
                 <td>
-                    {{c.id_asiento.id}}
+                    {{c.asiento.id}}
                 </td>
                 <td>
-                    {{c.id_asiento.desctripcion}}
+                    {{c.asiento.descripcion}}
+
                 </td>
                 <td>
                     {% if c.tipo == 'H'%}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{c.id_cuenta.nombre_cuenta}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{c.cuenta.nombre_cuenta}}
                     {% else %}
 
-                    {{c.id_cuenta.nombre_cuenta}}
+                    {{c.cuenta.nombre_cuenta}}
 
                     {% endif %}
                 </td>

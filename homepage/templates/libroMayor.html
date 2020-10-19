@@ -1,5 +1,25 @@
 {% extends "base.html" %}
 {%load static%}
+
+{%block libro %}
+
+<div class="col-lg-3 col-6" onclick="redirect('/homepage')">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>Libro Diario</h3>
+
+                            <p>Ver libro diario</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-book-outline"></i>
+                        </div>
+                        <div class="small-box-footer"> </br></div>
+                    </div>
+                </div>
+
+{%endblock %}
+
 {%block listado %}
 <section class="col-lg-12 connectedSortable">
 <h2></h2>
@@ -24,13 +44,13 @@
             <tbody>
 
             {% for c in object_list %}
-                {% if c.id_cuenta.tipo_cuenta.tipo == "Activo" %}
+                {% if c.cuenta.tipo_cuenta.tipo == "Activo" %}
                     <tr>
                         <td>
-                            {{ c.id_cuenta.nombre_cuenta }}
+                            {{ c.cuenta.nombre_cuenta }}
                         </td>
                     <td>
-                            {{ c.id_asiento.desctripcion }}
+                            {{ c.asiento.descripcion }}
                         </td>
                         {% if c.tipo == 'D' %}
                         <td>
@@ -79,13 +99,13 @@
             </thead>
             <tbody>
             {% for c in object_list %}
-                {% if c.id_cuenta.tipo_cuenta.tipo == "Pasivo" %}
+                {% if c.cuenta.tipo_cuenta.tipo == "Pasivo" %}
                     <tr>
                         <td>
-                            {{ c.id_cuenta.nombre_cuenta }}
+                            {{ c.cuenta.nombre_cuenta }}
                         </td>
                         <td>
-                            {{ c.id_asiento.desctripcion }}
+                            {{ c.asiento.desctripcion }}
                         </td>
                         {% if c.tipo == 'D' %}
                         <td>
