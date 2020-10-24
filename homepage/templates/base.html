@@ -272,9 +272,9 @@
                 var parameters = $(this).serializeArray();
                 var booleano=false;
                 var booleanohaber=false;
+                function permitir(){
                 $(parameters).each(function (index, obj) {
                     data[obj.name] = obj.value;
-                    function permitir(){
                     for (const key in obj) {
                         if (obj.hasOwnProperty(key)) {
                             const value = obj[key];
@@ -327,13 +327,15 @@
                             }
                         resultado=contaDebe + contaHaber;
                         alert(resultado);
+
                         return resultado;
                     }
-                    }
-             });
 
-
-
+             })};
+            var Permitir=permitir();
+            if(Permitir != 0.0){
+                alert('soy una alerta')
+            }
 
                 $.ajax({
                     url: '{% url "homepage" %}',
@@ -361,8 +363,6 @@
             })
 
             $("#btnFinalizar").click(function () {
-                var permitir1=permitir()
-                if (permitir1 == 0.0){
                 let lista = document.querySelectorAll('#btnGuardar');
                 var myArrayOfNodes = [].slice.call(lista);
                 for (var i = 0; i < myArrayOfNodes.length; i++) {
@@ -370,7 +370,7 @@
                 }
                 window.location.reload(true);
                 //funcion redirect
-            }});
+            });
 
 
             $(document).ready(function () {
