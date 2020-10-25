@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Error en la Carga</title>
+</head>
+<body>
+<h1>Eu! Se han reportado errores en la carga del asiento.</h1>
+<ul>
+    {% for e in errores %}
+        <li>
+            {{ e }}
+        </li>
+    {% endfor %}
+</ul>
+<a href="index.html"></a>
+</body>
+</html>

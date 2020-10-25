@@ -81,6 +81,11 @@ class CuentaAsientoBorradorForm(ModelForm):
         super(CuentaAsientoBorradorForm, self).__init__(*args, **kwargs)
         self.fields['cuenta'].queryset = Cuentas.objects.filter(recibe_saldo=True, disponible=True)
 
+    def validation(self):
+        if (self.tipo == 'D' and self.cuenta.getTipoCuenta() == "Pasivo" and self.monto > self.cuenta.saldo_actual):
+            raise ValidationError("Se ha ingresado un monto mayor que el que se tiene en la cuenta seleccionada.")
+        elif (self.tipo == 'H' and self.cuenta.getTipoCuenta() == "Activo" and self.monto > self.cuenta.saldo_actual):
+            raise ValidationError("Se ha ingresado un monto mayor que el que se tiene en la cuenta seleccionada.")
     #
 
 class AsientoForm(ModelForm):
@@ -137,3 +142,8 @@ class Cuenta_asientosForm(ModelForm):
             )
 
         }
+
+class AsientoBorradorForm(ModelForm):
+    class Meta:
+        model = asientoBorrador
+        fields = ['descripcion', 'fecha']

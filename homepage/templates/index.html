@@ -22,7 +22,12 @@
 
 {%block carga%}
             <section>
-            <h1>{{ asientoBorrador.descripcion }}</h1>
+            <form method="post" action=".">
+                {% csrf_token %}
+                {{ asientoBorradorForm.descripcion }}
+                {{ asientoBorradorForm.fecha }}
+                <button type="submit">Cargar Datos Asiento</button>
+            </form>
 <div class="formulario">
 
                 <form class="miform" method="post" action=".">
