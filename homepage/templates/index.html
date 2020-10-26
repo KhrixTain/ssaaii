@@ -25,14 +25,15 @@
             <form method="post" action=".">
                 {% csrf_token %}
                 <div class="row">
-                <div class="col-2">
-                <label>Operación</label>
-                {{ asientoBorradorForm.descripcion }}
-            </div>
-                <div class="col-2">
-                <label>Fecha</label>
-                {{ asientoBorradorForm.fecha }}
+                    <div class="col-2">
+                    <label>Operación</label>
+                    {{ asientoBorradorForm.descripcion }}
                 </div>
+                <div class="col-2">
+                    <label>Fecha</label>
+                    {{ asientoBorradorForm.fecha }}
+                </div>
+                    <button class="btn btn-primary" type="submit" id="btnGuardar" style="visibility: hidden">Cargar Datos Asiento</button>
                     </div>
             </form>
 <div class="formulario">
