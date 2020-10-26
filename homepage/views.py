@@ -134,9 +134,11 @@ class CargarAsiento(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         errores = list()
+        asiento = None
         if( asientoBorrador.objects.filter(usuario=request.user.id).exists() != True ):
             return redirect(reverse_lazy('homepage'))
         elif( cuenta_asientoBorrador.objects.filter(cuenta=asientoBorrador.objects.get(usuario=request.user.id).id).exists() ):
+            asiento = asientoBorrador.objects.get(usuario=request.user.id)
             def asentar_asiento_borrador(asiento):
                 nuevo_asiento = Asientos()
                 nuevo_asiento.desctripcion = asiento.descripcion
@@ -182,12 +184,14 @@ class CargarAsiento(TemplateView):
                 errores = analizar_monto_cuenta_asiento(c_a, errores)
             if( analizar_doble_partida_asiento(asiento) == False ):
                 errores.append("Los montos ingresados por el DEBE y el HABER son distintos")
-        if (len(errores)==0):
-            asentar_asiento_borrador(asiento)
-            asiento.delete()
-            return redirect(reverse_lazy('homepage'))
+            if (len(errores)==0 ):
+                asentar_asiento_borrador(asiento)
+                asiento.delete()
+                return redirect(reverse_lazy('homepage'))
+            else:
+                contexto = super().get_context_data()
+                asiento.delete()
+                contexto['errores'] = errores
+                return render(request=request, template_name=self.template_name, context=contexto)
         else:
-            contexto = super().get_context_data()
-            asiento.delete()
-            contexto['errores'] = errores
-            return render(request=request, template_name=self.template_name, context=contexto)
+            return redirect(reverse_lazy('homepage'))
