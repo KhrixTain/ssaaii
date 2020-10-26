@@ -135,8 +135,21 @@ class CargarAsiento(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         errores = list()
         if( asientoBorrador.objects.filter(usuario=request.user.id).exists() != True ):
-            return HttpResponse("Holaaaaaa")
+            return redirect(reverse_lazy('homepage'))
         elif( cuenta_asientoBorrador.objects.filter(cuenta=asientoBorrador.objects.get(usuario=request.user.id).id).exists() ):
+            def asentar_asiento_borrador(asiento):
+                nuevo_asiento = Asientos()
+                nuevo_asiento.desctripcion = asiento.descripcion
+                nuevo_asiento.fecha = asiento.fecha
+                nuevo_asiento.usuario = asiento.usuario
+                nuevo_asiento.save()
+                for cuenta_asiento_borrador in cuenta_asientoBorrador.objects.filter(cuenta=asiento.cuenta.id):
+                    nueva_cuenta_asiento = Cuenta_asientos()
+                    nueva_cuenta_asiento.monto = cuenta_asiento_borrador.monto
+                    nueva_cuenta_asiento.tipo = cuenta_asiento_borrador.tipo
+                    nueva_cuenta_asiento.asiento = nuevo_asiento
+                    nueva_cuenta_asiento.id_cuenta = cuenta_asiento_borrador.cuenta
+                    nueva_cuenta_asiento.save()
             def analizar_monto_cuenta_asiento(c_a, errores):
                 if( c_a.monto is not None and c_a.cuenta.saldo_actual is not None ):
                     if( c_a.cuenta.getTipoCuenta() in ["Activo"] and c_a.tipo == "H" and c_a.monto > Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual ):
@@ -170,8 +183,11 @@ class CargarAsiento(TemplateView):
             if( analizar_doble_partida_asiento(asiento) == False ):
                 errores.append("Los montos ingresados por el DEBE y el HABER son distintos")
         if (len(errores)==0):
-            return HttpResponse("hola")
+            asentar_asiento_borrador(asiento)
+            asiento.delete()
+            return redirect(reverse_lazy('homepage'))
         else:
             contexto = super().get_context_data()
+            asiento.delete()
             contexto['errores'] = errores
             return render(request=request, template_name=self.template_name, context=contexto)
