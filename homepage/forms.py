@@ -147,3 +147,18 @@ class AsientoBorradorForm(ModelForm):
     class Meta:
         model = asientoBorrador
         fields = ['descripcion', 'fecha']
+        widgets ={
+            'descripcion': TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'autocomplete': 'off'
+                }
+            ),
+            'fecha': DateInput(
+                attrs={
+                    'class': 'form-control',
+                    'autocomplete': 'off',
+                    'type':'date'
+                }
+            )
+        }

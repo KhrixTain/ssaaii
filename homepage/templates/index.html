@@ -24,9 +24,16 @@
             <section>
             <form method="post" action=".">
                 {% csrf_token %}
+                <div class="row">
+                <div class="col-2">
+                <label>Operación</label>
                 {{ asientoBorradorForm.descripcion }}
+            </div>
+                <div class="col-2">
+                <label>Fecha</label>
                 {{ asientoBorradorForm.fecha }}
-                <button type="submit">Cargar Datos Asiento</button>
+                </div>
+                    </div>
             </form>
 <div class="formulario">
 
@@ -35,9 +42,6 @@
                     <input type="hidden" name="action" value="{{ action }}">
                     <div class="form-row repeticion">
                         <div class="col">
-                            <label>Asiento</label>
-                            {{ cuentaAsientoForm.asiento }}
-                        </div><div class="col">
                             <label>Cuenta</label>
                             {{ cuentaAsientoForm.cuenta }}
                         </div>
