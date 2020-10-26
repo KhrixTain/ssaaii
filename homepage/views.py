@@ -136,7 +136,7 @@ class CargarAsiento(TemplateView):
         errores = list()
         if( asientoBorrador.objects.filter(usuario=request.user.id).exists() != True ):
             return HttpResponse("Holaaaaaa")
-        else:
+        elif( cuenta_asientoBorrador.objects.filter(cuenta=asientoBorrador.objects.get(usuario=request.user.id).id).exists() ):
             def analizar_monto_cuenta_asiento(c_a, errores):
                 if( c_a.monto is not None and c_a.cuenta.saldo_actual is not None ):
                     if( c_a.cuenta.getTipoCuenta() in ["Activo"] and c_a.tipo == "H" and c_a.monto > Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual ):
