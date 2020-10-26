@@ -134,11 +134,9 @@ class CargarAsiento(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         errores = list()
-        asiento = None
         if( asientoBorrador.objects.filter(usuario=request.user.id).exists() != True ):
             return redirect(reverse_lazy('homepage'))
         elif( cuenta_asientoBorrador.objects.filter(cuenta=asientoBorrador.objects.get(usuario=request.user.id).id).exists() ):
-            asiento = asientoBorrador.objects.get(usuario=request.user.id)
             def asentar_asiento_borrador(asiento):
                 nuevo_asiento = Asientos()
                 nuevo_asiento.desctripcion = asiento.descripcion
@@ -160,6 +158,9 @@ class CargarAsiento(TemplateView):
                     elif(c_a.cuenta.getTipoCuenta in ["Pasivo"] and c_a.tipo == "D" and c_a.monto > Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual):
                         mensaje = "La cuenta " + str(Cuentas.objects.get(id=c_a.cuenta.id).nombre_cuenta) + " posee de saldo " + str(Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual) + " y se trató de extraer " + str(c_a.monto) + "."
                         errores.append(mensaje)
+                elif( c_a.monto is None ):
+                    mensaje = "No se ha ingresado un monto para actualizar la cuenta "+ str(Cuentas.objects.get(id=c_a.cuenta.id).nombre_cuenta)
+                    errores.append(mensaje)
                 return errores
             def analizar_doble_partida_asiento(asiento):
                 debe = 0
@@ -171,20 +172,20 @@ class CargarAsiento(TemplateView):
                         haber = haber + c_a.monto
                 return debe == haber
             asiento = asientoBorrador.objects.get(usuario=request.user.id)
-            if( asiento.descripcion == "SIN_TITULO" ):
+            if( asiento.descripcion == "SIN_NOMBRE" ):
                 errores.append("No se ha ingresado un título al asiento.")
             if( asiento.fecha is None ):
                 errores.append("No se ha ingresado una fecha al asiento.")
             else:
                 if( asiento.fecha > now ):
-                    errores.append("La fecha ingresada no ha sucedido aún.")
+                    errores.append("La fecha ingresada es futura a la actual.")
                 elif( asiento.fecha < Asientos.objects.all().order_by("-fecha").first().fecha):
                     errores.append("La fecha ingresada es muy antigüa.")
             for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento.id):
                 errores = analizar_monto_cuenta_asiento(c_a, errores)
             if( analizar_doble_partida_asiento(asiento) == False ):
-                errores.append("Los montos ingresados por el DEBE y el HABER son distintos")
-            if (len(errores)==0 ):
+                errores.append("Los montos ingresados por el DEBE y el HABER son distintos.")
+            if ( len(errores)==0 ):
                 asentar_asiento_borrador(asiento)
                 asiento.delete()
                 return redirect(reverse_lazy('homepage'))
