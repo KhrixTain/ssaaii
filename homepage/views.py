@@ -74,7 +74,7 @@ class MyHomePage(CreateView):
             a_b.save()
             context['asientoBorrador'] = a_b
         return super().dispatch(request,args,*kwargs)
-
+#
     def post(self,request,args,*kwargs):
         data = {}
         try:
