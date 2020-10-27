@@ -264,6 +264,73 @@
             $('form').on('submit', function (e) {
                 e.preventDefault();
                 var parameters = $(this).serializeArray();
+                var booleano=false;
+                var booleanohaber=false;
+                function permitir(){
+                $(parameters).each(function (index, obj) {
+                    data[obj.name] = obj.value;
+                    for (const key in obj) {
+                        if (obj.hasOwnProperty(key)) {
+                            const value = obj[key];
+                            const moneda = obj[key];
+                            const valuehaber=obj[key];
+                            const monedahaber=obj[key];
+                            if (value == "tipo") {
+                                var valor = Object.values(obj)[1];
+                                alert(valor);
+                                if (valor == "D") {
+                                    ///lista.push(Object.values(obj)[1]);
+                                    alert(Object.values(obj)[1]);
+                                    booleano=true;
+                                }
+                            }
+
+                                if (booleano == true) {
+                                    if(moneda == "monto") {
+                                        alert('jaja');
+                                        //var monto = JSON.stringify(Object.values(obj)[1]);
+                                        //contaDebe = contaDebe + (Object.values(obj)[1]);
+                                        var algo=contaDebe;
+                                        algo = contaDebe + parseFloat(JSON.parse(Object.values(obj)[1]));
+                                        alert(algo);
+                                        booleano = false;
+                                        contaDebe=algo;
+                                    }
+                                }
+
+                                if (valuehaber == "tipo") {
+                                var valorhaber = Object.values(obj)[1];
+                                alert(valorhaber);
+                                if (valorhaber == "H") {
+                                    ///lista.push(Object.values(obj)[1]);
+                                    alert(Object.values(obj)[1]);
+                                    booleanohaber=true;
+                                }
+                            }
+
+                                if (booleanohaber == true) {
+                                    if(monedahaber == "monto") {
+                                        alert('jaja');
+                                        var algohaber=contaHaber;
+                                        algohaber = contaHaber - parseFloat(JSON.parse(Object.values(obj)[1]));
+                                        alert(algohaber);
+                                        booleanohaber = false;
+                                        contaHaber=algohaber;
+                                    }
+                                }
+                            }
+                        resultado=contaDebe + contaHaber;
+                        alert(resultado);
+
+                        return resultado;
+                    }
+
+             })};
+            var Permitir=permitir();
+            if(Permitir != 0.0){
+                alert('soy una alerta')
+            }
+
                 $.ajax({
                     url: '{% url "homepage" %}',
                     type: 'POST',
@@ -313,12 +380,16 @@
                     'rowsGroup': [0, 1, 2],
                     dom: 'lBfrtip',
                     buttons: [
+
                         'pdf',
                     ],
+
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 
                     select: true,
+
                 })
+
                 table.buttons().container().appendTo('.col-sm-4');
             });
 
