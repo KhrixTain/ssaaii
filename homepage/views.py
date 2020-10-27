@@ -171,6 +171,15 @@ class CargarAsiento(TemplateView):
                     elif( c_a.tipo == "H" ):
                         haber = haber + c_a.monto
                 return debe == haber
+            def analizar_unicidad_cuentas(asiento, errores):
+                cuentas = set()
+                for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento.id):
+                    if( c_a.cuenta in cuentas):
+                        mensaje = "La cuenta "+ str(c_a.cuenta.nombre_cuenta) +" se ha ingresado más de una vez."
+                        errores.append(mensaje)
+                    else:
+                        cuentas.add(c_a.cuenta)
+                return errores
             asiento = asientoBorrador.objects.get(usuario=request.user.id)
             if( asiento.descripcion == "SIN_NOMBRE" ):
                 errores.append("No se ha ingresado un título al asiento.")
@@ -181,6 +190,7 @@ class CargarAsiento(TemplateView):
                     errores.append("La fecha ingresada es futura a la actual.")
                 elif( asiento.fecha < Asientos.objects.all().order_by("-fecha").first().fecha):
                     errores.append("La fecha ingresada es muy antigüa.")
+            errores = analizar_unicidad_cuentas(asiento)
             for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento.id):
                 errores = analizar_monto_cuenta_asiento(c_a, errores)
             if( analizar_doble_partida_asiento(asiento) == False ):
