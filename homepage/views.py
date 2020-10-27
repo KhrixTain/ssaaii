@@ -116,9 +116,9 @@ class MyHomePage(CreateView):
         """Estas dos lineas de abajo son para que la vista createview muestre los datos tipo object del listado"""
         #kwargs['object_list'] = Cuenta_asientos.objects.all()
         context['object_list'] = cuenta_asientoBorrador.objects.all()
+        context['Cuentas'] = Cuentas.objects.all()
         context['list_url'] = reverse_lazy('homepage:index.html')
         context['action'] = 'index.html'
-        #return super(MyHomePage, self).get_context_data(**kwargs)
         return context
 
 class LibroDiarioView(TemplateView):

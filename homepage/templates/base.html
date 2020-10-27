@@ -53,6 +53,12 @@
             tr.group, tr.group:hover {
                 background-color: #e6f2ff !important;
             }
+            #modalCuenta {
+            z-index: 1999;
+            }
+            #modalCuentaPlan {
+                z-index: 2000;
+            }
         </style>
     </head>
 {% endblock %}
@@ -160,7 +166,35 @@
                 </div>
                 <!-- /.row -->
                 <!-- Main row -->
+    <!--Plan de cuentas --->
 
+        <!-- Button trigger modal -->
+            {%block modalPlanCuenta %}
+            <section>
+        <!-- Modal -->
+        <div class="modal fade" data-backdrop="static" id="modalCuentaPlan" tabindex="-1" role="dialog" aria-labelledby="modalCuentaPlanLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Plan de cuentas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  {%block cuenta %}
+
+                      {%endblock %}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </section>
+
+                {%endblock %}
                 <!--Entrada de datos --->
                 <div>
                 <section>
@@ -182,6 +216,7 @@
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>
+
         <!-- /.content -->
         <!-- Button trigger modal -->
         <!-- /.content-wrapper -->
@@ -322,6 +357,9 @@
                 table.buttons().container().appendTo('.col-sm-4');
             });
 
+             $(document).ready(function () {
+                 var table = $('#cuentaData').DataTable();
+             });
 
         </script>
 
