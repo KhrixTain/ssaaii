@@ -59,6 +59,9 @@
             #modalCuentaPlan {
                 z-index: 2000;
             }
+            h9{
+                 background-color: #eaeaea
+            }
         </style>
     </head>
 {% endblock %}
@@ -197,7 +200,7 @@
                 </div>
                 <!--Fin carga datos -->
                 <div>
-                <section class="col-lg-12 connectedSortable" style="padding-top: 10px;">
+                <section class="col-lg-12 connectedSortable" style="padding-top: 10px;padding-bottom: 10px;">
                     {% block listado %}
 
                     {% endblock %}
@@ -208,7 +211,41 @@
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>
+    <div align="center">
 
+
+        <h9>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <i class="fas fa-user-alt"></i> Razón social: Chascomús, S.A
+                                    <br>
+                                    <i class="fas fa-user-alt"></i> Responsables: Leandro Chivarola Hernandez
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="fas fa-id-card"></i> CUIT: 30-55972883-4
+                                    <br>
+                                    <i class="fas fa-calendar-alt"></i> Año de inicio de actividades: 26-10-2020
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="fas fa-house-user"></i> Domicilio fiscal: San Martín 255
+                                    <br>
+                                    <i class="fas fa-mail-bulk"></i> Código Postal: 7130
+                                    <br>
+                                    <i class="fas fa-phone-alt"></i> Teléfono: 2241-252643
+                                    <br>
+                                    <i class="fas fa-envelope"></i> Correo electrónico: quesorpresa@gmail.com
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </h9>
+</div>
         <!-- /.content -->
         <!-- Button trigger modal -->
         <!-- /.content-wrapper -->
