@@ -95,7 +95,26 @@ class MyHomePage(CreateView):
             if action == 'index.html':
                 c_a = CuentaAsientoBorradorForm(request.POST)
                 if c_a.is_valid():
-                    c_a.save()
+                    c = c_a.instance
+                    id_a= asientoBorrador.objects.get(usuario=request.user.id)
+                    c.asiento = id_a
+                    c.save()
+                else:
+                   data=c_a.errors
+            else:
+                data['error']= 'No ha ingresado ningun campo'
+        except Exception as e:
+            data['error']=str(e)
+        try:
+            action = request.POST['action']
+            if action == 'index.html':
+                a_f = AsientoBorradorForm(request.POST)
+                if a_f.is_valid():
+                    a_f_instance = a_f.instance
+                    asiento= asientoBorrador.objects.get(usuario=request.user.id)
+                    asiento.descripcion = a_f_instance.descripcion
+                    asiento.fecha = a_f_instance.fecha
+                    asiento.save()
                 else:
                    data=c_a.errors
             else:
@@ -116,7 +135,7 @@ class MyHomePage(CreateView):
         context['grupos'] = grupos
         """Estas dos lineas de abajo son para que la vista createview muestre los datos tipo object del listado"""
         #kwargs['object_list'] = Cuenta_asientos.objects.all()
-        context['object_list'] = cuenta_asientoBorrador.objects.all()
+        context['object_list'] = Cuenta_asientos.objects.all()
         context['Cuentas'] = Cuentas.objects.all()
         context['list_url'] = reverse_lazy('homepage:index.html')
         context['action'] = 'index.html'
@@ -136,8 +155,9 @@ class CargarAsiento(TemplateView):
     def dispatch(self, request, *args, **kwargs):
         errores = list()
         if( asientoBorrador.objects.filter(usuario=request.user.id).exists() != True ):
-            return redirect(reverse_lazy('homepage'))
+            return redirect(reverse_lazy('homepage:homepage'))
         elif( cuenta_asientoBorrador.objects.filter(cuenta=asientoBorrador.objects.get(usuario=request.user.id).id).exists() ):
+
             def asentar_asiento_borrador(asiento):
                 nuevo_asiento = Asientos()
                 nuevo_asiento.desctripcion = asiento.descripcion
@@ -191,7 +211,7 @@ class CargarAsiento(TemplateView):
                     errores.append("La fecha ingresada es futura a la actual.")
                 elif( asiento.fecha < Asientos.objects.all().order_by("-fecha").first().fecha):
                     errores.append("La fecha ingresada es muy antigüa.")
-            errores = analizar_unicidad_cuentas(asiento)
+            errores = analizar_unicidad_cuentas(asiento,errores)
             for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento.id):
                 errores = analizar_monto_cuenta_asiento(c_a, errores)
             if( analizar_doble_partida_asiento(asiento) == False ):
@@ -199,11 +219,11 @@ class CargarAsiento(TemplateView):
             if ( len(errores)==0 ):
                 asentar_asiento_borrador(asiento)
                 asiento.delete()
-                return redirect(reverse_lazy('homepage'))
+                return redirect(reverse_lazy('homepage:homepage'))
             else:
                 contexto = super().get_context_data()
                 asiento.delete()
                 contexto['errores'] = errores
                 return render(request=request, template_name=self.template_name, context=contexto)
         else:
-            return redirect(reverse_lazy('homepage'))
+            return redirect(reverse_lazy('homepage:homepage'))

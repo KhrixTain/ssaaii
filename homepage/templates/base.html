@@ -53,13 +53,9 @@
             tr.group, tr.group:hover {
                 background-color: #e6f2ff !important;
             }
-            h9{
-                background-color: #ffffff
-            }
             #modalCuenta {
-                z-index: 1999;
+            z-index: 1999;
             }
-
             #modalCuentaPlan {
                 z-index: 2000;
             }
@@ -158,65 +154,55 @@
                     </div>
                     <!-- ./col -->
                     <!-- Script para redireccionar los botones creados con divs-->
-                    <script type="text/javascript">
-                        function redirect(url) {
-                            if (url == "logout") {
-                                window.location.href = "{% url 'user:logout' %}"
-                            } else {
-                                window.location.href = url;
-                            }
-                        }
-                    </script>
+
                 </div>
                 <!-- /.row -->
                 <!-- Main row -->
-                <!--Plan de cuentas --->
+    <!--Plan de cuentas --->
 
-                <!-- Button trigger modal -->
-                {% block modalPlanCuenta %}
-                    <section>
-                        <!-- Modal -->
-                        <div class="modal fade" data-backdrop="static" id="modalCuentaPlan" tabindex="-1" role="dialog"
-                             aria-labelledby="modalCuentaPlanLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Plan de cuentas</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        {% block cuenta %}
+        <!-- Button trigger modal -->
+            {%block modalPlanCuenta %}
+            <section>
+        <!-- Modal -->
+        <div class="modal fade" data-backdrop="static" id="modalCuentaPlan" tabindex="-1" role="dialog" aria-labelledby="modalCuentaPlanLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Plan de cuentas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  {%block cuenta %}
 
-                                        {% endblock %}
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+                      {%endblock %}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+            </section>
 
-                {% endblock %}
+                {%endblock %}
                 <!--Entrada de datos --->
                 <div>
-                    <section>
-                        {% block carga %}
+                <section>
+                {% block carga %}
 
-                        {% endblock %}
-                    </section>
+                {% endblock %}
+                </section>
                 </div>
                 <!--Fin carga datos -->
                 <div>
-                    <section class="col-lg-12 connectedSortable" style="padding-top: 10px;padding-bottom: 10px;" >
-                        {% block listado %}
+                <section class="col-lg-12 connectedSortable" style="padding-top: 10px;">
+                    {% block listado %}
 
-                        {% endblock %}
-                        <!-- /.card -->
-                    </section>
+                    {% endblock %}
+                    <!-- /.card -->
+                </section>
                 </div>
 
                 <!-- /.row (main row) -->
@@ -226,46 +212,12 @@
         <!-- /.content -->
         <!-- Button trigger modal -->
         <!-- /.content-wrapper -->
-    <div align="center">
-    <h9>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <i class="fas fa-user-alt"></i> Razón social: Chascomús, S.A
-                                    <br>
-                                    <i class="fas fa-user-alt"></i> Responsables: Leandro Chivarola Hernandez
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="fas fa-id-card"></i> CUIT: 30-55972883-4
-                                    <br>
-                                    <i class="fas fa-calendar-alt"></i> Año de inicio de actividades: 26-10-2020
-                                </div>
-                                <div class="col-md-4">
-                                    <i class="fas fa-house-user"></i> Domicilio fiscal: San Martín 255
-                                    <br>
-                                    <i class="fas fa-mail-bulk"></i> Código Postal: 7130
-                                    <br>
-                                    <i class="fas fa-phone-alt"></i> Teléfono: 2241-252643
-                                    <br>
-                                    <i class="fas fa-envelope"></i> Correo electrónico: quesorpresa@gmail.com
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </h9>
-</div>
         <footer class="main-footer">
             <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 3.0.5
             </div>
-
         </footer>
 
         <!-- Control Sidebar -->
@@ -340,7 +292,7 @@
                 e.preventDefault();
                 var parameters = $(this).serializeArray();
                 $.ajax({
-                    url: '{% url "homepage" %}',
+                    url: '{% url "homepage:homepage" %}',
                     type: 'POST',
                     data: parameters,
                     dataType: 'Json',
@@ -370,8 +322,9 @@
                 for (var i = 0; i < myArrayOfNodes.length; i++) {
                     myArrayOfNodes[i].click();
                 }
-                {#window.location.reload(true);#}
-                {#funcion redirect;#}
+                //window.location.reload(true);
+                //funcion redirect
+                window.location.href = "{% url 'homepage:cargar-asiento' %}"
             });
 
 
@@ -387,7 +340,6 @@
                 var table = $('#data').DataTable({
                     'rowsGroup': [0, 1, 2],
                     dom: 'lBfrtip',
-
                     buttons: [
                         {
                             extend: 'pdf',
@@ -407,15 +359,24 @@
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 
                     select: true,
-
                 })
                 table.buttons().container().appendTo('.col-sm-4');
+                table.page( 'last' ).draw('page');
             });
 
-            $(document).ready(function () {
-                var table = $('#cuentaData').DataTable();
-            });
-            /**/
+             $(document).ready(function () {
+                 var table = $('#cuentaData').DataTable();
+             });
+
+
+            function redirect(url) {
+                if (url == "logout") {
+                    window.location.href = "{% url 'user:logout' %}"
+                } else {
+                    window.location.href = url;
+                }
+            }
+/**/
 
         </script>
     {% endblock %}

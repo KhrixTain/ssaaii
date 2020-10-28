@@ -29,11 +29,13 @@
     <ul>
     {% for e in errores %}
         <li>
-        <strong>Danger!</strong>
+        <strong>Aviso: </strong>
             {{ e }}
         </li>
     {% endfor %}
+
 </ul>
+  <button type="button" href={% url 'homepage:homepage' %}>Volver a cargar el asiento</button>
   </div>
 </div>
 
