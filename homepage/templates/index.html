@@ -1,80 +1,81 @@
 {% extends "base.html" %}
-{%load static%}
+{% load static %}
 
-{%block cuenta %}
+{% block cuenta %}
 
     <section class="col-lg-12 connectedSortable">
-<h2></h2>
-<div class="card card-default">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="fas fa-book"></i>
-            Cuentas
-        </h3>
-    </div>
-    <div class="card-body table-responsive p-0 " style="height: 600px;">
-        <table class="table table-head-fixed text-nowrap hover cell-border " id="cuentaData">
-            <thead>
-            <tr>
-                <th scope="col">Numero</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Tipo</th>
-
-            </tr>
-            </thead>
-            <tbody>
-
-            {% for C in Cuentas %}
+        <h2></h2>
+        <div class="card card-default">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-book"></i>
+                    Cuentas
+                </h3>
+            </div>
+            <div class="card-body table-responsive p-0 " style="height: 600px;">
+                <table class="table table-head-fixed text-nowrap hover cell-border " id="cuentaData">
+                    <thead>
                     <tr>
-                        <td>
-                            {{ C.nro_cuenta}}
-                        </td><td>
-                            {{ C.nombre_cuenta }}
-                        </td>
-                        <td>
-                            {{ C.tipo_cuenta.tipo }}
-                        </td>
-
+                        <th scope="col">Numero</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Tipo</th>
 
                     </tr>
-            {% endfor %}
+                    </thead>
+                    <tbody>
 
-            </tbody>
+                    {% for C in Cuentas %}
+                        <tr>
+                            <td>
+                                {{ C.nro_cuenta }}
+                            </td>
+                            <td>
+                                {{ C.nombre_cuenta }}
+                            </td>
+                            <td>
+                                {{ C.tipo_cuenta.tipo }}
+                            </td>
 
-        </table>
 
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+    </section>
+{% endblock %}
+
+{% block libro %}
+
+    <div class="col-lg-3 col-6" onclick="redirect('libroMayor')">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>Libro Mayor</h3>
+
+                <p>Ver libro mayor</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-ios-book-outline"></i>
+            </div>
+            <div class="small-box-footer"><br></div>
+        </div>
     </div>
-</div>
 
-</section>
-{%endblock %}
+{% endblock %}
 
-{%block libro %}
-
-<div class="col-lg-3 col-6" onclick="redirect('libroMayor')">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>Libro Mayor</h3>
-
-                            <p>Ver libro mayor</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-ios-book-outline"></i>
-                        </div>
-                        <div class="small-box-footer"> <br></div>
-                    </div>
-                </div>
-
-{%endblock %}
-
-{%block carga%}
-            <section>
-            <form method="post" action=".">
-                {% csrf_token %}
-                <input type="hidden" name="action" value="{{ action }}">
-                <div class="row">
-                    <div class="col-2">
+{% block carga %}
+    <section>
+        <form method="post" action=".">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="{{ action }}">
+            <div class="row">
+                <div class="col-2">
                     <label>Operación</label>
                     {{ asientoBorradorForm.descripcion }}
                 </div>
@@ -82,162 +83,171 @@
                     <label>Fecha</label>
                     {{ asientoBorradorForm.fecha }}
                 </div>
-                    <button class="btn btn-primary" type="submit" id="btnGuardar" style="visibility: hidden">Cargar Datos Asiento</button>
-
-                    </div>
-                <div>
-                    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalCuentaPlan" style="float: right">
-          Plan de cuentas
-        </button>
-                        </div>
-            </form>
-<div class="formulario">
-
-                <form class="miform" method="post" action=".">
-                    {% csrf_token %}
-                    <input type="hidden" name="action" value="{{ action }}">
-                    <div class="form-row repeticion">
-                        <div class="col">
-                            <label>Cuenta</label>
-                            {{ cuentaAsientoForm.asiento }}
-                        </div>
-                        <div class="col">
-                            <label>Cuenta</label>
-                            {{ cuentaAsientoForm.cuenta }}
-                        </div>
-                        <div class="col">
-                            <label>Tipo</label>
-                            {{ cuentaAsientoForm.tipo }}
-                        </div>
-                        <div class="col">
-                            <label>Monto</label>
-                            {{ cuentaAsientoForm.monto }}
-                        </div>
-                    </div>
-
-
-                    <button class="btn btn-primary" id="btnGuardar" type="submit" style="visibility: hidden">
-                        Guardar
-                    </button>
-                    <button class="btn btn-primary" id="btnAgregar" type="button" style="float: right">
-                                        Agregar
-                    </button>
-                </form>
+                <button class="btn btn-primary" type="submit" id="btnGuardar" style="visibility: hidden">Cargar Datos
+                    Asiento
+                </button>
 
             </div>
+            <div>
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#modalCuentaPlan"
+                        style="float: right">
+                    Plan de cuentas
+                </button>
+            </div>
+        </form>
+        <div class="formulario">
 
-        </section>
-
-            <button class="btn btn-primary" id="btnFinalizar" type="button">
-                Finalizar
-            </button>
-{% endblock %}
-{% block listado %}
-<div class="card card-default">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="fas fa-book"></i>
-            {{ tittle }}
-            Libro Diario
-        </h3>
-    </div>
-
-    <div class="card-body table-responsive p-0" style="height: 100%;">
-        <table class="table table-head-fixed text-nowrap row-border " id="data">
-            <thead>
-            <tr>
-                <th scope="col">Fecha</th>
-                <th scope="col">Nº de Asiento</th>
-                <th scope="col">Operación</th>
-                <th scope="col">Cuenta</th>
-                <th scope="col">Debe</th>
-                <th scope="col">Haber</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for c in object_list %}
-            <tr>
-                <td>
-                    {{c.asiento.fecha}}
-                </td>
-
-                <td>
-                    {{c.asiento.id}}
-                </td>
-                <td>
-                    {{c.asiento.descripcion}}
-
-                </td>
-                <td>
-                    {% if c.tipo == 'H'%}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{c.cuenta.nombre_cuenta}}
-                    {% else %}
-
-                    {{c.cuenta.nombre_cuenta}}
-
-                    {% endif %}
-                </td>
-                {% if c.tipo == 'D'%}
-                <td>
-                    {{c.monto}}
-                </td>
-                <td></td>
-                {% else %}
-                <td></td>
-                <td>{{c.monto}}</td>
-                {% endif %}
-            </tr>
-            {% endfor %}
-
-            </tbody>
-
-        </table>
-
-    </div>
-    <!-- /.card-body -->
-</div>
-
-<div aria-hidden="true" aria-labelledby="modalCuentaLabel" class="modal fade" id="modalCuenta"
-                 role="dialog" tabindex="-1">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalCuentaLabel">Cargar nueva cuenta</h5>
-                            <div style="float: right;">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCuentaPlan">
-                                Plan de cuentas
-                            </button>
-                            <button aria-label="Close" class="close" data-dismiss="modal"
-                                    type="button">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                        </div>
-                        <form method="post" action=".">
-                            {%csrf_token%}
-                            <input type="hidden" name="action" value="{{ action }}">
-
-                            <div class="modal-body modalCuenta1">
-                                {% for field in cuentaform %}
-                                <div class="form-group">
-                                    <label>{{field.label}}</label>
-                                    {{field}}
-                                </div>
-                                {%endfor%}
-
-
-                                <button class="btn btn-primary" id="btnGuardar" type="submit">
-                                    Guardar
-                                </button>
-
-                                <button class="btn btn-secondary" data-dismiss="modal"
-                                        type="button">Cerrar
-                                </button>
-                            </div>
-                        </form>
+            <form class="miform" method="post" action=".">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="{{ action }}">
+                <div class="form-row repeticion">
+                    <div class="col">
+                        <label>Cuenta</label>
+                        {{ cuentaAsientoForm.asiento }}
+                    </div>
+                    <div class="col">
+                        <label>Cuenta</label>
+                        {{ cuentaAsientoForm.cuenta }}
+                    </div>
+                    <div class="col">
+                        <label>Tipo</label>
+                        {{ cuentaAsientoForm.tipo }}
+                    </div>
+                    <div class="col">
+                        <label>Monto</label>
+                        {{ cuentaAsientoForm.monto }}
                     </div>
                 </div>
+
+
+                <button class="btn btn-primary" id="btnGuardar" type="submit" style="visibility: hidden">
+                    Guardar
+                </button>
+                <button class="btn btn-primary" id="btnAgregar" type="button" style="float: right">
+                    Agregar
+                </button>
+            </form>
+
+        </div>
+
+    </section>
+
+    <button class="btn btn-primary" id="btnFinalizar" type="button">
+        Finalizar
+    </button>
+    <br>
+
+{% endblock %}
+
+{% block listado %}
+    <div class="card card-default">
+        <div class="card-header" >
+            <h3 class="card-title">
+                <i class="fas fa-book"></i>
+                {{ tittle }}
+                Libro Diario
+            </h3>
+
+
+        </div>
+
+        <div class="card-body table-responsive p-0" style="height: 100%;">
+            <table class="table table-head-fixed text-nowrap row-border " id="data">
+                <thead>
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Nº de Asiento</th>
+                    <th scope="col">Operación</th>
+                    <th scope="col">Cuenta</th>
+                    <th scope="col">Debe</th>
+                    <th scope="col">Haber</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for c in object_list %}
+                    <tr>
+                        <td>
+                            {{ c.asiento.fecha }}
+                        </td>
+
+                        <td>
+                            {{ c.asiento.id }}
+                        </td>
+                        <td>
+                            {{ c.asiento.descripcion }}
+
+                        </td>
+                        <td>
+                            {% if c.tipo == 'H' %}
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ c.cuenta.nombre_cuenta }}
+                            {% else %}
+
+                                {{ c.cuenta.nombre_cuenta }}
+
+                            {% endif %}
+                        </td>
+                        {% if c.tipo == 'D' %}
+                            <td>
+                                {{ c.monto }}
+                            </td>
+                            <td></td>
+                        {% else %}
+                            <td></td>
+                            <td>{{ c.monto }}</td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+    <div aria-hidden="true" aria-labelledby="modalCuentaLabel" class="modal fade" id="modalCuenta"
+         role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCuentaLabel">Cargar nueva cuenta</h5>
+                    <div style="float: right;">
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#modalCuentaPlan">
+                            Plan de cuentas
+                        </button>
+                        <button aria-label="Close" class="close" data-dismiss="modal"
+                                type="button">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <form method="post" action=".">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="{{ action }}">
+
+                    <div class="modal-body modalCuenta1">
+                        {% for field in cuentaform %}
+                            <div class="form-group">
+                                <label>{{ field.label }}</label>
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+
+
+                        <button class="btn btn-primary" id="btnGuardar" type="submit">
+                            Guardar
+                        </button>
+
+                        <button class="btn btn-secondary" data-dismiss="modal"
+                                type="button">Cerrar
+                        </button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
 
 {% endblock %}
 
