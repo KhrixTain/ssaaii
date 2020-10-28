@@ -11,6 +11,7 @@ from django.views.generic import TemplateView, CreateView
 from django import template
 from homepage.models import *
 from django.contrib.auth.models import Group, User
+from django.utils.datastructures import MultiValueDictKeyError
 
 register = template.Library()
 
@@ -74,7 +75,7 @@ class MyHomePage(CreateView):
             a_b.save()
             context['asientoBorrador'] = a_b
         return super().dispatch(request,args,*kwargs)
-#
+
     def post(self,request,args,*kwargs):
         data = {}
         try:

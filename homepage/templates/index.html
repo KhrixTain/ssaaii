@@ -72,6 +72,7 @@
             <section>
             <form method="post" action=".">
                 {% csrf_token %}
+                <input type="hidden" name="action" value="{{ action }}">
                 <div class="row">
                     <div class="col-2">
                     <label>Operación</label>
@@ -96,6 +97,10 @@
                     {% csrf_token %}
                     <input type="hidden" name="action" value="{{ action }}">
                     <div class="form-row repeticion">
+                        <div class="col">
+                            <label>Cuenta</label>
+                            {{ cuentaAsientoForm.asiento }}
+                        </div>
                         <div class="col">
                             <label>Cuenta</label>
                             {{ cuentaAsientoForm.cuenta }}
