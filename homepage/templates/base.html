@@ -154,15 +154,7 @@
                     </div>
                     <!-- ./col -->
                     <!-- Script para redireccionar los botones creados con divs-->
-                    <script type="text/javascript">
-                        function redirect(url) {
-                            if (url == "logout") {
-                                window.location.href = "{% url 'user:logout' %}"
-                            } else {
-                                window.location.href = url;
-                            }
-                        }
-                    </script>
+
                 </div>
                 <!-- /.row -->
                 <!-- Main row -->
@@ -300,7 +292,7 @@
                 e.preventDefault();
                 var parameters = $(this).serializeArray();
                 $.ajax({
-                    url: '{% url "homepage" %}',
+                    url: '{% url "homepage:homepage" %}',
                     type: 'POST',
                     data: parameters,
                     dataType: 'Json',
@@ -332,6 +324,7 @@
                 }
                 //window.location.reload(true);
                 //funcion redirect
+                window.location.href = "{% url 'homepage:cargar-asiento' %}"
             });
 
 
@@ -348,18 +341,41 @@
                     'rowsGroup': [0, 1, 2],
                     dom: 'lBfrtip',
                     buttons: [
-                        'pdf',
+                        {
+                            extend: 'pdf',
+                            messageTop: ' Razón social: Chascomús, S.A\n' +
+                                'Responsables: Leandro Chivarola Hernandez\n' +
+                                'CUIT:30- 55972883-4\n' +
+                                'Año de inicio de actividades: 26-10-2020\n' +
+                                'Domicilio fiscal: San Martín 255\n' +
+                                'Código Postal: 7130\n' +
+                                'Teléfono: 2241-252643\n' +
+                                'Correo electrónico: quesorpresa@gmail.com'
+
+
+
+                        }
                     ],
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
 
                     select: true,
                 })
                 table.buttons().container().appendTo('.col-sm-4');
+                table.page( 'last' ).draw('page');
             });
 
              $(document).ready(function () {
                  var table = $('#cuentaData').DataTable();
              });
+
+
+            function redirect(url) {
+                if (url == "logout") {
+                    window.location.href = "{% url 'user:logout' %}"
+                } else {
+                    window.location.href = url;
+                }
+            }
 /**/
 
         </script>

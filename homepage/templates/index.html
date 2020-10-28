@@ -99,10 +99,6 @@
                     <div class="form-row repeticion">
                         <div class="col">
                             <label>Cuenta</label>
-                            {{ cuentaAsientoForm.asiento }}
-                        </div>
-                        <div class="col">
-                            <label>Cuenta</label>
                             {{ cuentaAsientoForm.cuenta }}
                         </div>
                         <div class="col">
@@ -134,14 +130,45 @@
 {% endblock %}
 {% block listado %}
 <div class="card card-default">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="fas fa-book"></i>
-            {{ tittle }}
-            Libro Diario
-        </h3>
-    </div>
+        <div class="card-header" align="center">
+            <h3 class="card-title">
+                <i class="fas fa-book"></i>
+                {{ tittle }}
+                Libro Diario
+            </h3>
+            <br>
+            <h5>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <i class="fas fa-user-alt"></i> Razón social: Chascomús, S.A
+                                    <br>
+                                    <i class="fas fa-user-alt"></i> Responsables: Leandro Chivarola Hernandez
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="fas fa-id-card"></i> CUIT: 30-55972883-4
+                                    <br>
+                                    <i class="fas fa-calendar-alt"></i> Año de inicio de actividades: 26-10-2020
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="fas fa-house-user"></i> Domicilio fiscal: San Martín 255
+                                    <br>
+                                    <i class="fas fa-mail-bulk"></i> Código Postal: 7130
+                                    <br>
+                                    <i class="fas fa-phone-alt"></i> Teléfono: 2241-252643
+                                    <br>
+                                    <i class="fas fa-envelope"></i> Correo electrónico: quesorpresa@gmail.com
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+
+            </h5>
+        </div>
     <div class="card-body table-responsive p-0" style="height: 100%;">
         <table class="table table-head-fixed text-nowrap row-border " id="data">
             <thead>
