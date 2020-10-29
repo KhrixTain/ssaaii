@@ -3,9 +3,9 @@
 
 {%block libro %}
 
-<div class="col-lg-3 col-6" onclick="redirect('/homepage')">
+<div class="col-lg-3 col-6" onclick="location.href={% url 'homepage:homepage'%}">
                     <!-- small box -->
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-info" style="cursor: pointer">
                         <div class="inner">
                             <h3>Libro Diario</h3>
 

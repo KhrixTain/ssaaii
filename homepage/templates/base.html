@@ -109,7 +109,7 @@
                              data-toggle="modal">
                             <!-- small box -->
 
-                            <div class="small-box bg-success">
+                            <div class="small-box bg-success" style="cursor: pointer">
 
                                 <div class="inner">
                                     <h3 data-target="#modalCuenta" data-toggle="modal"
@@ -145,7 +145,7 @@
                         <!-- ./col -->
                     {% endif %}
 
-                    <div class="col-lg-3 col-6" onclick="redirect( 'logout' )">
+                    <div class="col-lg-3 col-6" onclick="location.href={% url 'user:logout'%}" style="cursor: pointer">
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">

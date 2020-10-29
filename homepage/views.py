@@ -134,7 +134,7 @@ class MyHomePage(CreateView):
             grupos.append("Empleado")
         context['grupos'] = grupos
         """Estas dos lineas de abajo son para que la vista createview muestre los datos tipo object del listado"""
-        #kwargs['object_list'] = Cuenta_asientos.objects.all()
+        #kwargs['object_list'] = Cuenta_asientos.objects.all()aa
         context['object_list'] = Cuenta_asientos.objects.all()
         context['Cuentas'] = Cuentas.objects.all()
         context['list_url'] = reverse_lazy('homepage:index.html')
