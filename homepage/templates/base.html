@@ -8,11 +8,11 @@
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-        <script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script type="application/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script type="application/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'jquery.dataTables.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{%static 'jquery-ui.css'%}">
+        <script type="application/javascript" src="{%static 'jquery-3.3.1.min.js' %}"></script>
+        <script type="application/javascript" src="{%static 'jquery-ui.js' %}"></script>
+        <script type="application/javascript" src="{%static 'jquery.dataTables.min.js'%}"></script>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="{% static 'lib/AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css' %}">
         <!-- Ionicons -->
@@ -51,6 +51,10 @@
             tr.group, tr.group:hover {
                 background-color: #e6f2ff !important;
             }
+            tr.role{
+                z-index: 1999;
+
+            }
             #modalCuenta {
             z-index: 1999;
             }
@@ -60,6 +64,8 @@
             h9{
                  background-color: #eaeaea
             }
+
+
         </style>
     </head>
 {% endblock %}
@@ -92,7 +98,7 @@
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row" style="padding-top: 10px;">
-                    {% block libro %}
+                    {%block libro %}
 
 
                     {% endblock %}
@@ -364,8 +370,8 @@
                     'rowsGroup': [0, 1, 2],
                     dom: 'lBfrtip',
                     buttons: [
-                        {
-                            extend: 'pdf',
+                        {extend: 'pdf',
+                            className:'btn btn-success',
                             messageTop: ' Razón social: Chascomús, S.A\n' +
                                 'Responsables: Leandro Chivarola Hernandez\n' +
                                 'CUIT:30- 55972883-4\n' +
@@ -390,26 +396,50 @@
                 table.page( 'last' ).draw('page');
 
           $("#datepicker_from").datepicker({
-            showOn: "button",
-            buttonImage: "images/calendar.gif",
-            buttonImageOnly: false,
+              dateFormat: 'dd/mm/yy',
             "onSelect": function(date) {
               minDateFilter = new Date(date).getTime();
               table.draw();
-            }
+            },
+beforeShow: function (textbox, instance) {
+       var txtBoxOffset = $(this).offset();
+       var top = txtBoxOffset.top;
+       var left = txtBoxOffset.left;
+       var textBoxWidth = $(this).outerWidth();
+       console.log('top: ' + top + 'left: ' + left);
+               setTimeout(function () {
+                   instance.dpDiv.css({
+                       top: top-190, //you can adjust this value accordingly
+                       left: left + textBoxWidth//show at the end of textBox
+               });
+           }, 0);
+
+   }
           }).keyup(function() {
             minDateFilter = new Date(this.value).getTime();
             table.draw();
           });
 
           $("#datepicker_to").datepicker({
-            showOn: "button",
-            buttonImage: "images/calendar.gif",
-            buttonImageOnly: false,
+              dateFormat: 'dd/mm/yy',
             "onSelect": function(date) {
               maxDateFilter = new Date(date).getTime();
               table.draw();
-            }
+            },
+              beforeShow: function (textbox, instance) {
+       var txtBoxOffset = $(this).offset();
+       var top = txtBoxOffset.top;
+       var left = txtBoxOffset.left;
+       var textBoxWidth = $(this).outerWidth();
+       console.log('top: ' + top + 'left: ' + left);
+               setTimeout(function () {
+                   instance.dpDiv.css({
+                       top: top-190, //you can adjust this value accordingly
+                       left: left + textBoxWidth//show at the end of textBox
+               });
+           }, 0);
+
+   }
           }).keyup(function() {
             maxDateFilter = new Date(this.value).getTime();
             table.draw();
@@ -455,6 +485,8 @@
                 }
             }
 /**/
+
+
 
         </script>
     {% endblock %}

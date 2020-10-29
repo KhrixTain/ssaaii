@@ -30,7 +30,7 @@
             Activos
         </h3>
     </div>
-    <div class="card-body table-responsive p-0 " style="height: 600px;">
+    <div class="card-body table-responsive p-0 ">
         <table class="table table-head-fixed text-nowrap hover cell-border " id="activoData">
             <thead>
             <tr>
@@ -77,19 +77,19 @@
 </div>
 
 </section>
-    <section class="col-lg-12 connectedSortable">
-    <div class="card card-default">
+<section class="col-lg-12 connectedSortable">
+<h2></h2>
+<div class="card card-default">
     <div class="card-header">
         <h3 class="card-title">
             <i class="fas fa-book"></i>
             Pasivos
         </h3>
     </div>
-    </div>
 
     <section class="col-lg-12 connectedSortable">
 
-    <div class="card-body table-responsive p-0" style="height: 600px;">
+    <div class="card-body table-responsive p-0">
         <table class="table table-head-fixed text-nowrap hover cell-border" id="pasivoData">
             <thead>
             <tr>
@@ -132,9 +132,11 @@
         </table>
 
     </div>
+</div>
     </section>
     </section>
 
+{% endblock %}
 
 {%block javascript %}
     <script type="application/javascript" >
@@ -142,6 +144,7 @@
         $(document).ready(function() {
     var groupColumn = 0;
     var table = $('#activoData').DataTable({
+        "bDestroy": true,
         "columnDefs": [
             { "visible": false, "targets": groupColumn,},
         ],
@@ -166,6 +169,7 @@
         $(document).ready(function() {
     var groupColumn = 0;
     var table = $('#pasivoData').DataTable({
+        "bDestroy": true,
         "columnDefs": [
             { "visible": false, "targets": groupColumn,},
         ],
@@ -189,5 +193,4 @@
     } );});
 
         </script>
-{% endblock %}
 {% endblock %}
