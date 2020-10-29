@@ -102,7 +102,6 @@
 
 
                     {% endblock %}
-
                     <!-- ./col -->
                     {% if 'Contador' in grupos or 'Gestor' in grupos %}
                         <div class="col-lg-3 col-6" onclick="getElementById('modalCuenta')" data-target="#modalCuenta"
@@ -126,16 +125,16 @@
                                 {%endblock%} -->
                             </div>
                         </div>
-                    {% endif %}
+
                     <!-- ./col -->
-                    {% if 'Gestor' in grupos %}
+
                         <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')" data-target="#modalCuentaPlan"
                              data-toggle="modal">
                             <!-- small box -->
                             <div class="small-box bg-warning" style="cursor: pointer">
                                 <div class="inner">
                                     <h3 data-toggle="modal" data-target="#modalCuentaPlan">Plan de cuentas</h3>
-                                    <p>Plan de cuentas</p>
+                                    <p>Ver plan de cuentas</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-search"></i>
@@ -331,19 +330,6 @@
                 }).fail(function (jqXHR, textStatus, errorThrown) {
                 }).always(function (data) {
                 })
-
-                $('#modalCuenta').modal('hide');
-                $('body').removeClass('modal-open');
-                $('.modal-backdrop').remove();
-
-                {#$('#data').DataTable().ajax.reload();#}
-
-                ///VACÍA MODAL
-                $('#modalCuenta').on('hidden.bs.modal', function () {
-                    $(this).find('form').trigger('reset');
-                })
-
-
             })
 
             $("#btnFinalizar").click(function () {
