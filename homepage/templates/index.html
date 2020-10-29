@@ -121,7 +121,9 @@
 
         </section>
 
-            <button class="btn btn-primary" id="btnFinalizar" type="button">
+            <button class="btn btn-primary" id="guardar" type="button">
+                guardar
+            </button><button class="btn btn-primary" id="btnFinalizar" type="button">
                 Finalizar
             </button>
 {% endblock %}
@@ -157,22 +159,22 @@
             {% for c in object_list %}
             <tr>
                 <td>
-                    {{c.asiento.fecha}}
+                    {{c.id_asiento.fecha}}
                 </td>
 
                 <td>
-                    {{c.asiento.id}}
+                    {{c.id_asiento.id}}
                 </td>
                 <td>
-                    {{c.asiento.descripcion}}
+                    {{c.id_asiento.desctripcion}}
 
                 </td>
                 <td>
                     {% if c.tipo == 'H'%}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{c.cuenta.nombre_cuenta}}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{c.id_cuenta.nombre_cuenta}}
                     {% else %}
 
-                    {{c.cuenta.nombre_cuenta}}
+                    {{c.id_cuenta.nombre_cuenta}}
 
                     {% endif %}
                 </td>

@@ -51,7 +51,6 @@ class MyHomePage(CreateView):
     model = cuenta_asientoBorrador
     form_class = Cuenta_asientosForm
     context_object_name = 'cuenta_asiento_borrador'
-    success_url = reverse_lazy('homepage:index.html')
 
     extra_context = {
         'title': "Página Principal",
@@ -157,7 +156,7 @@ class CargarAsiento(TemplateView):
         asiento=asientoBorrador.objects.get(usuario=request.user.id)
         if( asientoBorrador.objects.filter(usuario=request.user.id).exists() != True ):
             return redirect(reverse_lazy('homepage:homepage'))
-        elif( cuenta_asientoBorrador.objects.filter(asiento=asiento.id).exists() ):
+        elif( cuenta_asientoBorrador.objects.filter(asiento=asiento).exists() ):
 
             def asentar_asiento_borrador(asiento):
                 nuevo_asiento = Asientos()
@@ -165,11 +164,12 @@ class CargarAsiento(TemplateView):
                 nuevo_asiento.fecha = asiento.fecha
                 nuevo_asiento.usuario = asiento.usuario
                 nuevo_asiento.save()
-                for cuenta_asiento_borrador in cuenta_asientoBorrador.objects.filter(cuenta=asiento.cuenta.id):
+
+                for cuenta_asiento_borrador in cuenta_asientoBorrador.objects.filter(asiento=asiento):
                     nueva_cuenta_asiento = Cuenta_asientos()
                     nueva_cuenta_asiento.monto = cuenta_asiento_borrador.monto
                     nueva_cuenta_asiento.tipo = cuenta_asiento_borrador.tipo
-                    nueva_cuenta_asiento.asiento = nuevo_asiento
+                    nueva_cuenta_asiento.id_asiento = nuevo_asiento
                     nueva_cuenta_asiento.id_cuenta = cuenta_asiento_borrador.cuenta
                     nueva_cuenta_asiento.save()
             def analizar_monto_cuenta_asiento(c_a, errores):
@@ -181,13 +181,13 @@ class CargarAsiento(TemplateView):
                         mensaje = "La cuenta " + str(Cuentas.objects.get(id=c_a.cuenta.id).nombre_cuenta) + " posee de saldo " + str(Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual) + " y se trató de extraer " + str(c_a.monto) + "."
                         errores.append(mensaje)
                 elif( c_a.monto is None ):
-                    mensaje = "No se ha ingresado un monto para actualizar la cuenta "+ str(Cuentas.objects.get(id=c_a.cuenta.id).nombre_cuenta)
+                    mensaje = "No se ha ingresado un monto para actualizar la cuenta "+ str(Cuentas.objects.get(id=c_a.cuenta).nombre_cuenta)
                     errores.append(mensaje)
                 return errores
             def analizar_doble_partida_asiento(asiento):
                 debe = 0
                 haber = 0
-                for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento.id):
+                for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento):
                     if ( c_a.tipo == "D" ):
                         debe = debe + c_a.monto
                     elif( c_a.tipo == "H" ):
@@ -195,7 +195,7 @@ class CargarAsiento(TemplateView):
                 return debe == haber
             def analizar_unicidad_cuentas(asiento, errores):
                 cuentas = set()
-                for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento.id):
+                for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento):
                     if( c_a.cuenta in cuentas):
                         mensaje = "La cuenta "+ str(c_a.cuenta.nombre_cuenta) +" se ha ingresado más de una vez."
                         errores.append(mensaje)
@@ -213,7 +213,7 @@ class CargarAsiento(TemplateView):
                 elif( asiento.fecha < Asientos.objects.all().order_by("-fecha").first().fecha):
                     errores.append("La fecha ingresada es muy antigüa.")
             errores = analizar_unicidad_cuentas(asiento,errores)
-            for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento.id):
+            for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento):
                 errores = analizar_monto_cuenta_asiento(c_a, errores)
             if( analizar_doble_partida_asiento(asiento) == False ):
                 errores.append("Los montos ingresados por el DEBE y el HABER son distintos.")
@@ -228,4 +228,5 @@ class CargarAsiento(TemplateView):
                 return render(request=request, template_name=self.template_name, context=contexto)
         else:
             print("conejo")
+            asiento.delete()
             return redirect(reverse_lazy('homepage:homepage'))
