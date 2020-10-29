@@ -36,7 +36,7 @@ class LibroMayor(ListView):
         context['grupos'] = grupos
         """Estas dos lineas de abajo son para que la vista createview muestre los datos tipo object del listado"""
         # kwargs['object_list'] = Cuenta_asientos.objects.all()
-        context['object_list'] = cuenta_asientoBorrador.objects.all()
+        context['Cuenta_asientoList'] = Cuenta_asientos.objects.all()
         context['list_url'] = reverse_lazy('homepage:index.html')
         context['action'] = 'index.html'
         # return super(MyHomePage, self).get_context_data(**kwargs)
@@ -148,6 +148,7 @@ class LibroDiarioView(TemplateView):
 class Main(TemplateView):
     template_name = 'main.html'
 
+
 class CargarAsiento(TemplateView):
     template_name = "error_asiento.html"
 
@@ -168,16 +169,29 @@ class CargarAsiento(TemplateView):
                 for cuenta_asiento_borrador in cuenta_asientoBorrador.objects.filter(asiento=asiento):
                     nueva_cuenta_asiento = Cuenta_asientos()
                     nueva_cuenta_asiento.monto = cuenta_asiento_borrador.monto
+                    cuenta = cuenta_asiento_borrador.cuenta
+                    if (cuenta_asiento_borrador.cuenta.getTipoCuenta() in ["Activo","Resultado (+)"]):
+                        if( cuenta_asiento_borrador.tipo == "D" ):
+                            cuenta.saldo_actual = cuenta.saldo_actual + cuenta_asiento_borrador.monto
+                        elif( cuenta_asiento_borrador.tipo == "H" ):
+                            cuenta.saldo_actual = cuenta.saldo_actual - cuenta_asiento_borrador.monto
+                    elif (cuenta_asiento_borrador.cuenta.getTipoCuenta() in ["Pasivo", "Resultado (-)","Patrimonio"]):
+                        if (cuenta_asiento_borrador.tipo == "D"):
+                            cuenta.saldo_actual = cuenta.saldo_actual - cuenta_asiento_borrador.monto
+                        elif (cuenta_asiento_borrador.tipo == "H"):
+                            cuenta.saldo_actual = cuenta.saldo_actual + cuenta_asiento_borrador.monto
+                    cuenta.save()
                     nueva_cuenta_asiento.tipo = cuenta_asiento_borrador.tipo
                     nueva_cuenta_asiento.id_asiento = nuevo_asiento
                     nueva_cuenta_asiento.id_cuenta = cuenta_asiento_borrador.cuenta
+                    nueva_cuenta_asiento.saldo_parcial = cuenta.saldo_actual
                     nueva_cuenta_asiento.save()
             def analizar_monto_cuenta_asiento(c_a, errores):
                 if( c_a.monto is not None and c_a.cuenta.saldo_actual is not None ):
-                    if( c_a.cuenta.getTipoCuenta() in ["Activo"] and c_a.tipo == "H" and c_a.monto > Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual ):
+                    if( c_a.cuenta.getTipoCuenta() in ["Activo","Resultado (+)"] and c_a.tipo == "H" and c_a.monto > Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual ):
                         mensaje = "La cuenta "+str(Cuentas.objects.get(id=c_a.cuenta.id).nombre_cuenta) + " posee de saldo " + str(Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual) + " y se trató de extraer " + str(c_a.monto) + "."
                         errores.append(mensaje)
-                    elif(c_a.cuenta.getTipoCuenta in ["Pasivo"] and c_a.tipo == "D" and c_a.monto > Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual):
+                    elif(c_a.cuenta.getTipoCuenta in ["Pasivo","Resultado (-)","Patrimonio"] and c_a.tipo == "D" and c_a.monto > Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual):
                         mensaje = "La cuenta " + str(Cuentas.objects.get(id=c_a.cuenta.id).nombre_cuenta) + " posee de saldo " + str(Cuentas.objects.get(id=c_a.cuenta.id).saldo_actual) + " y se trató de extraer " + str(c_a.monto) + "."
                         errores.append(mensaje)
                 elif( c_a.monto is None ):
@@ -205,13 +219,13 @@ class CargarAsiento(TemplateView):
             asiento = asientoBorrador.objects.get(usuario=request.user.id)
             if( asiento.descripcion == "SIN_NOMBRE" ):
                 errores.append("No se ha ingresado un título al asiento.")
-            if( asiento.fecha is None ):
-                errores.append("No se ha ingresado una fecha al asiento.")
-            else:
-                if( asiento.fecha > now() ):
-                    errores.append("La fecha ingresada es futura a la actual.")
-                elif( asiento.fecha < Asientos.objects.all().order_by("-fecha").first().fecha):
-                    errores.append("La fecha ingresada es muy antigüa.")
+            # if( asiento ):
+            #     if( asiento.fecha > now() ):
+            #         errores.append("La fecha ingresada ha un no ha sucedido.")
+            #     elif(asiento.fecha < Asientos.objects.all().order_by("-fecha").first().fecha ):
+            #         errores.append("La fecha ingresada es muy antigüa.")
+            # else:
+            #     errores.append("No se ha ingresado una fecha.")
             errores = analizar_unicidad_cuentas(asiento,errores)
             for c_a in cuenta_asientoBorrador.objects.filter(asiento=asiento):
                 errores = analizar_monto_cuenta_asiento(c_a, errores)

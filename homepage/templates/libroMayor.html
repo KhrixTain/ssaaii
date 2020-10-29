@@ -43,14 +43,14 @@
             </thead>
             <tbody>
 
-            {% for c in object_list %}
-                {% if c.cuenta.tipo_cuenta.tipo == "Activo" %}
+            {% for c in Cuenta_asientoList %}
+                {% if c.id_cuenta.tipo_cuenta.tipo == "Activo" %}
                     <tr>
                         <td>
-                            {{ c.cuenta.nombre_cuenta }}
+                            {{ c.id_cuenta.nombre_cuenta }}
                         </td>
                     <td>
-                            {{ c.asiento.descripcion }}
+                            {{ c.id_asiento.desctripcion }}
                         </td>
                         {% if c.tipo == 'D' %}
                         <td>
@@ -101,14 +101,14 @@
             </tr>
             </thead>
             <tbody>
-            {% for c in object_list %}
-                {% if c.cuenta.tipo_cuenta.tipo == "Pasivo" %}
+            {% for c in Cuenta_asientoList %}
+                {% if c.id_cuenta.tipo_cuenta.tipo == "Pasivo" %}
                     <tr>
                         <td>
-                            {{ c.cuenta.nombre_cuenta }}
+                            {{ c.id_cuenta.nombre_cuenta }}
                         </td>
                         <td>
-                            {{ c.asiento.desctripcion }}
+                            {{ c.id_asiento.desctripcion }}
                         </td>
                         {% if c.tipo == 'D' %}
                         <td>

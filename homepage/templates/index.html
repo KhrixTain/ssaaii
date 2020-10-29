@@ -3,50 +3,7 @@
 
 {%block cuenta %}
 
-    <section class="col-lg-12 connectedSortable">
-<h2></h2>
-<div class="card card-default">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="fas fa-book"></i>
-            Cuentas
-        </h3>
-    </div>
-    <div class="card-body table-responsive p-0 " style="height: 600px;">
-        <table class="table table-head-fixed text-nowrap hover cell-border " id="cuentaData">
-            <thead>
-            <tr>
-                <th scope="col">Numero</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Tipo</th>
 
-            </tr>
-            </thead>
-            <tbody>
-
-            {% for C in Cuentas %}
-                    <tr>
-                        <td>
-                            {{ C.nro_cuenta}}
-                        </td><td>
-                            {{ C.nombre_cuenta }}
-                        </td>
-                        <td>
-                            {{ C.tipo_cuenta.tipo }}
-                        </td>
-
-
-                    </tr>
-            {% endfor %}
-
-            </tbody>
-
-        </table>
-
-    </div>
-</div>
-
-</section>
 {%endblock %}
 
 {%block libro %}
@@ -122,7 +79,7 @@
         </section>
 
             <button class="btn btn-primary" id="guardar" type="button">
-                guardar
+                Guardar
             </button><button class="btn btn-primary" id="btnFinalizar" type="button">
                 Finalizar
             </button>
@@ -153,6 +110,7 @@
                 <th scope="col">Cuenta</th>
                 <th scope="col">Debe</th>
                 <th scope="col">Haber</th>
+
             </tr>
             </thead>
             <tbody>
@@ -161,7 +119,6 @@
                 <td>
                     {{c.id_asiento.fecha}}
                 </td>
-
                 <td>
                     {{c.id_asiento.id}}
                 </td>

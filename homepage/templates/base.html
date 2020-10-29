@@ -103,7 +103,7 @@
 
                     {% endblock %}
                     <!-- ./col -->
-                    {% if 'Contador' in grupos or 'Gestor' in grupos %}
+                    {% if 'Contador' in grupos or 'Gestor' in grupos  %}
                         <div class="col-lg-3 col-6" onclick="getElementById('modalCuenta')" data-target="#modalCuenta"
                              data-toggle="modal">
                             <!-- small box -->
@@ -127,10 +127,11 @@
                         </div>
 
                     <!-- ./col -->
-
+                 {% endif %}
                         <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')" data-target="#modalCuentaPlan"
                              data-toggle="modal">
                             <!-- small box -->
+
                             <div class="small-box bg-warning" style="cursor: pointer">
                                 <div class="inner">
                                     <h3 data-toggle="modal" data-target="#modalCuentaPlan">Plan de cuentas</h3>
@@ -143,9 +144,9 @@
                             </div>
                         </div>
                         <!-- ./col -->
-                    {% endif %}
 
-                    <div class="col-lg-3 col-6" onclick="location.href={% url 'user:logout'%}" style="cursor: pointer">
+
+                    <div class="col-lg-3 col-6" onclick="redirect('logout')" style="cursor: pointer">
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
@@ -180,10 +181,53 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
-                  {%block cuenta %}
+                <div class="modal-body">
 
-                      {%endblock %}
+                    <section class="col-lg-12 connectedSortable">
+                        <h2></h2>
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    <i class="fas fa-book"></i>
+                                    Cuentas
+                                </h3>
+                            </div>
+                            <div class="card-body table-responsive p-0 " style="height: 600px;">
+                                <table class="table table-head-fixed text-nowrap hover cell-border " id="cuentaData">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Numero</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Tipo</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {% for C in Cuentas %}
+                                    <tr>
+                                        <td>
+                                            {{ C.nro_cuenta }}
+                                        </td>
+                                        <td>
+                                            {{ C.nombre_cuenta }}
+                                        </td>
+                                        <td>
+                                            {{ C.tipo_cuenta.tipo }}
+                                        </td>
+
+
+                                    </tr>
+                                    {% endfor %}
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
+
+                    </section>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -332,7 +376,7 @@
                 })
             })
 
-            $("#btnFinalizar").click(function () {
+            $("#guardar").click(function () {
                 let lista = document.querySelectorAll('#btnGuardar');
                 var myArrayOfNodes = [].slice.call(lista);
                 for (var i = 0; i < myArrayOfNodes.length; i++) {
@@ -342,7 +386,7 @@
                 //funcion redirect
                 });
 
-            $("#guardar").click(function () {
+            $("#btnFinalizar").click(function () {
                 window.location.href = "{% url 'homepage:cargar-asiento' %}"
             });
 
