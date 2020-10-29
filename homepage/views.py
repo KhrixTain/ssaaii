@@ -154,9 +154,10 @@ class CargarAsiento(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         errores = list()
+        asiento=asientoBorrador.objects.get(usuario=request.user.id)
         if( asientoBorrador.objects.filter(usuario=request.user.id).exists() != True ):
             return redirect(reverse_lazy('homepage:homepage'))
-        elif( cuenta_asientoBorrador.objects.filter(cuenta=asientoBorrador.objects.get(usuario=request.user.id).id).exists() ):
+        elif( cuenta_asientoBorrador.objects.filter(asiento=asiento.id).exists() ):
 
             def asentar_asiento_borrador(asiento):
                 nuevo_asiento = Asientos()
@@ -207,7 +208,7 @@ class CargarAsiento(TemplateView):
             if( asiento.fecha is None ):
                 errores.append("No se ha ingresado una fecha al asiento.")
             else:
-                if( asiento.fecha > now ):
+                if( asiento.fecha > now() ):
                     errores.append("La fecha ingresada es futura a la actual.")
                 elif( asiento.fecha < Asientos.objects.all().order_by("-fecha").first().fecha):
                     errores.append("La fecha ingresada es muy antigüa.")
@@ -226,4 +227,5 @@ class CargarAsiento(TemplateView):
                 contexto['errores'] = errores
                 return render(request=request, template_name=self.template_name, context=contexto)
         else:
+            print("conejo")
             return redirect(reverse_lazy('homepage:homepage'))
