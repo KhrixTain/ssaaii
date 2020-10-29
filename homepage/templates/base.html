@@ -129,18 +129,22 @@
                     {% endif %}
                     <!-- ./col -->
                     {% if 'Gestor' in grupos %}
-                        <div class="col-lg-3 col-6" onclick="redirect('https://www.google.com')">
+                        <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')" data-target="#modalCuentaPlan"
+                             data-toggle="modal">
+                        <div class="col-lg-3 col-6" >
                             <!-- small box -->
                             <div class="small-box bg-warning">
                                 <div class="inner">
-                                    <h3>Cargar Usuario</h3>
-                                    <p>Cargar nuevos usuarios</p>
+                                    <h3 data-toggle="modal" data-target="#modalCuentaPlan" style="float: right">
+          Plan de cuentas        </h3>
+                                    <p>Plan de cuentas</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
                                 <div class="small-box-footer"><br></div>
                             </div>
+                        </div>
                         </div>
                         <!-- ./col -->
                     {% endif %}
