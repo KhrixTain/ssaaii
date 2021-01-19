@@ -65,7 +65,6 @@
                  background-color: #eaeaea
             }
 
-
         </style>
     </head>
 {% endblock %}
@@ -74,7 +73,7 @@
     <div class="wrapper">
 
         <!-- Content Wrapper. Contains page content -->
-
+{%block titulo %}
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -92,7 +91,7 @@
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
-
+{%endblock %}
         <!-- Main content -->
         <section class="content" style="background-color: #eaeaea">
             <div class="container-fluid">
@@ -102,6 +101,7 @@
 
 
                     {% endblock %}
+                {%block encabezado %}
                     <!-- ./col -->
                     {% if 'Contador' in grupos or 'Gestor' in grupos  %}
                         <div class="col-lg-3 col-6" onclick="getElementById('modalCuenta')" data-target="#modalCuenta"
@@ -162,8 +162,9 @@
                     </div>
                     <!-- ./col -->
                     <!-- Script para redireccionar los botones creados con divs-->
-
+{%endblock %}
                 </div>
+
                 <!-- /.row -->
                 <!-- Main row -->
     <!--Plan de cuentas --->

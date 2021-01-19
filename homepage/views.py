@@ -15,7 +15,10 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 register = template.Library()
 
-
+class ABMclientes(TemplateView):
+    template_name = "ABMclientes.html"
+class CargaVenta(TemplateView):
+    template_name = "CargaVenta.html"
 
 class LibroMayor(ListView):
     template_name = 'libroMayor.html'

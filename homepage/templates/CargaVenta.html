@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load static %}
+{% block listado %}
+<section class="content">
+      <div class="container-fluid">
+
+            <div class="row">
+          <!-- left column -->
+          <div class="col">
+          <!-- left column -->
+
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Carga Venta</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+
+                <div role="form">
+                <div class="card-body">
+          <!-- left column -->
+          <div class="row">
+                        <div class="col">
+          <div class="form-group">
+                    <label >Fecha</label>
+                    <input  class="form-control" >
+          </div>
+          </div>
+              <div class="col">
+          <div class="form-group">
+                    <label >Deposito</label>
+                    <input  class="form-control" >
+          </div>
+          </div>
+               <div class="col">
+          <div class="form-group">
+                    <label >Moneda</label>
+                    <select class="form-group"></select>
+          </div>
+          </div>
+          </div>
+
+          <div class="row">
+          <!-- left column -->
+               <div class="col">
+          <div class="form-group">
+                    <label >Numero</label>
+                    <input  class="form-control">
+          </div>
+          </div>
+               <div class="col">
+          <div class="form-group">
+                    <label >Lista de precios</label>
+                    <input  class="form-control">
+          </div>
+          </div>
+               <div class="col">
+          <div class="form-group">
+                    <label >Cambio</label>
+                    <input  class="form-control" >
+          </div>
+          </div>
+               <div class="col">
+          <div class="form-group">
+                    <label >IVA</label>
+                    <select class="form-group"></select>
+          </div>
+          </div>
+      </div>
+      <div class="row">
+          <!-- left column -->
+           <div class="col">
+          <div class="form-group">
+                    <label >Cliente</label>
+                    <input  class="form-control">
+          </div>
+          </div>
+           <div class="col">
+          <div class="form-group">
+                    <label >Desgravación</label>
+                    <input  class="form-control" >
+          </div>
+          </div>
+           <div class="col">
+          <div class="form-group">
+                    <label >Vendedor</label>
+                    <input  class="form-control" >
+          </div>
+          </div>
+      </div>
+
+<section class="col-lg-12 connectedSortable">
+    <button type="submit" class="btn btn-primary">Agregar producto</button>
+<h2></h2>
+<div class="card card-default">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fas fa-book"></i>
+            Ventas
+        </h3>
+    </div>
+    <div class="card-body table-responsive p-0 ">
+        <table class="table table-head-fixed text-nowrap hover cell-border " id="CargaVenta">
+            <thead>
+            <tr>
+                <th scope="col">Código</th>
+                <th scope="col">Desctripcion</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Importe</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th>
+                    Parlante
+                </th>
+                <th>
+                    NogaNet Xr100
+                </th>
+                <th>
+                    1.00
+                </th>
+                <th>
+                    3200.00
+                </th>
+                <th>
+                    3200.00
+                </th>
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+</section>
+
+
+          <div class="row">
+          <!-- left column -->
+               <div class="col">
+          <div class="form-group">
+                    <label >Gravado</label>
+                    <input  class="form-control">
+          </div>
+          </div>
+               <div class="col">
+          <div class="form-group">
+                    <label >Impuestos</label>
+                    <input  class="form-control" >
+          </div>
+          </div>
+               <div class="col">
+          <div class="form-group">
+                    <label >Total</label>
+                    <input  class="form-control" >
+          </div>
+          </div>
+      </div>
+      </div>
+      </div>
+      </div>
+              <button type="submit" class="btn btn-primary">Cargar</button>
+      </div>
+      </div>
+      </div>
+   </section>
+{%endblock %}
+{%block javascript %}
+    <script type="text/javascript">
+     $(document).ready(function () {
+                 var table = $('#CargaVenta').DataTable();
+             });
+     </script>
+{%endblock %}
