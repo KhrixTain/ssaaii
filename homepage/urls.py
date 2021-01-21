@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import path
 
 
-from homepage.views import MyHomePage, LibroMayor, CargarAsiento, ABMclientes, CargaVenta, ppyl, ppyl1, ppyl3
+from homepage.views import MyHomePage, LibroMayor, CargarAsiento, ABMclientes, CargaVenta
 
 app_name="homepage"
 urlpatterns = [
