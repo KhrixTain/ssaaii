@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'widget_tweaks',
     #Aplicación de ventas
     'sales',
+    'customers',
+    'articles',
+
 ]
 
 MIDDLEWARE = [
