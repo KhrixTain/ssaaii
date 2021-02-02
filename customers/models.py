@@ -36,4 +36,3 @@ class Clientes(models.Model):
         ordering= ["cuit"]
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
-# Create your models here.

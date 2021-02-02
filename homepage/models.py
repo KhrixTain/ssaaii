@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.forms import model_to_dict
 from django.utils.timezone import now
+
 from django.core.exceptions import ValidationError
 #from flask_security.utils import _
 

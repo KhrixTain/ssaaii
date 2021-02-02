@@ -1,43 +1,16 @@
 from django.db import models
 
 # Create your models here.
+from ssaaii.articles.models import Articulos
+from ssaaii.company.models import Empresa
+from ssaaii.customers.models import Clientes
 
 codigo_cliente=1
 codigo_articulo=1
 codigo_venta=1
 codigo_factura = 1
 
-class Rubros(models.Model):
-    nombre=models.TextField(unique=True, verbose_name='Nombre')
-    codigo=models.IntegerField(unique=True, verbose_name="Código")
-    subrubro=models.ForeignKey('self', on_delete=models.PROTECT, blank=True, null=True)
-
-    class Meta:
-        ordering= ["nombre"]
-        verbose_name = 'Rubro'
-        verbose_name_plural = 'Rubros'
-
-class Articulos(models.Model):
-    codigo_item = models.IntegerField(verbose_name='Código Item',unique=True)
-    precio = models.FloatField(verbose_name='Precio')
-    existencia = models.FloatField(verbose_name='Existencia')
-    item_suspendido = models.BooleanField(verbose_name= 'Item suspendido')
-    motivo_suspension = models.TextField (verbose_name='Motivo suspension')
-    deposito = models.IntegerField(verbose_name='Deposito')
-    codigo_barra = models.IntegerField(verbose_name='Código de barras')
-    observacion = models.TextField(verbose_name= 'Observaciones')
-    nombre = models.TextField(verbose_name='Nombre')
-    stock_comprometido=models.FloatField(verbose_name='Stock Comprometido')
-    rubro = models.ForeignKey(Rubros, on_delete=models.CASCADE)
-
-    def __init__(self):
-        global codigo_articulo
-        self.codigo_item = codigo_articulo
-        codigo_articulo += 1
-    class Meta:
-        ordering= ["nombre"]
-        verbose_name = 'Articulo'
-        verbose_name_plural = 'Articulos'
+# Create your models here.
 
 class Vendedores(models.Model):
     nombre = models.TextField(verbose_name='Nombre')
@@ -85,20 +58,7 @@ class Ventas(models.Model):
         verbose_name_plural = 'Ventas'
 
 
-class Empresa(models.Model):
-    nombre = models.TextField(verbose_name='Nombre')
-    cuit = models.TextField(verbose_name='CUIT',unique=True)
-    razon_social = models.TextField(verbose_name='Razón Social')
-    direccion = models.TextField(verbose_name='Dirección')
-    telefono = models.TextField(verbose_name='Telefono')
-    e_mail = models.TextField(verbose_name='e-mail')
-    fecha_inicio_actividades = models.DateTimeField(null=True, editable=True, verbose_name='Fecha de inicio de Actividades')
-    ingresos_brutos = models.TextField(default=cuit)
 
-    class Meta:
-        ordering= ["nombre"]
-        verbose_name = 'Empresa'
-        verbose_name_plural = 'Empresas'
 
 
 class Facturas(models.Model):
