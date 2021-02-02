@@ -4,7 +4,7 @@ from django.db import models
 from ssaaii.articles.models import Articulos
 from ssaaii.company.models import Empresa
 from ssaaii.customers.models import Clientes
-
+##
 codigo_cliente=1
 codigo_articulo=1
 codigo_venta=1
