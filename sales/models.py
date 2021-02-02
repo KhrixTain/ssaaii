@@ -1,9 +1,9 @@
 from django.db import models
 
 # Create your models here.
-from ssaaii.articles.models import Articulos
-from ssaaii.articles.models import Rubros
-from ssaaii.customers.models import Clientes
+from articles.models import Articulos
+from articles.models import Rubros
+from customers.models import Clientes
 ##
 codigo_cliente=1
 codigo_articulo=1
