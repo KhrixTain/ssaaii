@@ -1,5 +1,7 @@
 from django.db import models
 
+codigo_articulo=1
+
 class Rubros(models.Model):
     nombre=models.TextField(unique=True, verbose_name='Nombre')
     codigo=models.IntegerField(unique=True, verbose_name="Código")

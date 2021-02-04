@@ -1,4 +1,7 @@
 from django.db import models
+codigo_cliente=1
+
+
 class Clientes(models.Model):
     GENERAL = 'G'
     REDUCIDO = 'R'

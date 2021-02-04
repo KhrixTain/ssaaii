@@ -5,8 +5,9 @@ from articles.models import Articulos
 from articles.models import Rubros
 from customers.models import Clientes
 ##
-codigo_cliente=1
-codigo_articulo=1
+
+
+
 codigo_venta=1
 codigo_factura = 1
 
