@@ -7,5 +7,5 @@ urlpatterns = [
     path('', Main.as_view(), name="main"),
     path('admin/', admin.site.urls),
     path('user/', include('user.urls',namespace="user")),
-    path('homepage/', include('homepage.urls')),
+    path('homepage/', include('homepage.urls',namespace="homepage")),
 ]

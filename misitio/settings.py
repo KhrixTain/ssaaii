@@ -44,6 +44,13 @@ INSTALLED_APPS = [
     #Aplicación de homepage (interfaz principal de usuarios)
     'homepage',
     'widget_tweaks',
+    #Aplicación de ventas
+    'sales',
+    'customers',
+    'articles',
+
+
+
 ]
 
 MIDDLEWARE = [

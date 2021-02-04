@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% load static %}
+{% block listado %}
+<section class="content">
+      <div class="container-fluid">
+
+      <div class="row">
+          <!-- left column -->
+          <div class="col">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Carga de Cliente</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+                <div class="row">
+              <div class="col">
+                <div role="form">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label >Codigo</label>
+                    <input  class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label >Nombre</label>
+                    <input class="form-control">
+                  </div>
+                    <div class="form-group">
+                    <label>Domicilio</label>
+                    <input type="password" class="form-control"  >
+                  </div>
+                    <div class="form-group">
+                    <input  class="form-control">
+                  </div>
+                    <div class="form-group">
+                    <input  class="form-control" >
+                  </div>
+                    <div class="form-group">
+                    <label>Codigo Postal</label>
+                    <input class="form-control" >
+                  </div>
+                    <div class="form-group">
+                    <label>Telefonos</label>
+                    <input class="form-control">
+                  </div>
+                    <div class="form-group">
+                    <label>Contacto</label>
+                    <input class="form-control" >
+                  </div>
+                    <div class="form-group">
+                    <label>Telefonos</label>
+                    <input class="form-control">
+                  </div>
+                     <div class="form-group">
+                    <label>Entrega</label>
+                    <input class="form-control">
+                  </div>
+                     <div class="form-group">
+                    <input class="form-control">
+                  </div>
+                     <div class="form-group">
+                    <input class="form-control">
+                  </div>
+                     <div class="form-group">
+                    <label>Zona Fiscal</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Condiciones de Venta</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Tipo de Cliente</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Descuento 1</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Vendedor</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Cobrador</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Lista de precios</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Transportista</label>
+                    <input class="form-control">
+                  </div>
+                     <div class="form-group">
+                    <label>Mail facturacion</label>
+                    <input class="form-control">
+                  </div>
+                </div>
+                </div>
+              </div>
+                    <div class="col">
+                <form role="form">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label >Categoria de IVA</label>
+                      <select class="form-control"  > </select>
+                  </div>
+                    <div class="form-group">
+                    <label >Id. impositiva Tipo</label>
+                      <select class="form-control"  > </select>
+                  </div>
+                  <div class="form-group">
+                    <label >Numero</label>
+                    <input class="form-control">
+                  </div>
+                    <p>Otros Impuestos</p>
+                    <div class="form-group">
+                    <label>Categoria 1</label>
+                    <input type="checkbox" class="form-control"  >
+                  </div>
+                    <div class="form-group">
+                    <label>Numero de Inscripcion 1</label>
+                    <input class="form-control" >
+                  </div>
+                     <div class="form-group">
+                    <label>Categoria 2</label>
+                    <input type="checkbox" class="form-control"  >
+                  </div>
+                    <div class="form-group">
+                    <label>Numero de Inscripcion 2</label>
+                    <input class="form-control" >
+                  </div>
+                    <div class="form-group">
+                    <label>Ref. Contable $</label>
+                    <input class="form-control">
+                  </div>
+                    <div class="form-group">
+                    <label>Ref. Contable U$S</label>
+                    <input class="form-control" >
+                  </div>
+                    <div class="form-group">
+                    <label>Deposito</label>
+                    <input class="form-control">
+                  </div>
+                     <div class="form-group">
+                    <label>Tipo de Bonificacion</label>
+                    <input class="form-control">
+                  </div>
+                     <div class="form-group">
+                    <label>Deposito</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Tipo de bonificacion</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Descuento 2</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Credito maximo</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Enviar FC</label>
+                       <select> </select>
+                  </div>
+                   <div class="form-group">
+                    <label>Activo</label>
+                    <select> </select>
+                  </div>
+                   <div class="form-group">
+                    <label>Motivo</label>
+                    <input class="form-control">
+                  </div>
+                   <div class="form-group">
+                    <label>Habilitado Hasta</label>
+                    <input class="form-control">
+                  </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+                    </div>
+                </form>
+              </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            </section>
+{%endblock %}

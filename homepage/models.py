@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.forms import model_to_dict
 from django.utils.timezone import now
+
 from django.core.exceptions import ValidationError
 #from flask_security.utils import _
 
@@ -25,7 +26,7 @@ class Cuentas(models.Model):
     recibe_saldo = models.BooleanField(default=True)
     tipo_cuenta = models.ForeignKey(Tipo_cuenta, on_delete=models.PROTECT)
     cuenta_padre = models.ForeignKey('self', on_delete=models.PROTECT, blank=True, null=True)
-    saldo_actual = models.FloatField(null=True, blank=True)
+    saldo_actual = models.FloatField(null=True, blank=True, default=0)
     disponible = models.BooleanField(default=True)
 
     def getTipoCuenta(self):
@@ -43,18 +44,6 @@ class Asientos(models.Model):
     fecha = models.DateTimeField(default=now, editable=True, verbose_name='Fecha_del_asiento')
     desctripcion = models.TextField(verbose_name='Descripcion', editable=True)
     usuario = models.ForeignKey(User, on_delete=models.PROTECT)
-
-    def clean_field(self):
-        debe=0
-        haber=0
-        cuenta_asientos = Cuenta_asientos.objects.filter(id_asiento=self.id)
-        for c_a in cuenta_asientos:
-            if c_a.tipo == 'D':
-                debe = debe + c_a.monto
-            else:
-                haber = haber + c_a.monto
-        if debe != haber:
-            raise ValidationError(_('f'))
 
     def __str__(self):
         return self.desctripcion
@@ -93,7 +82,10 @@ class asientoBorrador(models.Model):
 
     def __str__(self):
         return self.descripcion
-
+    class Meta:
+        verbose_name = 'Asiento Borrador'
+        verbose_name_plural = 'Asientos Borrador'
+        ordering = ['id']
 class cuenta_asientoBorrador(models.Model):
     DEBE = 'D'
     HABER = 'H'
@@ -106,6 +98,10 @@ class cuenta_asientoBorrador(models.Model):
     asiento = models.ForeignKey(asientoBorrador, on_delete=models.CASCADE)
     monto = models.FloatField(null=False)
 
+    class Meta:
+        verbose_name = 'Cuenta Asiento Borrador'
+        verbose_name_plural = 'Cuenta Asientos Borrador'
+        ordering = ['id']
 
     '''
     def clean_field(self):

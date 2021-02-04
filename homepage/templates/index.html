@@ -1,8 +1,50 @@
 {% extends "base.html" %}
 {%load static%}
+
+{%block cuenta %}
+
+
+{%endblock %}
+
+{%block libro %}
+
+<div class="col-lg-3 col-6" onclick="redirect('libroMayor')">
+                    <!-- small box -->
+                    <div class="small-box bg-info" style="cursor: pointer">
+                        <div class="inner">
+                            <h3>Libro Mayor</h3>
+
+                            <p>Ver libro mayor</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-book-outline"></i>
+                        </div>
+                        <div class="small-box-footer"> <br></div>
+                    </div>
+                </div>
+
+{%endblock %}
+
 {%block carga%}
             <section>
-            <h1>{{ asientoBorrador.descripcion }}</h1>
+            <form method="post" action=".">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="{{ action }}">
+                <div class="row">
+                    <div class="col-2">
+                    <label>Operación</label>
+                    {{ asientoBorradorForm.descripcion }}
+                </div>
+                <div class="col-2">
+                    <label>Fecha</label>
+                    {{ asientoBorradorForm.fecha }}
+                </div>
+                    <button class="btn btn-primary" type="submit" id="btnGuardar" style="visibility: hidden">Cargar Datos Asiento</button>
+
+                    </div>
+                <div>
+                        </div>
+            </form>
 <div class="formulario">
 
                 <form class="miform" method="post" action=".">
@@ -36,82 +78,30 @@
 
         </section>
 
-            <button class="btn btn-primary" id="btnFinalizar" type="button">
+            <button class="btn btn-primary" id="guardar" type="button">
+                Guardar
+            </button><button class="btn btn-primary" id="btnFinalizar" type="button">
                 Finalizar
             </button>
 {% endblock %}
 {% block listado %}
-<div class="card card-default">
-    <div class="card-header">
-        <h3 class="card-title">
-            <i class="fas fa-book"></i>
-            {{ tittle }}
-            Libro Diario
-        </h3>
-    </div>
-    <!-- /.card-header
-    <div class="card-body table-responsive p-0" style="height: 300px;">
-                <table class="table table-head-fixed text-nowrap">
-                <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
-                <thead>
-                <tr role="row">
-                <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Rendering engine: activate to sort column descending" aria-sort="ascending">Fecha</th>
-                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Operacion</th>
-                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Nº de Asiento</th>
-                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Cuenta</th>
-                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Debe</th>
-                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Haber</th>
-                </tr>
-                </thead>
-                ESTO SON COSAS QUE QUIERO PROBASR DESPUES NO ES URGENTE
-            esto va abajo del card
+<div class="card card-default" draggable="false">
+        <div class="card-header" >
+            <h3 class="card-title">
+                <i class="fas fa-book"></i>
+                {{ tittle }}
+                Libro Diario
+            </h3>
 
-            <div class="card-header">
-              <h3 class="card-title">Libro Diario</h3>
-            </div>
 
-            /.card-header
-            <div class="card-body">
-              <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-              <div class="row">
-              <div class="col-sm-12 col-md-6">
-              <div class="dataTables_length" id="example1_length">
-              <label>Mostrar <select name="example1_length" aria-controls="example1" class="custom-select custom-select-sm form-control form-control-sm">
-              <option value="10">10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-              </select>
-               entries
-               </label>
-               </div><
-               /div>
-               <div class="col-sm-12 col-md-6">
-               <div id="example1_filter" class="dataTables_filter">
-               <label>Buscar:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example1">
-               </label>
-               </div>
-               </div>
-               </div>
-               <div class="row">
-               <div class="col-sm-12">
-               <table id="data" class="table table-bordered table-striped dataTable dtr-inline" role="grid" aria-describedby="example1_info">
-                <thead>
-                <tr role="row">
-                <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Fecha: activate to sort column descending">Fecha</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Operación: activate to sort column ascending">Operación</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Nº de Asiento: activate to sort column ascending">Nº de Asiento</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Cuenta: activate to sort column ascending">Cuenta</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Debe: activate to sort column ascending">Debe</th>
-                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Haber: activate to sort column ascending">Haber</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                    -->
-
+        </div>
+ <p id="date_filter">
+    <span id="date-label-from" class="date-label">Desde: </span><input class="date_range_filter date" type="text" id="datepicker_from" />
+        <span id="date-label-to" class="date-label">Hasta:</span><input class="date_range_filter date" type="text" id="datepicker_to" />
+</p>
     <div class="card-body table-responsive p-0" style="height: 100%;">
-        <table class="table table-head-fixed text-nowrap row-border " id="data">
+
+    <table class="table table-head-fixed text-nowrap row-border " id="data">
             <thead>
             <tr>
                 <th scope="col">Fecha</th>
@@ -120,6 +110,7 @@
                 <th scope="col">Cuenta</th>
                 <th scope="col">Debe</th>
                 <th scope="col">Haber</th>
+
             </tr>
             </thead>
             <tbody>
@@ -128,12 +119,12 @@
                 <td>
                     {{c.id_asiento.fecha}}
                 </td>
-
                 <td>
                     {{c.id_asiento.id}}
                 </td>
                 <td>
                     {{c.id_asiento.desctripcion}}
+
                 </td>
                 <td>
                     {% if c.tipo == 'H'%}
@@ -164,79 +155,21 @@
     <!-- /.card-body -->
 </div>
 
-
-<!-- /.card-body
- <div class="input-group date" id='date'>
-                        <label>Fecha</label>
-                       <input type='text' class="form-control" />
-                          <span class="input-group-addon">
-                          <span class="fa fa-calendar"></span>
-                       </span>
-                    </div>-->
-
-
-<!--<div class="card-footer clearfix">
-
-    <div class="content">
-        <div class="container">
-            <button class="btn btn-primary" data-target="#modalAsiento" data-toggle="modal"
-                    data-whatever="@mdo" type="button"><i class="fas fa-plus"></i>Cargar asiento
-            </button>
-
-            <div aria-hidden="true" aria-labelledby="modalAsientoLabel" class="modal fade" id="modalAsiento"
-                 role="dialog" tabindex="-1">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalAsientoLabel">Cargar nuevo asiento</h5>
-                            <button aria-label="Close" class="close" data-dismiss="modal"
-                                    type="button">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form method="post" action=".">
-                            {%csrf_token%}
-                            <input type="hidden" name="action" value="{{ action }}">
-
-                            <div class="modal-body modalCuenta1">
-
-                                {% for field in form.visible_fields%}
-                                <div class="form-group">
-                                    <label>{{field.label}}</label>
-                                    {{field}}
-                                </div>
-                                {%endfor%}
-
-                                <button class="btn btn-primary" id="btnGuardar" type="button">
-                                    Guardar
-                                </button>
-                                <button class="btn btn-primary" id="btnGuardar" type="submit">
-                                    Finalizar
-                                </button>
-
-                                <button class="btn btn-secondary" data-dismiss="modal"
-                                        type="button">Cerrar
-                                </button>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
-
 <div aria-hidden="true" aria-labelledby="modalCuentaLabel" class="modal fade" id="modalCuenta"
                  role="dialog" tabindex="-1">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="modalCuentaLabel">Cargar nueva cuenta</h5>
+                            <div style="float: right;">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCuentaPlan">
+                                Plan de cuentas
+                            </button>
                             <button aria-label="Close" class="close" data-dismiss="modal"
                                     type="button">
                                 <span aria-hidden="true">&times;</span>
                             </button>
+                            </div>
                         </div>
                         <form method="post" action=".">
                             {%csrf_token%}
