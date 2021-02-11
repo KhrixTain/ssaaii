@@ -11,7 +11,6 @@ urlpatterns = [
     path('cargar-asiento/', login_required(CargarAsiento.as_view()), name="cargar-asiento"),
     path('libroMayor/', login_required(LibroMayor.as_view()), name="libroMayor"),
     path('ABMclientes/', login_required(ABMclientes.as_view()), name="ABMclientes"),
-    path('CargaVenta/', login_required(CargaVenta.as_view()), name="CargaVenta"),
 
 
 ]

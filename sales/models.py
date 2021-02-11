@@ -47,6 +47,7 @@ class Ventas(models.Model):
     entrega = models.TextField(verbose_name='Entrega')
     articulo = models.ManyToManyField(Articulos)
     cliente = models.ForeignKey(Clientes,on_delete=models.PROTECT)
+    fecha=models.DateTimeField(verbose_name='Fecha',null=True, editable=True,)
 
     def __init__(self):
         global codigo_venta
