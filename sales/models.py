@@ -24,6 +24,9 @@ class Vendedores(models.Model):
         verbose_name = 'Vendedor'
         verbose_name_plural = 'Vendedores'
 
+    def __str__(self):
+        return self.nombre
+
 
 class Ventas(models.Model):
     CONTADO = 'C'

@@ -1,0 +1,86 @@
+{% extends "ABMarticles.html" %}
+{% load static %}
+
+
+{% block art %}
+<div class="card card-default" draggable="false">
+        <div class="card-header" >
+            <h3 class="card-title">
+                <i class="fas fa-book"></i>
+                {{ tittle }}
+                Listado de Articulos
+            </h3>
+
+
+        </div>
+ <p id="date_filter">
+    <span id="date-label-from" class="date-label">Desde: </span><input class="date_range_filter date" type="text" id="datepicker_from" />
+        <span id="date-label-to" class="date-label">Hasta:</span><input class="date_range_filter date" type="text" id="datepicker_to" />
+</p>
+    <div class="card-body table-responsive p-0" style="height: 100%;">
+
+    <table class="table table-head-fixed text-nowrap row-border " id="data">
+            <thead>
+            <tr>
+                <th scope="col">Codigo de Item</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Item suspendido</th>
+                <th scope="col">Motivo de Suspension</th>
+                <th scope="col">Deposito</th>
+                <th scope="col">Codigo de barra</th>
+                <th scope="col">Observacion</th>
+                <th scope="col">Stock Comprometido</th>
+                <th scope="col">Rubro</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for a in Articulos %}
+            <tr>
+                <td>
+                    {{ a.codigo_item }}
+                </td>
+            <td>
+                    {{ a.nombre }}
+                </td>
+            <td>
+                    {{ a.precio }}
+                </td>
+            <td>
+                    {{ a.item_suspendido }}
+                </td>
+               <td>
+                    {{ a.motivo_suspension }}
+                </td>
+            <td>
+                    {{ a.deposito }}
+                </td>
+            <td>
+                    {{ a.codigo_barra }}
+                </td>
+            <td>
+                    {{ a.observacion }}
+                </td>
+            <td>
+                    {{ a.stock_comprometido }}
+                </td>
+            <td>
+                    {{ a.rubro }}
+                </td>
+
+
+            </tr>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+{% endblock %}

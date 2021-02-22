@@ -1,0 +1,540 @@
+{% load static %}
+{% block head %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ title }}</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'jquery.dataTables.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{%static 'jquery-ui.css'%}">
+        <script type="application/javascript" src="{%static 'jquery-3.3.1.min.js' %}"></script>
+        <script type="application/javascript" src="{%static 'jquery-ui.js' %}"></script>
+        <script type="application/javascript" src="{%static 'jquery.dataTables.min.js'%}"></script>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'lib/AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css' %}">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- Tempusdominus Bbootstrap 4 -->
+        <link rel="stylesheet"
+              href="{% static 'lib/AdminLTE-3.0.5/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css' %}">
+        <!-- iCheck -->
+        <link rel="stylesheet"
+              href="{% static 'lib/AdminLTE-3.0.5/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+        <!-- JQVMap -->
+        <link rel="stylesheet" href="{% static 'lib/AdminLTE-3.0.5/plugins/jqvmap/jqvmap.min.css' %}">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{% static 'lib/AdminLTE-3.0.5/dist/css/adminlte.min.css' %}">
+        <!-- overlayScrollbars -->
+        <link rel="stylesheet"
+              href="{% static 'lib/AdminLTE-3.0.5/plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
+        <!-- summernote -->
+        <link rel="stylesheet" href="{% static 'lib/AdminLTE-3.0.5/plugins/summernote/summernote-bs4.css' %}">
+        <!-- Google Font: Source Sans Pro -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+        <link rel="stylesheet" href="/resources/demos/style.css">
+        <!--DataTable-->
+        <link rel="stylesheet" TYPE="text/css" href="{% static 'jquery.dataTables.css' %}">
+
+        <link rel="stylesheet" href="{% static 'lib/datatables-1.10.20/css/dataTables.bootstrap4.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'buttons.dataTables.min.css' %}"/>
+        <link rel="stylesheet" href="{% static 'buttons.bootstrap4.css' %}"/>
+        <link rel="stylesheet"
+              href="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/css/responsive.bootstrap4.min.css' %}"/>
+        <script src="{% static 'lib/datatables-1.10.20/js/jquery.dataTables.js' %}"></script>
+        <script src="{% static 'lib/datatables-1.10.20/js/dataTables.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'lib/datatables-1.10.20/plugins/responsive-2.2.3/js/responsive.bootstrap4.min.js' %}"></script>
+        <style type="text/css">
+            tr.group, tr.group:hover {
+                background-color: #e6f2ff !important;
+            }
+            tr.role{
+                z-index: 1999;
+
+            }
+            #modalCuenta {
+            z-index: 1999;
+            }
+            #modalCuentaPlan {
+                z-index: 2000;
+            }
+            h9{
+                 background-color: #eaeaea
+            }
+
+        </style>
+    </head>
+{% endblock %}
+{% block body %}
+    <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+{%block titulo %}
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark" style="font-family: Verdana;">
+                            Bienvenid@, {{ user.username|title }}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="">Inicio</a></li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+{%endblock %}
+        <!-- Main content -->
+        <section class="content" style="background-color: #eaeaea">
+            <div class="container-fluid">
+                <!-- Small boxes (Stat box) -->
+                <div class="row" style="padding-top: 10px;">
+
+                {%block encabezado %}
+                    <!-- ./col -->
+                    <!-- abría que ver los vendedores -->
+                        <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')" data-target="#modalCuentaPlan"
+                             data-toggle="modal">
+                            <!-- small box -->
+
+                            <div class="small-box bg-success" style="cursor: pointer">
+                                <div class="inner">
+                                    <h3 data-toggle="modal" data-target="#modalCuentaPlan">Cargar Productos</h3>
+                                    <p>Alta de nuevos productos</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="far fa-newspaper"></i>
+                                </div>
+                                <div class="small-box-footer"><br></div>
+                            </div>
+                        </div>
+                    <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')" data-target="#modalCuentaPlan"
+                             data-toggle="modal">
+                            <!-- small box -->
+
+                            <div class="small-box bg-info" style="cursor: pointer">
+                                <div class="inner">
+                                    <h3 data-toggle="modal" data-target="#modalCuentaPlan">Modificar Productos</h3>
+                                    <p>Modificacion de productos</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </div>
+                                <div class="small-box-footer"><br></div>
+                            </div>
+                        </div>
+                    <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')" data-target="#modalCuentaPlan"
+                             data-toggle="modal">
+                            <!-- small box -->
+
+                            <div class="small-box bg-warning" style="cursor: pointer">
+                                <div class="inner">
+                                    <h3 data-toggle="modal" data-target="#modalCuentaPlan">Eliminar Productos</h3>
+                                    <p>Baja y eliminación productos</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                                <div class="small-box-footer"><br></div>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+
+
+                    <div class="col-lg-3 col-6" onclick="redirect('logout')" style="cursor: pointer">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>Cerrar Sesión</h3>
+
+                                <p>Cerrar sesión de usuario</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-power"></i>
+                            </div>
+                            <div class="small-box-footer"><br></div>
+                        </div>
+                    </div>
+                    <!-- ./col -->
+                    <!-- Script para redireccionar los botones creados con divs-->
+{%endblock %}
+                </div>
+
+                <!-- /.row -->
+ <!-- Aqui deberia ir  un datatable-->
+
+
+
+
+                <!-- Main row -->
+    <!--Plan de cuentas --->
+
+        <!-- Button trigger modal  Acomodar para que sea modal articulo nuevo-->
+            {%block modalPlanCuenta %}
+<!--            <section>
+
+                    <div class="modal fade" data-backdrop="static" id="modalCargaArticulo" tabindex="-1" role="dialog" aria-labelledby="modalCuentaPlanLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Plan de cuentas</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                            <div class="modal-body">
+
+                                <section class="col-lg-12 connectedSortable">
+                                    <h2></h2>
+                                    <div class="card card-default">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                <i class="fas fa-book"></i>
+                                                Cuentas
+                                            </h3>
+                                        </div>
+                                        <div class="card-body table-responsive p-0 " style="height: 600px;">
+                                            <table class="table table-head-fixed text-nowrap hover cell-border " id="cuentaData">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">Numero</th>
+                                                    <th scope="col">Nombre</th>
+                                                    <th scope="col">Tipo</th>
+
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                {% for C in Cuentas %}
+                                                <tr>
+                                                    <td>
+                                                        {{ C.nro_cuenta }}
+                                                    </td>
+                                                    <td>
+                                                        {{ C.nombre_cuenta }}
+                                                    </td>
+                                                    <td>
+                                                        {{ C.tipo_cuenta.tipo }}
+                                                    </td>
+
+
+                                                </tr>
+                                                {% endfor %}
+
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                </section>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+            </section> -->
+
+                {% endblock %}
+                <!--Entrada de datos --->
+                <div>
+                <section>
+                {% block carga %}
+
+                {% endblock %}
+                </section>
+                </div>
+                <!--Fin carga datos -->
+                <div>
+                <section class="col-lg-12 connectedSortable" style="padding-top: 10px;padding-bottom: 10px;">
+                    {% block art %}
+
+                    {% endblock %}
+                    <!-- /.card -->
+                </section>
+                </div>
+
+                <!-- /.row (main row) -->
+            </div><!-- /.container-fluid -->
+        </section>
+    <div align="center">
+
+
+        <h9>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <i class="fas fa-user-alt"></i> Razón social: Chascomús, S.A
+                                    <br>
+                                    <i class="fas fa-user-alt"></i> Responsables: Leandro Chivarola Hernandez
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="fas fa-id-card"></i> CUIT: 30-55972883-4
+                                    <br>
+                                    <i class="fas fa-calendar-alt"></i> Año de inicio de actividades: 26-10-2020
+                                </div>
+                                <div class="col-md-4">
+                                    <i class="fas fa-house-user"></i> Domicilio fiscal: San Martín 255
+                                    <br>
+                                    <i class="fas fa-mail-bulk"></i> Código Postal: 7130
+                                    <br>
+                                    <i class="fas fa-phone-alt"></i> Teléfono: 2241-252643
+                                    <br>
+                                    <i class="fas fa-envelope"></i> Correo electrónico: quesorpresa@gmail.com
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </h9>
+</div>
+        <!-- /.content -->
+        <!-- Button trigger modal -->
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.0.5
+            </div>
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- ChartJS -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/chart.js/Chart.min.js' %}"></script>
+    <!-- Sparkline -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/sparklines/sparkline.js' %}"></script>
+    <!-- JQVMap -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/jqvmap/jquery.vmap.min.js' %}"></script>
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/jqvmap/maps/jquery.vmap.usa.js' %}"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/jquery-knob/jquery.knob.min.js' %}"></script>
+    <!-- daterangepicker -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/moment/moment.min.js' %}"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js' %}"></script>
+    <!-- Summernote -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/summernote/summernote-bs4.min.js' %}"></script>
+    <!-- overlayScrollbars -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/dist/js/adminlte.js' %}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/dist/js/pages/dashboard.js' %}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/dist/js/demo.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static 'lib/adminlte/js/adminlte.min.js' %}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{% static 'lib/AdminLTE-3.0.5/dist/js/demo.js' %}"></script>
+    <script src="{% static 'dataTables.rowGroup.min.js' %}"></script>
+
+    <!--el nombre "data" es el de la tabla que se encuentra en index.html el ID-->
+    <script type="text/javascript" src="{% static 'jquery.dataTables.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dataTables.rowsGroup.js' %}"></script>
+    <script type="text/javascript" src="{% static 'pdfmake.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'buttons.flash.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dataTables.buttons.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'vfs_fonts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'buttons.bootstrap4.js' %}"></script>
+    <script type="text/javascript" src="{% static 'buttons.html5.js' %}"></script>
+
+    {% block javascript %}
+        <script type="application/javascript">
+            $('form').on('submit', function (e) {
+                e.preventDefault();
+                var parameters = $(this).serializeArray();
+                $.ajax({
+                    url: '{% url "homepage:homepage" %}',
+                    type: 'POST',
+                    data: parameters,
+                    dataType: 'Json',
+                }).done(function (data) {
+                    console.log(data)
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                }).always(function (data) {
+                })
+            })
+
+            $("#guardar").click(function () {
+                let lista = document.querySelectorAll('#btnGuardar');
+                var myArrayOfNodes = [].slice.call(lista);
+                for (var i = 0; i < myArrayOfNodes.length; i++) {
+                    myArrayOfNodes[i].click();
+                }
+                //window.location.reload(true);
+                //funcion redirect
+                });
+
+            $("#btnFinalizar").click(function () {
+                window.location.href = "{% url 'homepage:cargar-asiento' %}"
+            });
+
+
+            $(document).ready(function () {
+                $("#btnAgregar").click(function () {
+                    var target = $(this).closest(".formulario");
+                    target.clone(true, true).appendTo(target.parent());
+
+                });
+            });
+
+            $(document).ready(function () {
+                var table = $('#data').DataTable({
+                    'rowsGroup': [0, 1, 2],
+                    dom: 'lBfrtip',
+                    buttons: [
+                        {extend: 'pdf',
+                            className:'btn btn-success',
+                            messageTop: ' Razón social: Chascomús, S.A\n' +
+                                'Responsables: Leandro Chivarola Hernandez\n' +
+                                'CUIT:30- 55972883-4\n' +
+                                'Año de inicio de actividades: 26-10-2020\n' +
+                                'Domicilio fiscal: San Martín 255\n' +
+                                'Código Postal: 7130\n' +
+                                'Teléfono: 2241-252643\n' +
+                                'Correo electrónico: quesorpresa@gmail.com'
+
+
+
+                        }
+                    ],
+                    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+
+                    select: true,
+                })
+                table.buttons().container().appendTo('.col-sm-4');
+                table.page( 'last' ).draw('page');
+
+                table.buttons().container().appendTo('.col-sm-4');
+                table.page( 'last' ).draw('page');
+
+          $("#datepicker_from").datepicker({
+              dateFormat: 'dd/mm/yy',
+            "onSelect": function(date) {
+              minDateFilter = new Date(date).getTime();
+              table.draw();
+            },
+beforeShow: function (textbox, instance) {
+       var txtBoxOffset = $(this).offset();
+       var top = txtBoxOffset.top;
+       var left = txtBoxOffset.left;
+       var textBoxWidth = $(this).outerWidth();
+       console.log('top: ' + top + 'left: ' + left);
+               setTimeout(function () {
+                   instance.dpDiv.css({
+                       top: top-190, //you can adjust this value accordingly
+                       left: left + textBoxWidth//show at the end of textBox
+               });
+           }, 0);
+
+   }
+          }).keyup(function() {
+            minDateFilter = new Date(this.value).getTime();
+            table.draw();
+          });
+
+          $("#datepicker_to").datepicker({
+              dateFormat: 'dd/mm/yy',
+            "onSelect": function(date) {
+              maxDateFilter = new Date(date).getTime();
+              table.draw();
+            },
+              beforeShow: function (textbox, instance) {
+       var txtBoxOffset = $(this).offset();
+       var top = txtBoxOffset.top;
+       var left = txtBoxOffset.left;
+       var textBoxWidth = $(this).outerWidth();
+       console.log('top: ' + top + 'left: ' + left);
+               setTimeout(function () {
+                   instance.dpDiv.css({
+                       top: top-190, //you can adjust this value accordingly
+                       left: left + textBoxWidth//show at the end of textBox
+               });
+           }, 0);
+
+   }
+          }).keyup(function() {
+            maxDateFilter = new Date(this.value).getTime();
+            table.draw();
+          });
+        minDateFilter = "";
+        maxDateFilter = "";
+
+        $.fn.dataTableExt.afnFiltering.push(
+          function(oSettings, aData, iDataIndex) {
+              if (typeof aData._date == 'undefined') {
+                  aData._date = new Date(aData[0]).getTime();
+              }
+
+              if (minDateFilter && !isNaN(minDateFilter)) {
+                  if (aData._date < minDateFilter) {
+                      return false;
+                  }
+              }
+
+              if (maxDateFilter && !isNaN(maxDateFilter)) {
+                  if (aData._date > maxDateFilter) {
+                      return false;
+                  }
+              }
+
+              return true;
+          }
+        );
+});
+
+// Date range filter
+
+             $(document).ready(function () {
+                 var table = $('#cuentaData').DataTable();
+             });
+
+
+            function redirect(url) {
+                if (url == "logout") {
+                    window.location.href = "{% url 'user:logout' %}"
+                } else {
+                    window.location.href = url;
+                }
+            }
+/**/
+
+
+
+        </script>
+    {% endblock %}
+
+{% endblock %}
+
+
+</body>
+</html>
+
