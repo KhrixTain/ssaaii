@@ -8,10 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" type="text/css" href="{% static 'jquery.dataTables.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{%static 'jquery-ui.css'%}">
-        <script type="application/javascript" src="{%static 'jquery-3.3.1.min.js' %}"></script>
-        <script type="application/javascript" src="{%static 'jquery-ui.js' %}"></script>
-        <script type="application/javascript" src="{%static 'jquery.dataTables.min.js'%}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'jquery-ui.css' %}">
+        <script type="application/javascript" src="{% static 'jquery-3.3.1.min.js' %}"></script>
+        <script type="application/javascript" src="{% static 'jquery-ui.js' %}"></script>
+        <script type="application/javascript" src="{% static 'jquery.dataTables.min.js' %}"></script>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="{% static 'lib/AdminLTE-3.0.5/plugins/fontawesome-free/css/all.min.css' %}">
         <!-- Ionicons -->
@@ -50,18 +50,22 @@
             tr.group, tr.group:hover {
                 background-color: #e6f2ff !important;
             }
-            tr.role{
+
+            tr.role {
                 z-index: 1999;
 
             }
+
             #modalCuenta {
-            z-index: 1999;
+                z-index: 1999;
             }
+
             #modalCuentaPlan {
                 z-index: 2000;
             }
-            h9{
-                 background-color: #eaeaea
+
+            h9 {
+                background-color: #eaeaea
             }
 
         </style>
@@ -70,41 +74,42 @@
 {% block body %}
     <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-{%block titulo %}
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark" style="font-family: Verdana;">
-                            Bienvenid@, {{ user.username|title }}</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="">Inicio</a></li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-{%endblock %}
+        {% block titulo %}
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark" style="font-family: Verdana;">
+                                Bienvenid@, {{ user.username|title }}</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="">Inicio</a></li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+        {% endblock %}
         <!-- Main content -->
         <section class="content" style="background-color: #eaeaea">
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row" style="padding-top: 10px;">
 
-                {%block encabezado %}
-                    <!-- ./col -->
-                    <!-- abría que ver los vendedores -->
-                        <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')" data-target="#modalCuentaPlan"
+                    {% block encabezado %}
+                        <!-- ./col -->
+                        <!-- abría que ver los vendedores -->
+                        <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')"
+                             data-target="#modalCuentaPlan"
                              data-toggle="modal">
                             <!-- small box -->
 
                             <div class="small-box bg-success" style="cursor: pointer">
                                 <div class="inner">
-                                    <h3 data-toggle="modal" data-target="#modalCuentaPlan">Cargar Productos</h3>
+                                    <h3 data-toggle="modal" data-target="#modalCargaArticulo">Cargar Productos</h3>
                                     <p>Alta de nuevos productos</p>
                                 </div>
                                 <div class="icon">
@@ -113,7 +118,8 @@
                                 <div class="small-box-footer"><br></div>
                             </div>
                         </div>
-                    <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')" data-target="#modalCuentaPlan"
+                        <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')"
+                             data-target="#modalCuentaPlan"
                              data-toggle="modal">
                             <!-- small box -->
 
@@ -128,7 +134,8 @@
                                 <div class="small-box-footer"><br></div>
                             </div>
                         </div>
-                    <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')" data-target="#modalCuentaPlan"
+                        <div class="col-lg-3 col-6" onclick="getElementById('modalCuentaPlan')"
+                             data-target="#modalCuentaPlan"
                              data-toggle="modal">
                             <!-- small box -->
 
@@ -146,43 +153,41 @@
                         <!-- ./col -->
 
 
-                    <div class="col-lg-3 col-6" onclick="redirect('logout')" style="cursor: pointer">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>Cerrar Sesión</h3>
+                        <div class="col-lg-3 col-6" onclick="redirect('logout')" style="cursor: pointer">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>Cerrar Sesión</h3>
 
-                                <p>Cerrar sesión de usuario</p>
+                                    <p>Cerrar sesión de usuario</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="ion ion-power"></i>
+                                </div>
+                                <div class="small-box-footer"><br></div>
                             </div>
-                            <div class="icon">
-                                <i class="ion ion-power"></i>
-                            </div>
-                            <div class="small-box-footer"><br></div>
                         </div>
-                    </div>
-                    <!-- ./col -->
-                    <!-- Script para redireccionar los botones creados con divs-->
-{%endblock %}
+                        <!-- ./col -->
+                        <!-- Script para redireccionar los botones creados con divs-->
+                    {% endblock %}
                 </div>
 
                 <!-- /.row -->
- <!-- Aqui deberia ir  un datatable-->
-
-
+                <!-- Aqui deberia ir  un datatable-->
 
 
                 <!-- Main row -->
-    <!--Plan de cuentas --->
+                <!--Plan de cuentas --->
 
-        <!-- Button trigger modal  Acomodar para que sea modal articulos nuevo-->
-            {%block modalPlanCuenta %}
-<!--            <section>
+                <!-- Button trigger modal  Acomodar para que sea modal articulos nuevo-->
+                {% block modalPlanCuenta %}
+                    <!--            <section>
 
-                    <div class="modal fade" data-backdrop="static" id="modalCargaArticulo" tabindex="-1" role="dialog" aria-labelledby="modalCuentaPlanLabel" aria-hidden="true">
+                    <div class="modal fade" data-backdrop="static" id="modalCargaArticulo" tabindex="-1" role="dialog" aria-labelledby="modalCargaArticulolabel" aria-hidden="true">
                       <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Plan de cuentas</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Agregar articulos</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
@@ -195,22 +200,28 @@
                                         <div class="card-header">
                                             <h3 class="card-title">
                                                 <i class="fas fa-book"></i>
-                                                Cuentas
+                                                Articulos
                                             </h3>
                                         </div>
                                         <div class="card-body table-responsive p-0 " style="height: 600px;">
-                                            <table class="table table-head-fixed text-nowrap hover cell-border " id="cuentaData">
+                                            <table class="table table-head-fixed text-nowrap hover cell-border " id="articleData">
                                                 <thead>
                                                 <tr>
-                                                    <th scope="col">Numero</th>
+                                                    <th scope="col">Codigo de Item</th>
                                                     <th scope="col">Nombre</th>
-                                                    <th scope="col">Tipo</th>
-
+                                                    <th scope="col">Precio</th>
+                                                    <th scope="col">Item suspendido</th>
+                                                    <th scope="col">Motivo de Suspension</th>
+                                                    <th scope="col">Deposito</th>
+                                                    <th scope="col">Codigo de barra</th>
+                                                    <th scope="col">Observacion</th>
+                                                    <th scope="col">Stock Comprometido</th>
+                                                    <th scope="col">Rubro</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
 
-                                                {% for C in Cuentas %}
+                                                {% for A in Articulos %}
                                                 <tr>
                                                     <td>
                                                         {{ C.nro_cuenta }}
@@ -247,29 +258,29 @@
                 {% endblock %}
                 <!--Entrada de datos --->
                 <div>
-                <section>
-                {% block carga %}
+                    <section>
+                        {% block carga %}
 
-                {% endblock %}
-                </section>
+                        {% endblock %}
+                    </section>
                 </div>
                 <!--Fin carga datos -->
                 <div>
-                <section class="col-lg-12 connectedSortable" style="padding-top: 10px;padding-bottom: 10px;">
-                    {% block art %}
+                    <section class="col-lg-12 connectedSortable" style="padding-top: 10px;padding-bottom: 10px;">
+                        {% block art %}
 
-                    {% endblock %}
-                    <!-- /.card -->
-                </section>
+                        {% endblock %}
+                        <!-- /.card -->
+                    </section>
                 </div>
 
                 <!-- /.row (main row) -->
             </div><!-- /.container-fluid -->
         </section>
-    <div align="center">
+        <div align="center">
 
 
-        <h9>
+            <h9>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
@@ -300,7 +311,7 @@
 
 
             </h9>
-</div>
+        </div>
         <!-- /.content -->
         <!-- Button trigger modal -->
         <!-- /.content-wrapper -->
@@ -391,7 +402,7 @@
                 }
                 //window.location.reload(true);
                 //funcion redirect
-                });
+            });
 
             $("#btnFinalizar").click(function () {
                 window.location.href = "{% url 'homepage:cargar-asiento' %}"
@@ -411,8 +422,9 @@
                     'rowsGroup': [0, 1, 2],
                     dom: 'lBfrtip',
                     buttons: [
-                        {extend: 'pdf',
-                            className:'btn btn-success',
+                        {
+                            extend: 'pdf',
+                            className: 'btn btn-success',
                             messageTop: ' Razón social: Chascomús, S.A\n' +
                                 'Responsables: Leandro Chivarola Hernandez\n' +
                                 'CUIT:30- 55972883-4\n' +
@@ -423,7 +435,6 @@
                                 'Correo electrónico: quesorpresa@gmail.com'
 
 
-
                         }
                     ],
                     "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -431,91 +442,91 @@
                     select: true,
                 })
                 table.buttons().container().appendTo('.col-sm-4');
-                table.page( 'last' ).draw('page');
+                table.page('last').draw('page');
 
                 table.buttons().container().appendTo('.col-sm-4');
-                table.page( 'last' ).draw('page');
+                table.page('last').draw('page');
 
-          $("#datepicker_from").datepicker({
-              dateFormat: 'dd/mm/yy',
-            "onSelect": function(date) {
-              minDateFilter = new Date(date).getTime();
-              table.draw();
-            },
-beforeShow: function (textbox, instance) {
-       var txtBoxOffset = $(this).offset();
-       var top = txtBoxOffset.top;
-       var left = txtBoxOffset.left;
-       var textBoxWidth = $(this).outerWidth();
-       console.log('top: ' + top + 'left: ' + left);
-               setTimeout(function () {
-                   instance.dpDiv.css({
-                       top: top-190, //you can adjust this value accordingly
-                       left: left + textBoxWidth//show at the end of textBox
-               });
-           }, 0);
+                $("#datepicker_from").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    "onSelect": function (date) {
+                        minDateFilter = new Date(date).getTime();
+                        table.draw();
+                    },
+                    beforeShow: function (textbox, instance) {
+                        var txtBoxOffset = $(this).offset();
+                        var top = txtBoxOffset.top;
+                        var left = txtBoxOffset.left;
+                        var textBoxWidth = $(this).outerWidth();
+                        console.log('top: ' + top + 'left: ' + left);
+                        setTimeout(function () {
+                            instance.dpDiv.css({
+                                top: top - 190, //you can adjust this value accordingly
+                                left: left + textBoxWidth//show at the end of textBox
+                            });
+                        }, 0);
 
-   }
-          }).keyup(function() {
-            minDateFilter = new Date(this.value).getTime();
-            table.draw();
-          });
+                    }
+                }).keyup(function () {
+                    minDateFilter = new Date(this.value).getTime();
+                    table.draw();
+                });
 
-          $("#datepicker_to").datepicker({
-              dateFormat: 'dd/mm/yy',
-            "onSelect": function(date) {
-              maxDateFilter = new Date(date).getTime();
-              table.draw();
-            },
-              beforeShow: function (textbox, instance) {
-       var txtBoxOffset = $(this).offset();
-       var top = txtBoxOffset.top;
-       var left = txtBoxOffset.left;
-       var textBoxWidth = $(this).outerWidth();
-       console.log('top: ' + top + 'left: ' + left);
-               setTimeout(function () {
-                   instance.dpDiv.css({
-                       top: top-190, //you can adjust this value accordingly
-                       left: left + textBoxWidth//show at the end of textBox
-               });
-           }, 0);
+                $("#datepicker_to").datepicker({
+                    dateFormat: 'dd/mm/yy',
+                    "onSelect": function (date) {
+                        maxDateFilter = new Date(date).getTime();
+                        table.draw();
+                    },
+                    beforeShow: function (textbox, instance) {
+                        var txtBoxOffset = $(this).offset();
+                        var top = txtBoxOffset.top;
+                        var left = txtBoxOffset.left;
+                        var textBoxWidth = $(this).outerWidth();
+                        console.log('top: ' + top + 'left: ' + left);
+                        setTimeout(function () {
+                            instance.dpDiv.css({
+                                top: top - 190, //you can adjust this value accordingly
+                                left: left + textBoxWidth//show at the end of textBox
+                            });
+                        }, 0);
 
-   }
-          }).keyup(function() {
-            maxDateFilter = new Date(this.value).getTime();
-            table.draw();
-          });
-        minDateFilter = "";
-        maxDateFilter = "";
+                    }
+                }).keyup(function () {
+                    maxDateFilter = new Date(this.value).getTime();
+                    table.draw();
+                });
+                minDateFilter = "";
+                maxDateFilter = "";
 
-        $.fn.dataTableExt.afnFiltering.push(
-          function(oSettings, aData, iDataIndex) {
-              if (typeof aData._date == 'undefined') {
-                  aData._date = new Date(aData[0]).getTime();
-              }
+                $.fn.dataTableExt.afnFiltering.push(
+                    function (oSettings, aData, iDataIndex) {
+                        if (typeof aData._date == 'undefined') {
+                            aData._date = new Date(aData[0]).getTime();
+                        }
 
-              if (minDateFilter && !isNaN(minDateFilter)) {
-                  if (aData._date < minDateFilter) {
-                      return false;
-                  }
-              }
+                        if (minDateFilter && !isNaN(minDateFilter)) {
+                            if (aData._date < minDateFilter) {
+                                return false;
+                            }
+                        }
 
-              if (maxDateFilter && !isNaN(maxDateFilter)) {
-                  if (aData._date > maxDateFilter) {
-                      return false;
-                  }
-              }
+                        if (maxDateFilter && !isNaN(maxDateFilter)) {
+                            if (aData._date > maxDateFilter) {
+                                return false;
+                            }
+                        }
 
-              return true;
-          }
-        );
-});
+                        return true;
+                    }
+                );
+            });
 
-// Date range filter
+            // Date range filter
 
-             $(document).ready(function () {
-                 var table = $('#cuentaData').DataTable();
-             });
+            $(document).ready(function () {
+                var table = $('#cuentaData').DataTable();
+            });
 
 
             function redirect(url) {
@@ -525,8 +536,8 @@ beforeShow: function (textbox, instance) {
                     window.location.href = url;
                 }
             }
-/**/
 
+            /**/
 
 
         </script>
