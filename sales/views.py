@@ -14,16 +14,7 @@ class VentasView(CreateView):
     extra_context = {
     }
 
-class MySalesPage(TemplateView):
-    template_name = 'Articlelist.html'
-    model = Articulos
-    fields = '__all__'
 
-    extra_context = {
-        'title': "Sales Principal",
-        'Articulos': Articulos.objects.all(),
-        'Rubros': Rubros.objects.all(),
-    }
 # Create your views here.
 
 

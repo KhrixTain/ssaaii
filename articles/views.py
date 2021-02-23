@@ -4,10 +4,14 @@ from customers.models import *
 from articles.models import *
 from sales.models import *
 
-class ABMarticlesview(CreateView):
-    template_name = "ABMarticles.html"
+class MySalesPage(TemplateView):
+    template_name = 'Articlelist.html'
     model = Articulos
-    #preguntar esto
-    fields = ['codigo_item']
+    fields = '__all__'
 
+    extra_context = {
+        'title': "Sales Principal",
+        'Articulos': Articulos.objects.all(),
+        'Rubros': Rubros.objects.all(),
+    }
 # Create your views here.
