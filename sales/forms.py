@@ -18,12 +18,20 @@ class VentaForm(ModelForm):
         'cliente',
         'fecha',
         )
-        widgets= {
+        widgets = {
             'fecha': DateInput(
                 attrs={
                     'class': 'form-control',
+                    'type' : 'date',
                     'placeholder': 'Ingrese fecha',
                     'autocomplete': 'off',
                 }
+            ),
+            'codigo': TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Ingrese codigo',
+                    'autocomplete': 'off',
+                },
             )
         }

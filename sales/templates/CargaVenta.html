@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-{% load static %}
-{% block listado %}
+
 <section class="content">
       <form class="container-fluid">
 
@@ -8,7 +6,6 @@
           <!-- left column -->
           <div class="col">
           <!-- left column -->
-
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
@@ -17,82 +14,18 @@
               <!-- /.card-header -->
               <!-- form start -->
 
-                <form class="ventaForm" method="post" action="CargaVenta.html">
-             {% csrf_token %}
-               <div class="card-body">
-          <!-- left column -->
-          <div class="row">
-                        <div class="col">
-          <div class="form-group">
-                    <label >Fecha</label>
-              {{ventaForm.fecha}}
-          </div>
-                        </div>
-              <div class="col">
-          <div class="form-group">
-                    <label >Deposito</label>
-                    <input  class="form-control" >
-          </div>
-          </div>
-               <div class="col">
-          <div class="form-group">
-                    <label >Moneda</label>
-                    <select class="form-group"></select>
-          </div>
-          </div>
-          </div>
+                <div>
+<form method="post" action=".">
+    {% csrf_token %}
 
-          <div class="row">
-          <!-- left column -->
-               <div class="col">
-          <div class="form-group">
-                    <label >Numero</label>
-                    <input  class="form-control">
-          </div>
-          </div>
-               <div class="col">
-          <div class="form-group">
-                    <label >Lista de precios</label>
-                    <input  class="form-control">
-          </div>
-          </div>
-               <div class="col">
-          <div class="form-group">
-                    <label >Cambio</label>
-                    <input  class="form-control" >
-          </div>
-          </div>
-               <div class="col">
-          <div class="form-group">
-                    <label >IVA</label>
-                    <select class="form-group"></select>
-          </div>
-          </div>
-      </div>
-      <div class="row">
-          <!-- left column -->
-           <div class="col">
-          <div class="form-group">
-                    <label >Cliente</label>
-                    <input  class="form-control">
-          </div>
-          </div>
-           <div class="col">
-          <div class="form-group">
-                    <label >Desgravación</label>
-                    <input  class="form-control" >
-          </div>
-          </div>
-           <div class="col">
-          <div class="form-group">
-                    <label >Vendedor</label>
-                    <input  class="form-control" >
-          </div>
-          </div>
-      </div>
-                    <div>
-                 <button type="submit" class="btn btn-primary">Cargar</button>
-                </div> </form>
+    {{ VentaForm }}
+    <button type="submit">Cargar</button>
+</form>
+
+</div>
+
+
+
 
 <section class="col-lg-12 connectedSortable">
     <button type="submit" class="btn btn-primary">Agregar producto</button>
@@ -105,7 +38,7 @@
         </h3>
     </div>
     <div class="card-body table-responsive p-0 ">
-        <table class="table table-head-fixed text-nowrap hover cell-border " id="CargaVenta">
+        <table class="table table-head-fixed text-nowrap hover cell-border " id="CargarVenta">
             <thead>
             <tr>
                 <th scope="col">Código</th>
@@ -168,15 +101,15 @@
       </div>
       </div>
       </div>
-      </form>
+
       </div>
       </div>
    </section>
-{%endblock %}
+
 {%block javascript %}
     <script type="text/javascript">
      $(document).ready(function () {
-                 var table = $('#CargaVenta').DataTable();
+                 var table = $('#CargarVenta').DataTable();
              });
      </script>
 {%endblock %}

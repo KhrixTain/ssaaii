@@ -6,9 +6,5 @@ from articles.views import *
 
 app_name="sales"
 urlpatterns = [
-    path('', login_required(MySalesPage.as_view()),name="sales"),
-    path('CargaVenta/', login_required(VentasView.as_view()), name="CargaVenta"),
-    path('ABMarticles/',login_required(MySalesPage.as_view()), name="ABMarticles"),
-
-
+    path('CargarVenta/', login_required(VentasView.as_view()), name="CargarVenta"),
 ]

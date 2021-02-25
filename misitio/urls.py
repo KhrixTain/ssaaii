@@ -10,5 +10,6 @@ urlpatterns = [
     path('homepage/', include('homepage.urls',namespace="homepage")),
     path('sales/', include('sales.urls',namespace="sales")),
     path('articles/', include('articles.urls',namespace="articles")),
+    path('customers/', include('customers.urls',namespace="customers")),
 
 ]
