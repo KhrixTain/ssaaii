@@ -142,6 +142,10 @@ class MyHomePage(CreateView):
         context['list_url'] = reverse_lazy('homepage:index.html')
         context['action'] = 'index.html'
         return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context[''] = ''
+        return context
 
 class LibroDiarioView(TemplateView):
     templatate_name = 'libro_diario_view.html'

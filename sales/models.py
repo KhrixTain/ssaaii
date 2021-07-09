@@ -49,7 +49,7 @@ class Ventas(models.Model):
     zona_fiscal = models.IntegerField(verbose_name='Zona fiscal')
     entrega = models.TextField(verbose_name='Entrega')
     articulo = models.ManyToManyField(Articulos)
-    cliente = models.CharField(verbose_name='Cliente', max_length=50)#"""ForeignKey(Clientes,on_delete=models.PROTECT)"""
+    cliente = models.ForeignKey(Clientes,on_delete=models.PROTECT)
     fecha=models.DateTimeField(verbose_name='Fecha',null=True, editable=True,)
 
     def __init__(self,*args, **kwargs):
