@@ -15,7 +15,10 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 register = template.Library()
 
-
+class ABMclientes(TemplateView):
+    template_name = "ABMclientes.html"
+class CargaVenta(TemplateView):
+    template_name = "CargaVenta.html"
 
 class LibroMayor(ListView):
     template_name = 'libroMayor.html'
@@ -138,6 +141,10 @@ class MyHomePage(CreateView):
         context['Cuentas'] = Cuentas.objects.all()
         context['list_url'] = reverse_lazy('homepage:index.html')
         context['action'] = 'index.html'
+        return context
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context[''] = ''
         return context
 
 class LibroDiarioView(TemplateView):

@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes</title>
+</head>
+<body>
+    <h1>Clientes</h1>
+    <a href="{% url 'customers:add-customer' %}">Cargar Nuevo Cliente</a>
+    <ul>
+
+        {% for cliente in object_list %}
+            <li>
+                <div style="background-color: #00b44e">
+                    {{ cliente.name }}
+                    <a href="{% url 'customers:delete-customer' cliente.id %}">Eliminar</a>
+                </div>
+            </li>
+        {% empty %}
+            <li>No hay clientes aún.</li>
+        {% endfor %}
+
+    </ul>
+</body>
+</html>
